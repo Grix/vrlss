@@ -1,17 +1,15 @@
 Vrilda - The virtual reality laser show player
 By Gitle Mikkelsen / Grix / GrixM / gitlem@gmail.com
 
-Made in Game Maker: Studio, you will unfortunately need this program to make contributions to Vrilda. (Unless you feel like porting it)
-
---------
 Super early alpha build, nothing works perfectly and features are lacking.
 
-When opening the program, you will be asked to load an ilda file containing the laser show. 
-Only ilda formats 4 and 5 are supported as of now.
-Please allow some time for parsing the ilda file, this can take over a minute depending on the file size and processing power.
-You will then be asked to load a matching song if you want. Most audio filetypes are supported.
-If your show uses flanking projectors, press N to enable them and load a second ilda file.
-By using WASD to move and a combination of the keys RTYFGH and your mouse you can edit various settings real-time.
+Quick start guide for watching a show using the Oculus Rift: 
+
+Plug in the Rift before you open the program.
+Load the main ilda file and audio file at startup when asked. If the show uses flanking projectors (if there are more than one .ild file),
+press N to load the secondary ilda file as well. Press Tab to go 3D. If you wish you can now adjust the environment using the
+controls found below. When you are ready, press O to enter Oculus Rift mode. 
+Then press space to start playback. Lean back and enjoy the show.
 
 
 Controls are as follows (will likely change in following releases):

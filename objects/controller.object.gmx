@@ -29,6 +29,7 @@
 ds_list_add(scan_list,0);
 ds_list_add(scan_list,0);
 
+
 // Initialize GMOculus
 GMO_init(); 
 //RF_init(working_directory+"\lib\ReadFile2.dll");
@@ -42,12 +43,98 @@ alarm[1]=2;
 frame = 0;
 rdy = 0;
 rwidth = 0;
-rheight = 700;
+rheight = 900;
 rlength = 0;
 play = 0;
 audio = "song";
 fpswarning = 0;
 needpal = 0;
+progress = 0;
+i = 0;
+icp = 0;
+file_size = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (frame &lt; ds_list_size(ild_list)-6)
+    frame++;
+else
+    play = 0;
+if (play)
+    alarm[3]=2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (frame &lt; ds_list_size(ild_list)-6)
+    frame++;
+else
+    play = 0;
+if (play)
+    alarm[4]=4;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!(read_ilda_work()))
+    alarm[2]=1;
+else
+    rdy = 1;
 </string>
           </argument>
         </arguments>
@@ -70,18 +157,24 @@ needpal = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !(read_ilda(0))
+            <string>if !(read_ilda_init(0))
+    {
+    show_message("Error loading ilda file");
     game_end();
+    }
 if (needpal)
     parse_palette();
 
 songloaded = 0;
-if (show_question("Do you wish to open an accompanying song?"))
+if (show_question("Do you wish to open an accompanying audio file?"))
     {
-    saud_load(get_open_filename("",""),audio);
-    songloaded = 1;
-    }
-rdy = 1;
+    audio_file = get_open_filename_ext("*","*",working_directory,"Select audio file");
+    saud_load(audio_file,audio);
+        songloaded = 1;
+    /*else
+        show_message("Error loading audio");
+    */}
+    
 //read_frame();
 </string>
           </argument>
@@ -131,6 +224,16 @@ rdy = 1;
             <string>//FPSController_step();
 if (rdy)
     {
+    if (rdy and play and songloaded and (((real(saud_position(audio))/1000*30 - frame) &gt; 5 or (real(saud_position(audio))/1000*30 - frame) &lt; -5))) 
+        frame = floor(real(saud_position(audio))/1000*30);
+    
+    if (rheight &lt; 100)
+        rheight = 100;
+    if (rwidth &lt; 200)
+        rwidth = 200;
+    if (rlength &lt; 200)
+        rlength = 200;
+    
     if (keyboard_check(vk_right))
         {
         if (frame &lt; ds_list_size(ild_list)-6) frame++; //read_frame();
@@ -143,31 +246,33 @@ if (rdy)
     if (keyboard_check_pressed(vk_tab))
         {if !(room) room_goto_next(); else room_goto_previous();}
         
-    if (keyboard_check_pressed(vk_space) and songloaded)
+    if (keyboard_check_pressed(vk_space))
         {
         if (saud_is_playing(audio))
             {
             saud_stop(audio);
-            play = 0;
             }
         else
             {
             saud_seek(floor(frame*1000/30),audio);
-            play = 1;
             }
+        play = !play;
+        if (play)
+            alarm[3]=1;
         }
     if (keyboard_check_pressed(vk_backspace))
         {
         frame = 0;
         //read_frame();
+        saud_stop(audio);
         play = 0;
         }
         
-    if (play == 1 and (frame &lt; ds_list_size(ild_list)-5))
+ /*   if (play == 1 and (frame &lt; ds_list_size(ild_list)-5) and alarm[3] != 0 and alarm[4] != 0)
         { 
-        frame++; 
+        alarm[3]=1;
         //read_frame();
-        }
+        }*/
             
     if (keyboard_check_pressed(ord('M')))
         {
@@ -175,33 +280,46 @@ if (rdy)
         saud_stop(audio);
         play = 0;
         frame = seekto;
+        if (room)
+            window_set_fullscreen(1);
         //read_frame();
         }
     
-    if (keyboard_check_pressed(ord('N')) and ds_list_find_index(scan_list,0) == 1)
+    if (keyboard_check_pressed(ord('N')))
         {
-        saud_stop(audio);
-        play = 0;
-        //new_scanner = instance_create(1600,1250,obj_scanner);
-        //new_scanner.scanner = ds_list_find_index(scan_list,0);
-        read_ilda(1);
-        show_message("Loaded");
-        instance_create(room_width/2-200,room_height/2,obj_flankscanner);
-        instance_create(room_width/2+200,room_height/2,obj_flankscanner1);
-        if (room)
-            window_set_fullscreen(1);
+        if (ds_list_find_index(scan_list,0) == 1)
+            {
+            saud_stop(audio);
+            play = 0;
+            //new_scanner = instance_create(1600,1250,obj_scanner);
+            //new_scanner.scanner = ds_list_find_index(scan_list,0);
+            if (!read_ilda_init(1))
+                show_message("Error loading ILDA file");
+            else if (room)
+                {
+                instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
+                instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
+                window_set_fullscreen(1);
+                obj_scanner.dirver = 2.1;
+                }
+            }
+        else
+            {
+            ds_list_replace(scan_list,1,0);
+            ds_list_replace(scan_list,2,0);
+            with (obj_flankscanner) instance_destroy();
+            with (obj_flankscanner1) instance_destroy();
+            }
         }
         
         
     if (room)
         {
-        if (play and (((real(saud_position(audio))/1000*30 - frame) &gt; 10 or (real(saud_position(audio))/1000*30 - frame) &lt; -10))) 
-           frame = floor(real(saud_position(audio))/1000*30);
         
-        if (play and fps &gt; 29)
+        if (rdy and play and fps &gt; 73)
             {
             fpswarning = 1;
-            alarm[0] = 1500;
+            alarm[0] = 2000;
             }
         }
         
@@ -236,11 +354,11 @@ if (rdy)
     {
     //Start our 3D engine
     init3D();
-    instance_create(room_width/2,room_height/2,obj_scanner);
+    instance_create(750,room_height/2,obj_scanner);
     if (ds_list_find_value(scan_list,1) != 0)
         {
-        instance_create(room_width/2-200,room_height/2,obj_flankscanner);
-        instance_create(room_width/2+200,room_height/2,obj_flankscanner1);
+        instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
+        instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
         }
     }
 else
@@ -267,19 +385,18 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-draw_set_font(fnt_info);
+            <string>draw_set_font(fnt_info);
 if (rdy)
     {
+    draw_set_font(fnt_info);
     //list_id = frame_list;
     ild_list = ds_list_find_value(scan_list,0);
     list_id = ds_list_find_value(ild_list,frame);
     if (room)
         {
         /// Draw some debugging text
-        draw_set_color(c_gray)
-        draw_text(10,10,"Press TAB to switch between 2D/3D#See readme for controls##Name: "+string(ds_list_find_value(list_id,3))+
+        //draw_set_color(c_gray)
+        draw_text_stroke(10,10,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
          "#Author: "+string(ds_list_find_value(list_id,4))+
          "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
          "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
@@ -292,8 +409,8 @@ if (rdy)
          if (fpswarning) 
             {
             draw_set_color(c_red);
-            draw_text(10,220,"Warning:#FPS has dropped lower than 30,#this can cause playback skipping");
-            draw_set_color(c_gray);
+            draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
+            draw_set_color(c_ltgray);
             }
         
         
@@ -307,14 +424,24 @@ if (rdy)
         }
     else
         {
-        draw_set_color(c_ltgray)
-        draw_text(10,10,"Press TAB to switch between 2D/3D#See readme for controls##Name: "+string(ds_list_find_value(list_id,3))+
+        //draw_set_color(c_ltgray)
+        //draw_line(1024,10,1024,754);
+        draw_text_stroke(10,10,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
         "#Author: "+string(ds_list_find_value(list_id,4))+
         "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
         "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
         "#Scanner: "+string(ds_list_find_value(list_id,1))+
         "#ILDA format: "+string(ds_list_find_value(list_id,2)));
 
+        }
+    }
+else
+    {
+    if (file_size &gt; 0)
+        {
+        draw_set_color(c_ltgray);
+        draw_set_font(fnt_parsing);
+        draw_text(20,20,"Parsing file: "+string(floor(icp/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(icp/file_size*100))+"%");
         }
     }
 </string>
@@ -341,13 +468,17 @@ if (rdy)
             <kind>1</kind>
             <string>if (!room and rdy)
     {
-    i = 0;
+    /*i = 0;
     while (i&lt;=ds_list_size(scan_list))
         {
         if (ds_list_find_value(scan_list,i))
             draw_frame_2d(i);
         i++;
-        }
+        }*/
+    draw_clear(c_black);
+    draw_frame_2d(0);
+    if (ds_list_find_index(scan_list,0) != 1)
+        draw_frame_2d(1);
     }
 </string>
           </argument>

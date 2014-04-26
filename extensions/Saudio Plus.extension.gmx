@@ -266,7 +266,7 @@
         <function>
           <name>saud_status</name>
           <externalName>saud_status</externalName>
-          <kind>2</kind>
+          <kind>11</kind>
           <help>saud_status(id)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>

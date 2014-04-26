@@ -4,7 +4,6 @@ p = 0;
 ild_list = ds_list_find_value(scan_list,argument0);
 list_id = ds_list_find_value(ild_list,frame);
 format = ds_list_find_value(list_id,2);
-draw_clear(c_black);
 
 switch (format)
     {
@@ -25,7 +24,8 @@ switch (format)
                 ypn -= 384;
             else
                 ypn += 384;
-            ypn = 768-ypn;
+            //ypn = 768-ypn;
+            xpn = 1024-xpn;
             
             //find point
             xp = ds_list_find_value(list_id,5+(p)*4)/$ffff*1024;
@@ -39,7 +39,8 @@ switch (format)
                 yp -= 384;
             else
                 yp += 384;
-            yp = 768-yp;
+            //yp = 768-yp;
+            xp = 1024-xp;
                 
             //if blanking bit is 0, draw line between the two points
             if !(blank)
@@ -73,7 +74,8 @@ switch (format)
                 ypn -= 384;
             else
                 ypn += 384;
-            ypn = 768-ypn;
+            //ypn = 768-ypn;
+            xpn = 1024-xpn;
             
             //find point
             xp = ds_list_find_value(list_id,5+(p)*7)/$ffff*1024;
@@ -87,7 +89,8 @@ switch (format)
                 yp -= 384;
             else
                 yp += 384;
-            yp = 768-yp;
+            //yp = 768-yp;
+            xp = 1024-xp;
                 
             //if blanking bit is 0, draw line between the two points
             if !(blank)
@@ -123,7 +126,8 @@ switch (format)
                 ypn -= 384;
             else
                 ypn += 384;
-            ypn = 768-ypn;
+            //ypn = 768-ypn;
+            xpn = 1024-xpn;
             
             //find point
             xp = ds_list_find_value(list_id,5+(p)*6)/$ffff*1024;
@@ -137,7 +141,8 @@ switch (format)
                 yp -= 384;
             else
                 yp += 384;
-            yp = 768-yp;
+            //yp = 768-yp;
+            xp = 1024-xp;
                 
             //if blanking bit is on, draw line between the two points
             if !(blank)

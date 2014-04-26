@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>-1</For3D>
-  <width>128</width>
-  <height>128</height>
-  <data>images\bck_wall.png</data>
+  <width>1</width>
+  <height>1</height>
+  <data>images\bck_smoke.png</data>
 </background>

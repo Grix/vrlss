@@ -28,6 +28,7 @@
             <string>z = 0; //The feet
 height = 180; //The head height in CM / 3 ( 1z ingame == 3cm IRL)
 pitch = 0;
+direction = 270;
 </string>
           </argument>
         </arguments>
@@ -52,39 +53,6 @@ pitch = 0;
             <kind>1</kind>
             <string>playerMovement(5,3,3);
 playerMouselook();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Draw an arrow on the floor to show where we're facing to.
-/*
-d3d_transform_set_identity();
-d3d_transform_add_scaling(3,3,3);
-d3d_transform_add_rotation_z(direction-90);
-d3d_transform_add_translation(x,y,z+5);
-
-d3d_set_culling(false)
-d3d_model_draw(global.MODEL[MOD_ARROW],0,0,0,global.TEX[TEX_ARROW]);
-d3d_set_culling(true)
-d3d_transform_set_identity();
 </string>
           </argument>
         </arguments>

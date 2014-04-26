@@ -26,13 +26,36 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=1;
-z = 80; scanmulti=1; rdy = 0; alpha = 0.12;
+z = 150; scanmulti=1.5; rdy = 0; alpha = 0.15;
 scanner = 1;
-dirver = 2.27;
-dirhor = 1;
+dirver = 2.45;
+dirhor = 1.2;
 
 scanflate = obj_flankflate1;
 instance_create(0,0,scanflate);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (scanflate) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -83,6 +106,8 @@ instance_create(0,0,scanflate);
 if (dirhor &lt; 0.3) dirhor = 0.3;
 if (dirver &gt; 3.5) dirver = 3.5;
 if (dirver &lt; 0.3) dirver = 0.3;
+if (alpha &gt; 1) alpha = 1;
+if (alpha &lt; 0) alpha = 0;
 </string>
           </argument>
         </arguments>

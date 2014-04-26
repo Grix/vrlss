@@ -37,9 +37,12 @@
   <backgrounds name="background">
     <background>background\bck_scanner</background>
     <background>background\bck_wall</background>
+    <background>background\bck_floor</background>
+    <background>background\bck_smoke</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\playerMovement.gml</script>
     <script>scripts\playerMouselook.gml</script>
     <script>scripts\read_frame.gml</script>
@@ -48,7 +51,8 @@
     <script>scripts\init3D.gml</script>
     <script>scripts\end3D.gml</script>
     <script>scripts\parse_palette.gml</script>
-    <script>scripts\read_ilda.gml</script>
+    <script>scripts\read_ilda_init.gml</script>
+    <script>scripts\read_ilda_work.gml</script>
     <script>scripts\is_wrong.gml</script>
     <script>scripts\get_bytes.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
@@ -152,9 +156,11 @@
     <shaders name="GMOculus">
       <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
     </shaders>
+    <shader type="GLSLES">shaders\lasershader.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_info</font>
+    <font>fonts\fnt_parsing</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_environment</object>

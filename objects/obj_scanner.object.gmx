@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=1;
-z = 50; scanmulti=1; rdy = 0; alpha = 0.15;
+z = 100; scanmulti=1; rdy = 0; alpha = 0.2;
 obj_scanflate.z = 20+scanmulti*384;
 dirver = 2.1;
-dirhor = 1.1;
+dirhor = 1.2;
 
 scanner = 0;
 scanflate = obj_scanflate;
@@ -84,6 +84,8 @@ instance_create(0,0,scanflate);
 if (dirhor &lt; 0.3) dirhor = 0.3;
 if (dirver &gt; 3.5) dirver = 3.5;
 if (dirver &lt; 0.3) dirver = 0.3;
+if (alpha &gt; 1) alpha = 1;
+if (alpha &lt; 0) alpha = 0;
 </string>
           </argument>
         </arguments>
@@ -100,7 +102,7 @@ if (dirver &lt; 0.3) dirver = 0.3;
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>obj_scanner</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -110,7 +112,7 @@ if (dirver &lt; 0.3) dirver = 0.3;
     {
     draw_frame_3d();
     
-    d3d_draw_block(obj_scanner.x+20,obj_scanner.y,obj_scanner.z-5,obj_scanner.x-20,obj_scanner.y+40,obj_scanner.z+5,background_get_texture(bck_scanner),0,0);
+    //d3d_draw_block(obj_scanner.x+20,obj_scanner.y,obj_scanner.z-5,obj_scanner.x-20,obj_scanner.y+40,obj_scanner.z+5,background_get_texture(bck_scanner),0,0);
     }
     
 </string>
