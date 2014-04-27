@@ -107,6 +107,7 @@ GMO_drawCameraSurface();
             <kind>1</kind>
             <string>/// Set camera mode to regular
 GMO_setCameraMode(1);
+window_set_fullscreen(1);
 </string>
           </argument>
         </arguments>
@@ -131,6 +132,7 @@ GMO_setCameraMode(1);
             <kind>1</kind>
             <string>/// Set camera mode to oculus!
 GMO_setCameraMode(2);
+window_set_fullscreen(1);
 </string>
           </argument>
         </arguments>

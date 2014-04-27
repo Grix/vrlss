@@ -360,9 +360,13 @@ if (rdy)
         instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
         instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
         }
+    window_set_cursor(cr_none);
     }
 else
+    {
     end3D();
+    window_set_cursor(cr_default);
+    }
 </string>
           </argument>
         </arguments>

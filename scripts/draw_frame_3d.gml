@@ -1,7 +1,10 @@
+//draws the current frame on the screen
+
 p = 0;
 ild_list = ds_list_find_value(controller.scan_list,scanner);
 list_id = ds_list_find_value(ild_list,controller.frame);
 format = ds_list_find_value(list_id,2);
+
 draw_set_color(c_white);
 draw_set_alpha(1);
 draw_set_blend_mode_ext(bm_src_alpha,bm_one);

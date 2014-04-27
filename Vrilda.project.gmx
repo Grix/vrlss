@@ -45,8 +45,6 @@
     <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\playerMovement.gml</script>
     <script>scripts\playerMouselook.gml</script>
-    <script>scripts\read_frame.gml</script>
-    <script>scripts\read_ilda2.gml</script>
     <script>scripts\time.gml</script>
     <script>scripts\init3D.gml</script>
     <script>scripts\end3D.gml</script>
@@ -56,8 +54,6 @@
     <script>scripts\is_wrong.gml</script>
     <script>scripts\get_bytes.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
-    <script>scripts\draw_frame_2d2.gml</script>
-    <script>scripts\draw_frame_3d2.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
     <scripts name="GMOculus">
       <scripts name="Functions">
@@ -137,20 +133,6 @@
         </scripts>
       </scripts>
     </scripts>
-    <scripts name="Demo">
-      <scripts name="Light">
-        <script>scripts\getLightId.gml</script>
-        <script>scripts\initLights.gml</script>
-        <script>scripts\setGeneralLight.gml</script>
-        <script>scripts\disableLights.gml</script>
-        <script>scripts\enableLights.gml</script>
-      </scripts>
-    </scripts>
-    <scripts name="ReadFile2">
-      <script>scripts\RF_init.gml</script>
-      <script>scripts\RF_readall.gml</script>
-      <script>scripts\RF_readpart.gml</script>
-    </scripts>
   </scripts>
   <shaders name="shaders">
     <shaders name="GMOculus">
@@ -166,7 +148,6 @@
     <object>objects\obj_environment</object>
     <object>objects\obj_player</object>
     <object>objects\obj_camera</object>
-    <object>objects\obj_light</object>
     <object>objects\controller</object>
     <object>objects\obj_scanner</object>
     <object>objects\obj_flankscanner</object>

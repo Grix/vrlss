@@ -1,1 +1,1 @@
-global._LIGHTS=0;
+//global._LIGHTS=0;

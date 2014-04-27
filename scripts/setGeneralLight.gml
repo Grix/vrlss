@@ -1,4 +1,4 @@
-/// Just a little script to save a lot of code. This is for the lightning from obj_sky
+/*/// Just a little script to save a lot of code. This is for the lightning from obj_sky
 
 global._defaultr = 30
 global._defaultg = 20
