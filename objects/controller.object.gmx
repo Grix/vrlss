@@ -134,7 +134,9 @@ if (play)
             <string>if (!(read_ilda_work()))
     alarm[2]=1;
 else
+    {
     rdy = 1;
+    }
 </string>
           </argument>
         </arguments>

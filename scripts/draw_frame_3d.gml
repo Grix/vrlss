@@ -7,7 +7,7 @@ format = ds_list_find_value(list_id,2);
 
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_set_blend_mode_ext(bm_src_alpha,bm_one);
+draw_set_blend_mode_ext(bm_src_alpha,bm_dest_alpha);
 d3d_set_culling(false);
 if (keyboard_check(ord('B')))
     shader_set(lasershader);
