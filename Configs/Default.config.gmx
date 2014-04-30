@@ -61,6 +61,9 @@
     <option_android_pocketchange_enable>0</option_android_pocketchange_enable>
     <option_android_pocketchange_id></option_android_pocketchange_id>
     <option_android_pocketchange_test_enable>0</option_android_pocketchange_test_enable>
+    <option_android_push_enable>0</option_android_push_enable>
+    <option_android_push_id></option_android_push_id>
+    <option_android_scale>-1</option_android_scale>
     <option_android_set_device_id></option_android_set_device_id>
     <option_android_splash_png>Configs\Default\android\splash.png</option_android_splash_png>
     <option_android_texture_page>1024</option_android_texture_page>
@@ -116,7 +119,7 @@
     <option_in_app_purchase_sandbox_mode>0</option_in_app_purchase_sandbox_mode>
     <option_in_app_purchase_server_url></option_in_app_purchase_server_url>
     <option_information></option_information>
-    <option_interpolate>True</option_interpolate>
+    <option_interpolate>False</option_interpolate>
     <option_ios_adcolony_enable_V4VC>0</option_ios_adcolony_enable_V4VC>
     <option_ios_advertising_enable>0</option_ios_advertising_enable>
     <option_ios_advertising_key></option_ios_advertising_key>
@@ -129,6 +132,7 @@
     <option_ios_flurry_enable>0</option_ios_flurry_enable>
     <option_ios_flurry_id></option_ios_flurry_id>
     <option_ios_google_analytics_enable>0</option_ios_google_analytics_enable>
+    <option_ios_google_play_id></option_ios_google_play_id>
     <option_ios_google_tracking_id></option_ios_google_tracking_id>
     <option_ios_icon_114>Configs\Default\ios\icons\icon114.png</option_ios_icon_114>
     <option_ios_icon_120>Configs\Default\ios\icons\icon120.png</option_ios_icon_120>
@@ -153,6 +157,8 @@
     <option_ios_orient_portrait>-1</option_ios_orient_portrait>
     <option_ios_orient_portrait_upside_down>-1</option_ios_orient_portrait_upside_down>
     <option_ios_provisioning>&lt; Press refresh to fetch provisioning list from Mac&gt;</option_ios_provisioning>
+    <option_ios_push_enable>0</option_ios_push_enable>
+    <option_ios_scale>-1</option_ios_scale>
     <option_ios_set_device_id></option_ios_set_device_id>
     <option_ios_splash_png>Configs\Default\ios\splash.png</option_ios_splash_png>
     <option_ios_texture_page>1024</option_ios_texture_page>
@@ -178,7 +184,7 @@
     <option_mac_appstore_incoming_allow>0</option_mac_appstore_incoming_allow>
     <option_mac_appstore_outgoing_allow>0</option_mac_appstore_outgoing_allow>
     <option_mac_build_version>0</option_mac_build_version>
-    <option_mac_copyright_info>(c)2012 CompanyName Ltd...</option_mac_copyright_info>
+    <option_mac_copyright_info>(c)2014 Gitle Mikkelsen</option_mac_copyright_info>
     <option_mac_create_app_store>-1</option_mac_create_app_store>
     <option_mac_display_name>fps</option_mac_display_name>
     <option_mac_enable_steam>0</option_mac_enable_steam>
@@ -202,6 +208,14 @@
     <option_noscreensaver>true</option_noscreensaver>
     <option_ouya_packaging>0</option_ouya_packaging>
     <option_priority>0</option_priority>
+    <option_ps4_interpolate>-1</option_ps4_interpolate>
+    <option_ps4_package_id></option_ps4_package_id>
+    <option_ps4_passcode></option_ps4_passcode>
+    <option_ps4_scale>0</option_ps4_scale>
+    <option_ps4_texture_page>2048</option_ps4_texture_page>
+    <option_psvita_interpolation>-1</option_psvita_interpolation>
+    <option_psvita_package_id></option_psvita_package_id>
+    <option_psvita_passcode></option_psvita_passcode>
     <option_quitkey>true</option_quitkey>
     <option_resolution>0</option_resolution>
     <option_savekey>true</option_savekey>
@@ -214,7 +228,7 @@
     <option_showprogress>1</option_showprogress>
     <option_sizeable>False</option_sizeable>
     <option_stayontop>false</option_stayontop>
-    <option_sync_vertex>1</option_sync_vertex>
+    <option_sync_vertex>0</option_sync_vertex>
     <option_textureGroup0_border>2</option_textureGroup0_border>
     <option_textureGroup0_nocropping>0</option_textureGroup0_nocropping>
     <option_textureGroup0_parent>&lt;none&gt;</option_textureGroup0_parent>
@@ -229,24 +243,27 @@
     <option_tizen_flurry_id></option_tizen_flurry_id>
     <option_tizen_google_analytics_enable>0</option_tizen_google_analytics_enable>
     <option_tizen_google_tracking_id></option_tizen_google_tracking_id>
+    <option_tizen_iap_groupID></option_tizen_iap_groupID>
     <option_tizen_icon>Configs\Default\tizen\icon117.png</option_tizen_icon>
+    <option_tizen_interpolate>-1</option_tizen_interpolate>
     <option_tizen_major_version>1</option_tizen_major_version>
     <option_tizen_minor_version>0</option_tizen_minor_version>
     <option_tizen_network_urls></option_tizen_network_urls>
     <option_tizen_orientation>0</option_tizen_orientation>
-    <option_tizen_scaling>1</option_tizen_scaling>
+    <option_tizen_push_enable>0</option_tizen_push_enable>
+    <option_tizen_scaling>0</option_tizen_scaling>
     <option_tizen_splash_png>Configs\Default\tizen\splash.png</option_tizen_splash_png>
     <option_tizen_texture_page>1024</option_tizen_texture_page>
     <option_tizen_usesplash>False</option_tizen_usesplash>
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
-    <option_version>0.2</option_version>
+    <option_version>0.3</option_version>
     <option_version_build>0</option_version_build>
     <option_version_company></option_version_company>
     <option_version_copyright></option_version_copyright>
     <option_version_description></option_version_description>
     <option_version_major>0</option_version_major>
-    <option_version_minor>2</option_version_minor>
+    <option_version_minor>3</option_version_minor>
     <option_version_product></option_version_product>
     <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
@@ -292,7 +309,7 @@
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
-    <option_windows_mainor_version>2</option_windows_mainor_version>
+    <option_windows_mainor_version>3</option_windows_mainor_version>
     <option_windows_major_version>0</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info></option_windows_product_info>
@@ -346,6 +363,7 @@
     <option_winphone_iconic_wide_content_2></option_winphone_iconic_wide_content_2>
     <option_winphone_iconic_wide_content_3></option_winphone_iconic_wide_content_3>
     <option_winphone_iconic_wide_image>Configs\Default\WinPhone\IconicWide.png</option_winphone_iconic_wide_image>
+    <option_winphone_interpolate>-1</option_winphone_interpolate>
     <option_winphone_landscape_allowed>-1</option_winphone_landscape_allowed>
     <option_winphone_landscape_flipped_allowed>-1</option_winphone_landscape_flipped_allowed>
     <option_winphone_major_version>1</option_winphone_major_version>
@@ -354,12 +372,27 @@
     <option_winphone_publisher>YourPublisherName</option_winphone_publisher>
     <option_winphone_publisher_id>f47823f0-220d-459a-bf68-b6ea984b24a8</option_winphone_publisher_id>
     <option_winphone_revision_version>0</option_winphone_revision_version>
+    <option_winphone_scale>-1</option_winphone_scale>
     <option_winphone_supports_720p>-1</option_winphone_supports_720p>
     <option_winphone_supports_wvga>-1</option_winphone_supports_wvga>
     <option_winphone_supports_wxga>-1</option_winphone_supports_wxga>
     <option_winphone_texture_page>1024</option_winphone_texture_page>
     <option_winphone_tile_type>0</option_winphone_tile_type>
     <option_writeerrors>False</option_writeerrors>
+    <option_xbone_background_colour>#FFFFFF</option_xbone_background_colour>
+    <option_xbone_build_version>0</option_xbone_build_version>
+    <option_xbone_description></option_xbone_description>
+    <option_xbone_display_name></option_xbone_display_name>
+    <option_xbone_foreground_text>light</option_xbone_foreground_text>
+    <option_xbone_interpolation>-1</option_xbone_interpolation>
+    <option_xbone_major_version>0</option_xbone_major_version>
+    <option_xbone_minor_version>0</option_xbone_minor_version>
+    <option_xbone_publisher></option_xbone_publisher>
+    <option_xbone_publisher_display_name></option_xbone_publisher_display_name>
+    <option_xbone_revision_version>0</option_xbone_revision_version>
+    <option_xbone_scale>-1</option_xbone_scale>
+    <option_xbone_splash_screen_colour>#FFFFFF</option_xbone_splash_screen_colour>
+    <option_xbone_texture_page>1024</option_xbone_texture_page>
   </Options>
   <ConfigConstants/>
 </Config>

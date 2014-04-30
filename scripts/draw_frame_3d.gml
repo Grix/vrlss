@@ -11,7 +11,7 @@ draw_set_blend_mode_ext(bm_src_alpha,bm_dest_alpha);
 d3d_set_culling(false);
 //if (keyboard_check(ord('B'))) TODO
 //    shader_set(lasershader);
-//d3d_set_zwriteenable(1);
+
 
 switch (format)
     {

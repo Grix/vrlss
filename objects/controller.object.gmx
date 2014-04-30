@@ -49,6 +49,7 @@ rheight = 900;
 rlength = 0;
 play = 0;
 audio = "song";
+songloaded = 0;
 fpswarning = 0;
 needpal = 0;
 progress = 0;
@@ -163,7 +164,6 @@ else
             <kind>1</kind>
             <string>
 rdy = 1;
-songloaded = 0;
 </string>
           </argument>
         </arguments>

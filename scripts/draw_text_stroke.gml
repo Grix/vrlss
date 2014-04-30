@@ -1,10 +1,11 @@
+
 //initialize variables
 xx = argument0;
 yy = argument1;
 str = argument2;
 stroke_width = 2;
-
-var i j;
+i = 0;
+j = 0;
 
 draw_set_color(c_black); //set stroke color
 
