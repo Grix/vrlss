@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scan_list = ds_list_create();
+            <string>templist = ds_list_create();
+
+scan_list = ds_list_create();
 ds_list_add(scan_list,0);
 ds_list_add(scan_list,0);
 
@@ -159,25 +161,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !(read_ilda_init(0))
-    {
-    show_message("Error loading ilda file");
-    game_end();
-    }
-if (needpal)
-    parse_palette();
-
+            <string>
+rdy = 1;
 songloaded = 0;
-if (show_question("Do you wish to open an accompanying audio file?"))
-    {
-    audio_file = get_open_filename_ext("*","*",working_directory,"Select audio file");
-    saud_load(audio_file,audio);
-        songloaded = 1;
-    /*else
-        show_message("Error loading audio");
-    */}
-    
-//read_frame();
 </string>
           </argument>
         </arguments>
@@ -246,7 +232,14 @@ if (rdy)
         }
     
     if (keyboard_check_pressed(vk_tab))
-        {if !(room) room_goto_next(); else room_goto_previous();}
+        {
+        if (ds_list_find_value(scan_list,0))
+            {
+            if (!room) room_goto_next(); 
+            else room_goto_previous();
+            }
+        else show_message("Please load at least a main ILDA file before entering 3D mode");
+        }
         
     if (keyboard_check_pressed(vk_space))
         {
@@ -357,7 +350,7 @@ if (rdy)
     //Start our 3D engine
     init3D();
     instance_create(750,room_height/2,obj_scanner);
-    if (ds_list_find_value(scan_list,1) != 0)
+    if (ds_list_find_value(scan_list,1))
         {
         instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
         instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
@@ -415,7 +408,9 @@ if (rdy)
          if (fpswarning) 
             {
             draw_set_color(c_red);
+            draw_set_font(fnt_parsing);
             draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
+            draw_set_font(fnt_info);
             draw_set_color(c_ltgray);
             }
         
@@ -430,15 +425,25 @@ if (rdy)
         }
     else
         {
-        //draw_set_color(c_ltgray)
-        //draw_line(1024,10,1024,754);
-        draw_text_stroke(10,10,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
+        draw_set_color(c_dkgray);
+        draw_line(802,15,802,585);
+        draw_set_color(c_ltgray);
+        draw_text_stroke(830,30,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
         "#Author: "+string(ds_list_find_value(list_id,4))+
         "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
         "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
         "#Scanner: "+string(ds_list_find_value(list_id,1))+
         "#ILDA format: "+string(ds_list_find_value(list_id,2)));
-
+        
+        if (!global._GMO_DLL_LOADED) 
+            {
+            draw_set_color(c_red);
+            draw_set_font(fnt_parsing);
+            draw_text(830,220,"Warning:#Oculus Rift Not Detected");
+            draw_set_font(fnt_info);
+            draw_set_color(c_ltgray);
+            }
+        
         }
     }
 else

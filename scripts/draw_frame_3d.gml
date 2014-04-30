@@ -9,8 +9,8 @@ draw_set_color(c_white);
 draw_set_alpha(1);
 draw_set_blend_mode_ext(bm_src_alpha,bm_dest_alpha);
 d3d_set_culling(false);
-if (keyboard_check(ord('B')))
-    shader_set(lasershader);
+//if (keyboard_check(ord('B'))) TODO
+//    shader_set(lasershader);
 //d3d_set_zwriteenable(1);
 
 switch (format)
@@ -56,12 +56,6 @@ switch (format)
                 color = (ds_list_find_value(list_id,5+(p)*4+3)) & $FF;
                 colormade = (make_color_rgb(ds_grid_get(controller.palette_grid,0,color),ds_grid_get(controller.palette_grid,1,color),ds_grid_get(controller.palette_grid,2,color)));
                 
-                /*d3d_primitive_begin_texture(pr_trianglelist,bck_smoke);
-                    d3d_vertex_texture_color(x,y,z,0,0,colormade,alpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,alpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),0,0,colormade,alpha);
-                d3d_primitive_end();*/
-                
                 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
                     d3d_vertex_texture_color(x,y,z,0,0,colormade,alpha);
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,alpha);
@@ -71,8 +65,8 @@ switch (format)
             
             p++;
             }
-        }
         break;
+        }
     case 4: //format 4: new 3d
         {
         while (p < ds_list_size(list_id)/7-5)
@@ -119,11 +113,6 @@ switch (format)
                 red = ds_list_find_value(list_id,5+(np)*7+6);
                 colormade = make_color_rgb(red,green,blue);
                 
-                /*d3d_primitive_begin(pr_trianglelist);
-                    d3d_vertex_color(x,y,z,colormade,alpha);
-                    d3d_vertex_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),colormade,alpha);
-                    d3d_vertex_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),colormade,alpha);
-                d3d_primitive_end();*/
                 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
                     d3d_vertex_texture_color(x,y,z,0,0,colormade,alpha);
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,alpha);
@@ -133,8 +122,8 @@ switch (format)
             
             p++;
             }
-        }
         break;
+        }
     case 5: //format 5: new 2d
         {
         while (p < ds_list_size(list_id)/6-5)
@@ -181,25 +170,18 @@ switch (format)
                 red = ds_list_find_value(list_id,5+(np)*6+5);
                 colormade = make_color_rgb(red,green,blue);
                 
-                /*d3d_primitive_begin(pr_trianglelist);
-                    d3d_vertex_color(x,y,z,colormade,alpha);
-                    d3d_vertex_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),colormade,alpha);
-                    d3d_vertex_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),colormade,alpha);
-                d3d_primitive_end();*/
                 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
                     d3d_vertex_texture_color(x,y,z,0,0,colormade,alpha);
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,alpha);
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),0,0,colormade,alpha);
                 d3d_primitive_end();
                 
-                //show_message(string(ds_list_find_value(list_id,5+(p)*6))+"  "+string(ds_list_find_value(list_id,5+(p)*6+1))+"  "+string(blue)+"  "+string(green)+"  "+string(red));
-                //show_message(string(blank)+"   "+string((blank == $20)));
                 }
             
             p++;
             }
-        }
         break;
+        }
     }
     
 draw_set_blend_mode(bm_normal);

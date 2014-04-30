@@ -1,18 +1,14 @@
-//works its way through an ilda file, finishes when 1% is reached so that a loading bar can be drawn
+//works its way through an ilda file, finishes early so that a frame can be drawn
 
 progress = icp;
 
-while ((i+icp) < file_size-1)
+while (1)//(i+icp) < file_size-1)
     {
     //buffer_seek(ild_file, i+icp, 0);
     //byte = buffer_peek(ild_file, i+icp, buffer_u8); //buffer_read(ild_file, buffer_u8);
     //byterf = ord(RF_readpart(filename,i+icp,0));
     file_bin_seek(ild_file,i+icp);
     byte = file_bin_read_byte(ild_file);
-    //if (byte != byterf or get_bytes() != get_bytes()rf)
-    //    show_message(string(i+icp)+"  "+string(byte)+"  "+string(byterf)+"  "+string(get_bytes())+"  "+string(get_bytes()rf))
-    //show_message(byte);
-    //show_message(get_bytes());
     
     if (status) //read points
         {
@@ -45,9 +41,6 @@ while ((i+icp) < file_size-1)
                         point = 0;
                         ds_list_add(ild_list,frame_list);
                         
-                        /*if !(ds_list_size(ild_list) mod 100)
-                            with (obj_loading) event_perform(ev_draw,0);*/
-                        
                         if (maxframes <= ds_list_size(ild_list))
                             {
                             ds_list_add(ild_list,"STOP");
@@ -56,6 +49,10 @@ while ((i+icp) < file_size-1)
                             ds_list_add(ild_list,"uu");
                             ds_list_add(ild_list,"uu");
                             }
+                        if (!((i+icp) < file_size-1))
+                            return 1;
+                        if ((progress+157209) < icp)
+                            return 0;
                         }
                     break;
                 }
@@ -98,6 +95,10 @@ while ((i+icp) < file_size-1)
                             ds_list_add(ild_list,"uu");
                             ds_list_add(ild_list,"uu");
                             }
+                        if (!((i+icp) < file_size-1))
+                            return 1;
+                        if ((progress+157209) < icp)
+                            return 0;
                         }
                     break;
                 }
@@ -122,6 +123,10 @@ while ((i+icp) < file_size-1)
                     ds_list_add(ild_list,"uu");
                     ds_list_add(ild_list,"uu");
                     }
+                if (!((i+icp) < file_size-1))
+                    return 1;
+                if ((progress+157209) < icp)
+                    return 0;
                 }
             }
 
@@ -139,7 +144,7 @@ while ((i+icp) < file_size-1)
             case 6: if !is_wrong($0) return 0; break;
             case 7: 
                 if (byte == 4 or byte == 5) { format = byte; }
-                else {show_message("We don't support this ILDA format yet, try converting to format 4 or 5"); return 0;}
+                else {show_message("We don't support this ILDA format yet, try converting to format 4 or 5"); game_end(); return 0;}
                 if (byte == 0 and (file_size-(i+icp)) > 50) needpal = 1;
                 break;
             case 8:
@@ -172,13 +177,15 @@ while ((i+icp) < file_size-1)
                 break;
             case 26: frame_number = get_bytes(); break;
             case 28: maxframes = get_bytes(); break;
-            case 30: ds_list_add(frame_list,byte); ds_list_add(frame_list,format); ds_list_add(frame_list,name); ds_list_add(frame_list,author); status = 1; i++; author=""; name=""; break;
+            case 30: ds_list_add(frame_list,byte); ds_list_add(frame_list,format); ds_list_add(frame_list,name); ds_list_add(frame_list,author); status = 1; i++; author=""; name="";
+                if (!((i+icp) < file_size-1))
+                    return 1;
+                if ((progress+157209) < icp)
+                    return 0;
+                break;
             }
         i++;
         }
-        
-    if ((progress+357209) < icp)
-        return 0;
     }
         
 //Todo: find out where this extra bogus frame comes from:

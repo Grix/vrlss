@@ -14,33 +14,33 @@ switch (format)
             blank = (ds_list_find_value(list_id,5+(p)*4+3) >> 14) & 1
             
             //find next point
-            xpn = ds_list_find_value(list_id,5+(p+1)*4)/$ffff*1024;
-            ypn = ds_list_find_value(list_id,5+(p+1)*4+1)/$ffff*768;
-            if (xpn >= 512)
-                xpn -= 512;
+            xpn = ds_list_find_value(list_id,5+(p+1)*4)/$ffff*800;
+            ypn = ds_list_find_value(list_id,5+(p+1)*4+1)/$ffff*600;
+            if (xpn >= 400)
+                xpn -= 400;
             else
-                xpn += 512;
-            if (ypn >= 384)
-                ypn -= 384;
+                xpn += 400;
+            if (ypn >= 300)
+                ypn -= 300;
             else
-                ypn += 384;
-            //ypn = 768-ypn;
-            xpn = 1024-xpn;
+                ypn += 300;
+            //ypn = 600-ypn;
+            xpn = 800-xpn;
             
             //find point
-            xp = ds_list_find_value(list_id,5+(p)*4)/$ffff*1024;
-            yp = ds_list_find_value(list_id,5+(p)*4+1)/$ffff*768;
+            xp = ds_list_find_value(list_id,5+(p)*4)/$ffff*800;
+            yp = ds_list_find_value(list_id,5+(p)*4+1)/$ffff*600;
         
-            if (xp >= 512)
-                xp -= 512;
+            if (xp >= 400)
+                xp -= 400;
             else
-                xp += 512;
-            if (yp >= 384)
-                yp -= 384;
+                xp += 400;
+            if (yp >= 300)
+                yp -= 300;
             else
-                yp += 384;
-            //yp = 768-yp;
-            xp = 1024-xp;
+                yp += 300;
+            //yp = 600-yp;
+            xp = 800-xp;
                 
             //if blanking bit is 0, draw line between the two points
             if !(blank)
@@ -64,33 +64,33 @@ switch (format)
             blank = (blank >> 6) & 1
             
             //find next point
-            xpn = ds_list_find_value(list_id,5+(np)*7)/$ffff*1024;
-            ypn = ds_list_find_value(list_id,5+(np)*7+1)/$ffff*768;
-            if (xpn >= 512)
-                xpn -= 512;
+            xpn = ds_list_find_value(list_id,5+(np)*7)/$ffff*800;
+            ypn = ds_list_find_value(list_id,5+(np)*7+1)/$ffff*600;
+            if (xpn >= 400)
+                xpn -= 400;
             else
-                xpn += 512;
-            if (ypn >= 384)
-                ypn -= 384;
+                xpn += 400;
+            if (ypn >= 300)
+                ypn -= 300;
             else
-                ypn += 384;
-            //ypn = 768-ypn;
-            xpn = 1024-xpn;
+                ypn += 300;
+            //ypn = 600-ypn;
+            xpn = 800-xpn;
             
             //find point
-            xp = ds_list_find_value(list_id,5+(p)*7)/$ffff*1024;
-            yp = ds_list_find_value(list_id,5+(p)*7+1)/$ffff*768;
+            xp = ds_list_find_value(list_id,5+(p)*7)/$ffff*800;
+            yp = ds_list_find_value(list_id,5+(p)*7+1)/$ffff*600;
         
-            if (xp >= 512)
-                xp -= 512;
+            if (xp >= 400)
+                xp -= 400;
             else
-                xp += 512;
-            if (yp >= 384)
-                yp -= 384;
+                xp += 400;
+            if (yp >= 300)
+                yp -= 300;
             else
-                yp += 384;
-            //yp = 768-yp;
-            xp = 1024-xp;
+                yp += 300;
+            //yp = 600-yp;
+            xp = 800-xp;
                 
             //if blanking bit is 0, draw line between the two points
             if !(blank)
@@ -116,33 +116,33 @@ switch (format)
             blank = (blank >> 6) & 1
             
             //find next point
-            xpn = ds_list_find_value(list_id,5+(np)*6)/$ffff*1024;
-            ypn = ds_list_find_value(list_id,5+(np)*6+1)/$ffff*768;
-            if (xpn >= 512)
-                xpn -= 512;
+            xpn = ds_list_find_value(list_id,5+(np)*6)/$ffff*800;
+            ypn = ds_list_find_value(list_id,5+(np)*6+1)/$ffff*600;
+            if (xpn >= 400)
+                xpn -= 400;
             else
-                xpn += 512;
-            if (ypn >= 384)
-                ypn -= 384;
+                xpn += 400;
+            if (ypn >= 300)
+                ypn -= 300;
             else
-                ypn += 384;
-            //ypn = 768-ypn;
-            xpn = 1024-xpn;
+                ypn += 300;
+            //ypn = 600-ypn;
+            xpn = 800-xpn;
             
             //find point
-            xp = ds_list_find_value(list_id,5+(p)*6)/$ffff*1024;
-            yp = ds_list_find_value(list_id,5+(p)*6+1)/$ffff*768;
+            xp = ds_list_find_value(list_id,5+(p)*6)/$ffff*800;
+            yp = ds_list_find_value(list_id,5+(p)*6+1)/$ffff*600;
         
-            if (xp >= 512)
-                xp -= 512;
+            if (xp >= 400)
+                xp -= 400;
             else
-                xp += 512;
-            if (yp >= 384)
-                yp -= 384;
+                xp += 400;
+            if (yp >= 300)
+                yp -= 300;
             else
-                yp += 384;
-            //yp = 768-yp;
-            xp = 1024-xp;
+                yp += 300;
+            //yp = 600-yp;
+            xp = 800-xp;
                 
             //if blanking bit is on, draw line between the two points
             if !(blank)

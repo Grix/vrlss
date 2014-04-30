@@ -19,7 +19,6 @@ if (global._GMO_DLL_LOADED == false) {
 
     if (OVR_Device_init() == false) {
         show_debug_message("Oculus Rift Device not found.");
-        show_message("Oculus Rift Device not found.");
         return false;
     } else {
         show_debug_message("Oculus Rift DLL loaded and initialized!");

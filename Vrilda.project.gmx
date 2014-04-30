@@ -32,7 +32,10 @@
     <sprite>sprites\spr_cam</sprite>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\blank_spr</sprite>
-    <sprite>sprites\spr_rectangle</sprite>
+    <sprite>sprites\spr_mainildbutton</sprite>
+    <sprite>sprites\spr_flankildbutton</sprite>
+    <sprite>sprites\spr_audiobutton</sprite>
+    <sprite>sprites\spr_3dbutton</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_scanner</background>
@@ -145,6 +148,15 @@
     <font>fonts\fnt_parsing</font>
   </fonts>
   <objects name="objects">
+    <objects name="GMOculus">
+      <objects name="Test objects">
+        <object>objects\obj_player_eyes</object>
+      </objects>
+      <objects name="Controllers">
+        <object>objects\obj_3d_particle</object>
+        <object>objects\obj_3d_parent</object>
+      </objects>
+    </objects>
     <object>objects\obj_environment</object>
     <object>objects\obj_player</object>
     <object>objects\obj_camera</object>
@@ -155,15 +167,10 @@
     <object>objects\obj_scanflate</object>
     <object>objects\obj_flankflate</object>
     <object>objects\obj_flankflate1</object>
-    <objects name="GMOculus">
-      <objects name="Test objects">
-        <object>objects\obj_player_eyes</object>
-      </objects>
-      <objects name="Controllers">
-        <object>objects\obj_3d_particle</object>
-        <object>objects\obj_3d_parent</object>
-      </objects>
-    </objects>
+    <object>objects\obj_mainildbutton</object>
+    <object>objects\obj_3dbutton</object>
+    <object>objects\obj_audiobutton</object>
+    <object>objects\obj_flankildbutton</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>

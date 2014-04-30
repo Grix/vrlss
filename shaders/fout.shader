@@ -1,7 +1,3 @@
-float4 vec4(float3 x0, float x1)
-{
-    return float4(x0, x1);
-}
 // Varyings
 static float4 _v_vColour = {0, 0, 0, 0};
 static float2 _v_vTexcoord = {0, 0};
@@ -17,7 +13,6 @@ uniform bool _gm_AlphaTestEnabled : register(c4);
 uniform sampler2D _gm_BaseTexture : register(s0);
 uniform float4 _gm_FogColour : register(c5);
 uniform bool _gm_PS_FogEnabled : register(c6);
-uniform sampler2D _texColorDodge : register(s1);
 
 float4 gl_texture2D(sampler2D s, float2 t)
 {
@@ -68,14 +63,10 @@ if(_gm_PS_FogEnabled)
 ;
 ;
 ;
-;
 void gl_main()
 {
 {
-float4 _inColor = (_v_vColour * gl_texture2D(_gm_BaseTexture, _v_vTexcoord));
-float4 _blend = gl_texture2D(_texColorDodge, _v_vTexcoord);
-float4 _outColor = vec4((_inColor.xyz / (1.0 - _blend.xyz)), _inColor.w);
-(gl_Color[0] = lerp(_outColor, _inColor, (1.0 - _blend.w)));
+(gl_Color[0] = (_v_vColour * gl_texture2D(_gm_BaseTexture, _v_vTexcoord)));
 }
 }
 ;
