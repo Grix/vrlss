@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>templist = ds_list_create();
 
+fog = 1;
+
 scan_list = ds_list_create();
 ds_list_add(scan_list,0);
 ds_list_add(scan_list,0);
@@ -212,9 +214,11 @@ rdy = 1;
             <string>//FPSController_step();
 if (rdy)
     {
+    //Check audio sync
     if (rdy and play and songloaded and (((real(saud_position(audio))/1000*30 - frame) &gt; 5 or (real(saud_position(audio))/1000*30 - frame) &lt; -5))) 
         frame = floor(real(saud_position(audio))/1000*30);
     
+    //Clamp room size
     if (rheight &lt; 100)
         rheight = 100;
     if (rwidth &lt; 200)
@@ -222,6 +226,7 @@ if (rdy)
     if (rlength &lt; 200)
         rlength = 200;
     
+    //Increase/decrease frame number
     if (keyboard_check(vk_right))
         {
         if (frame &lt; ds_list_size(ild_list)-6) frame++; //read_frame();
@@ -231,6 +236,7 @@ if (rdy)
         if (frame) frame--; //read_frame();
         }
     
+    //Toggle 3D/2D
     if (keyboard_check_pressed(vk_tab))
         {
         if (ds_list_find_value(scan_list,0))
@@ -241,6 +247,15 @@ if (rdy)
         else show_message("Please load at least a main ILDA file before entering 3D mode");
         }
         
+    //IPD
+    if (keyboard_check_direct(ord("L"))) {
+        GMO_setIPD(GMO_getIPD()+0.01);
+    }
+    if (keyboard_check_direct(ord("K"))) {
+        GMO_setIPD(GMO_getIPD()-0.01);
+    }
+        
+    //Play/pause
     if (keyboard_check_pressed(vk_space))
         {
         if (saud_is_playing(audio))
@@ -255,6 +270,8 @@ if (rdy)
         if (play)
             alarm[3]=1;
         }
+    
+    //Stop and reset
     if (keyboard_check_pressed(vk_backspace))
         {
         frame = 0;
@@ -262,25 +279,29 @@ if (rdy)
         saud_stop(audio);
         play = 0;
         }
-        
- /*   if (play == 1 and (frame &lt; ds_list_size(ild_list)-5) and alarm[3] != 0 and alarm[4] != 0)
-        { 
-        alarm[3]=1;
-        //read_frame();
-        }*/
             
+    //Jump to frame
     if (keyboard_check_pressed(ord('M')))
         {
         seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-6),0);
-        saud_stop(audio);
-        play = 0;
-        frame = seekto;
-        if (room)
-            window_set_fullscreen(1);
-        //read_frame();
+        if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-6)))
+            {
+            saud_stop(audio);
+            play = 0;
+            frame = seekto;
+            if (room)
+                window_set_fullscreen(1);
+            }
+        }
+        
+    //Toggle fog
+     if (keyboard_check_pressed(ord('B')) and room and rdy)
+        {
+        fog = !fog;
         }
     
-    if (keyboard_check_pressed(ord('N')))
+    //Load flanking ilda
+    /*if (keyboard_check_pressed(ord('N')))
         {
         if (ds_list_find_index(scan_list,0) == 1)
             {
@@ -305,9 +326,9 @@ if (rdy)
             with (obj_flankscanner) instance_destroy();
             with (obj_flankscanner1) instance_destroy();
             }
-        }
+        }*/
         
-        
+    //Check fps
     if (room)
         {
         
@@ -345,8 +366,8 @@ if (rdy)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room)
-    {
+            <string>if (room == rm_3d)
+{
     //Start our 3D engine
     init3D();
     instance_create(750,room_height/2,obj_scanner);
@@ -356,18 +377,24 @@ if (rdy)
         instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
         }
     window_set_cursor(cr_none);
-    }
+    
+    surface_resize(application_surface, 1920, 1080);
+    display_set_gui_maximise();
+}
 else
-    {
+{
     end3D();
     window_set_cursor(cr_default);
-    }
+    
+    surface_resize(application_surface, 1100, 600);
+    display_set_gui_size(1100, 600);
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="75">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -413,15 +440,6 @@ if (rdy)
             draw_set_font(fnt_info);
             draw_set_color(c_ltgray);
             }
-        
-        
-        // Change IPD
-        if (keyboard_check_direct(ord("L"))) {
-            GMO_setIPD(GMO_getIPD()+0.01);
-        }
-        if (keyboard_check_direct(ord("K"))) {
-            GMO_setIPD(GMO_getIPD()-0.01);
-        }
         }
     else
         {
@@ -441,6 +459,12 @@ if (rdy)
             draw_set_font(fnt_parsing);
             draw_text(830,220,"Warning:#Oculus Rift Not Detected");
             draw_set_font(fnt_info);
+            draw_set_color(c_ltgray);
+            }
+        else
+            {
+            draw_set_color(c_green);
+            draw_text(830,220,"Oculus Rift Detected");
             draw_set_color(c_ltgray);
             }
         
@@ -490,7 +514,7 @@ else
     draw_frame_2d(0);
     if (ds_list_find_index(scan_list,0) != 1)
         draw_frame_2d(1);
-    }
+}
 </string>
           </argument>
         </arguments>

@@ -1,3 +1,4 @@
+#define time
 /*Correct Time Script
 By: Brandon 'Shaltif' Rohrer
 =============================

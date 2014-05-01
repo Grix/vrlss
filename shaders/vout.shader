@@ -14,7 +14,8 @@ static float2 _in_TextureCoord = {0, 0};
 static float4 gl_Position = float4(0, 0, 0, 0);
 
 // Varyings
-static float4 _v_vColour = {0, 0, 0, 0};
+static float2 _pos = {0, 0};
+static float4 _v_vColor = {0, 0, 0, 0};
 static float2 _v_vTexcoord = {0, 0};
 
 uniform float4 dx_ViewAdjust : register(c1);
@@ -149,13 +150,15 @@ return _vertexcolour;
 ;
 ;
 ;
+;
 void gl_main()
 {
 {
 float4 _object_space_pos = vec4(_in_Position.x, _in_Position.y, _in_Position.z, 1.0);
 (gl_Position = mul((_gm_Matrices[4]), _object_space_pos));
-(_v_vColour = _in_Colour);
+(_v_vColor = _in_Colour);
 (_v_vTexcoord = _in_TextureCoord);
+(_pos = _in_Position.xy);
 }
 }
 ;
@@ -171,6 +174,7 @@ struct VS_OUTPUT
     float4 gl_Position : POSITION;
     float4 v0 : TEXCOORD0;
     float2 v1 : TEXCOORD1;
+    float2 v2 : TEXCOORD2;
 };
 
 VS_OUTPUT main(VS_INPUT input)
@@ -186,8 +190,9 @@ VS_OUTPUT main(VS_INPUT input)
     output.gl_Position.y = gl_Position.y;
     output.gl_Position.z = gl_Position.z;
     output.gl_Position.w = gl_Position.w;
-    output.v0 = _v_vColour;
-    output.v1 = _v_vTexcoord;
+    output.v1 = _pos;
+    output.v0 = _v_vColor;
+    output.v2 = _v_vTexcoord;
 
     return output;
 }

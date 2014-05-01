@@ -1,3 +1,4 @@
+#define read_ilda_work
 //works its way through an ilda file, finishes early so that a frame can be drawn
 
 progress = icp;
@@ -192,4 +193,3 @@ while (1)//(i+icp) < file_size-1)
 //ds_list_delete(ild_list,ds_list_size(ild_list)-1);
 
 return 1;
-

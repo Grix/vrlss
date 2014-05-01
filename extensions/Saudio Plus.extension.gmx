@@ -2,12 +2,24 @@
 <extension>
   <name>Saudio Plus</name>
   <version>1.0</version>
+  <packageID></packageID>
   <author>SPLN</author>
   <date>06/05/2012</date>
   <license>Free to use, also for commercial games.</license>
   <description>New functions for Saudio DLL/GEX.</description>
   <helpfile></helpfile>
   <installdir></installdir>
+  <classname></classname>
+  <androidclassname></androidclassname>
+  <sourcedir></sourcedir>
+  <androidsourcedir></androidsourcedir>
+  <macsourcedir></macsourcedir>
+  <maclinkerflags></maclinkerflags>
+  <androidinject></androidinject>
+  <iosSystemFrameworks/>
+  <iosThirdPartyFrameworks/>
+  <androidPermissions/>
+  <IncludedResources/>
   <files>
     <file>
       <filename>Saudio_Plus.gml</filename>

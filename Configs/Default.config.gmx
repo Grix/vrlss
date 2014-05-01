@@ -34,6 +34,12 @@
     <option_android_icon_36>Configs\Default\android\icons\icon36.png</option_android_icon_36>
     <option_android_icon_48>Configs\Default\android\icons\icon48.png</option_android_icon_48>
     <option_android_icon_72>Configs\Default\android\icons\icon72.png</option_android_icon_72>
+    <option_android_icon_hdpi>Configs\Default\android\icons\icon_hdpi.png</option_android_icon_hdpi>
+    <option_android_icon_ldpi>Configs\Default\android\icons\icon_ldpi.png</option_android_icon_ldpi>
+    <option_android_icon_mdpi>Configs\Default\android\icons\icon_mdpi.png</option_android_icon_mdpi>
+    <option_android_icon_xhdpi>Configs\Default\android\icons\icon_xhdpi.png</option_android_icon_xhdpi>
+    <option_android_icon_xxhdpi>Configs\Default\android\icons\icon_xxhdpi.png</option_android_icon_xxhdpi>
+    <option_android_icon_xxxhdpi>Configs\Default\android\icons\icon_xxxhdpi.png</option_android_icon_xxxhdpi>
     <option_android_inmobi_enable>0</option_android_inmobi_enable>
     <option_android_inmobi_id></option_android_inmobi_id>
     <option_android_inmobi_test_enable>0</option_android_inmobi_test_enable>
@@ -209,6 +215,9 @@
     <option_ouya_packaging>0</option_ouya_packaging>
     <option_priority>0</option_priority>
     <option_ps4_interpolate>-1</option_ps4_interpolate>
+    <option_ps4_nptitleid></option_ps4_nptitleid>
+    <option_ps4_nptitlesecret>Memo1
+</option_ps4_nptitlesecret>
     <option_ps4_package_id></option_ps4_package_id>
     <option_ps4_passcode></option_ps4_passcode>
     <option_ps4_scale>0</option_ps4_scale>

@@ -1,3 +1,4 @@
+#define vector_rotate
 //vector_rotate() made by Rafferty97
 // x, y, z, ux, uy, uz, angle, r(x = 0, y = 1, z = 2)
 var xx, yy, zz, ux, uy, u, angle, r, mx, my, mz, s, c;

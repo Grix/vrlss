@@ -1,3 +1,4 @@
+#define draw_text_stroke
 
 //initialize variables
 xx = argument0;

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=1;
-z = 100; scanmulti=1; rdy = 0; alpha = 0.2;
+z = 100; scanmulti=1; rdy = 0; alpha = 0.3;
 obj_scanflate.z = 20+scanmulti*384;
 dirver = 2.1;
 dirhor = 1.2;

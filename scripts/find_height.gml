@@ -1,3 +1,4 @@
+#define find_height
 // find_height(x,y,tri_id)
 
 var points = ds_list_find_value(obj_room.list,argument2);

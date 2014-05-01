@@ -1,3 +1,4 @@
+#define mod_to_triList
 // mod_to_triList(mod)
 // returns a list of lists made up of the 9 values of the 3d triangle
 

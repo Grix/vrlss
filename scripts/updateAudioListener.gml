@@ -1,3 +1,4 @@
+#define updateAudioListener
 //updateAudioListener() adapted from Rafferty97
 //arg0 - x
 //arg1 - y

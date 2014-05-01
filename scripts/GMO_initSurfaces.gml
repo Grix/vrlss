@@ -1,3 +1,4 @@
+#define GMO_initSurfaces
 // Create a surface for the left and right eye, half the width resolution each.
 global._GMO_SURFACE[SURF_RIGHT]=surface_create(GMO_getResolutionWidth()/2,GMO_getResolutionHeight());
 global._GMO_SURFACE[SURF_LEFT]=surface_create(GMO_getResolutionWidth()/2,GMO_getResolutionHeight());

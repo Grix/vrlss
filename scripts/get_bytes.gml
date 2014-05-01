@@ -1,3 +1,4 @@
+#define get_bytes
 //returns two next bytes combined
 
 byte0 = byte;
@@ -11,5 +12,4 @@ byte1 = file_bin_read_byte(ild_file);
 //byte1 = buffer_peek(ild_file, i+icp+1, buffer_u8);
 //wordrf = (byterf0 << 8) + byterf1;
 return((byte0 << 8) + byte1);
-
 

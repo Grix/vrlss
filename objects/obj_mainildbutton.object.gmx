@@ -81,16 +81,19 @@ visible = controller.rdy;
 
 with (controller)
     {
-    rdy = 0;
-    saud_stop(audio);
-    play = 0;
     if !(read_ilda_init(0))
         {
-        show_message("Error loading ilda file");
-        game_end();
+        //show_message("Error loading ilda file");
+        //game_end();
+        }    
+    else
+        {
+        rdy = 0;
+        saud_stop(audio);
+        play = 0;
+        if (needpal)
+            parse_palette();
         }
-    if (needpal)
-        parse_palette();
     }
 </string>
           </argument>

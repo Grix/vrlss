@@ -1,3 +1,4 @@
+#define GMO_updateListener
 /// Update the position of the listner. This function is not optimal. Could be done better!
 // arg0 int x
 // arg1 int y

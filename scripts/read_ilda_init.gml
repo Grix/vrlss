@@ -1,6 +1,13 @@
+#define read_ilda_init
 
 //initializes parsing of an ilda file, stores each frame in its own ds_list, a catalog of frames is kept in another ds_list
 //arg0 is scanner number
+
+filename = get_open_filename_ext("*.ild","*",working_directory,"Select ILDA file")
+if (filename != "")
+    ild_file = file_bin_open(filename,0);
+else
+    return 0;
 
 rdy = 0;
 frame = 0;
@@ -8,12 +15,6 @@ play = 0;
 progress = 0;
 filename = "";
 saud_stop(audio);
-
-filename = get_open_filename_ext("*.ild","*",working_directory,"Select ILDA file")
-if (filename != "")
-    ild_file = file_bin_open(filename,0);
-else
-    return 0;
 file_size = file_bin_size(ild_file);
 
     if !(ild_file) 

@@ -1,3 +1,4 @@
+#define GMO_initDefaults
 /** 
  * These are the GMOculus default values. Its better not to touch these, 
  * and simply use the setters and getters instead.
@@ -18,5 +19,4 @@ global._GMO_DLL_LOADED = false;
 global._GMO_DLL_FILENAME = 'lib\RiftSharpDll.dll'
 
 GMO_initSurfaces(); //Create surfaces
-
 

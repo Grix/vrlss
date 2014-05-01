@@ -1,3 +1,4 @@
+#define GMO_setUse3DSound
 /// Set wether to use 3D sound based on the camera's location / rotation
 // Default true
 // arg0 boolean

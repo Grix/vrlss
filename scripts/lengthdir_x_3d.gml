@@ -1,3 +1,4 @@
+#define lengthdir_x_3d
 //lengthdir_x_3d(dir,zdir,dis);
 //Remember to replace this in this way to get a full working function...
 //argument0=direction

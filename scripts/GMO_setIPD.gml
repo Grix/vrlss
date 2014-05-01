@@ -1,3 +1,4 @@
+#define GMO_setIPD
 /// Set interpupillary distance
 // Default 0.4
 // arg0 float   distance 

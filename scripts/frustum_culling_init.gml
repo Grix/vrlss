@@ -1,3 +1,4 @@
+#define frustum_culling_init
 // frustum_culling_init(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, angle, aspect, znear, zfar)
 var d;
 

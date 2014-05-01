@@ -1,3 +1,4 @@
+#define OVR_Init
 show_debug_message("Initializing Oculus Rift DLL...");
 
 if (global._GMO_DLL_LOADED == false) {
@@ -29,4 +30,3 @@ if (global._GMO_DLL_LOADED == false) {
     show_debug_message("The Oculus Rift DLL is already loaded and initialized.");
     return true;
 }
-

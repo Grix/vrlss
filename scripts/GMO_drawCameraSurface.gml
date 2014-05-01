@@ -1,3 +1,4 @@
+#define GMO_drawCameraSurface
 draw_clear(c_black); //Clear the display
 // Now draw our main surface to the screen.
 if (GMO_getCameraMode() == 1) { //Regular

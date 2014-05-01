@@ -1,3 +1,4 @@
+#define draw_frame_2d
 //draws the current frame on the screen
 
 p = 0;

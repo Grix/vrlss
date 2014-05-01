@@ -1,3 +1,4 @@
+#define init3D
 
 /// Initialize our 3D world.
 d3d_start();

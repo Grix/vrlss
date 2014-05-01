@@ -1,3 +1,4 @@
+#define playerMouselook
 
 if (keyboard_check(ord('Y')))
     {

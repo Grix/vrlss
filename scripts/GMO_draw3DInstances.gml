@@ -1,3 +1,4 @@
+#define GMO_draw3DInstances
 /// Also a very special function.
 // This draws our objects in a specific order. We do this for a couple of reasons:
 // 1. We must draw all 3D instances to a surface. We can't use the regular drawing function for that, as we need to force them to draw themselves 
@@ -16,5 +17,4 @@ with obj_3d_particle {
 }
 d3d_set_culling(false)
 GMO_enableZBuffer();
-
 

@@ -1,3 +1,4 @@
+#define GMO_renderOculus
 // Calculate positions
 r = GMO_getIPD()/2
 hdir = argument3+90;
