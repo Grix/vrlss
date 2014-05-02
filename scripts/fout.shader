@@ -85,8 +85,8 @@ return frac((sin(((_n.x * 5442.6543) + (_n.y * 5233.6533))) * 4354.5366));
 void gl_main()
 {
 {
-float _Scale = 0.02;
-float _maxscale = 0.2;
+float _Scale = 0.029999999;
+float _maxscale = 0.30000001;
 float _Color = {0};
 float _Color2 = {0};
 float _S = {0};

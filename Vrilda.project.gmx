@@ -49,8 +49,8 @@
     <script>scripts\playerMovement.gml</script>
     <script>scripts\playerMouselook.gml</script>
     <script>scripts\time.gml</script>
-    <script>scripts\init3D.gml</script>
     <script>scripts\end3D.gml</script>
+    <script>scripts\init3D.gml</script>
     <script>scripts\parse_palette.gml</script>
     <script>scripts\read_ilda_init.gml</script>
     <script>scripts\read_ilda_work.gml</script>

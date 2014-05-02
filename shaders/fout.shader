@@ -85,8 +85,8 @@ return frac((sin(((_n.x * 5442.6543) + (_n.y * 5233.6533))) * 4354.5366));
 void gl_main()
 {
 {
-float _Scale = 0.029999999;
-float _maxscale = 0.30000001;
+float _Scale = 0.025;
+float _maxscale = 0.25;
 float _Color = {0};
 float _Color2 = {0};
 float _S = {0};
@@ -104,7 +104,7 @@ float3 _total = {0, 0, 0};
 ;
 (_total /= 10.0);
 float4 _tex = (gl_texture2D(_gm_BaseTexture, _v_vTexcoord) * _v_vColor);
-(gl_Color[0] = vec4(_tex.x, _tex.y, _tex.z, (_total * _tex.w)));
+(gl_Color[0] = vec4(_tex.x, _tex.y, _tex.z, ((0.2 + (_total * 0.80000001)) * _tex.w)));
 }
 }
 ;
