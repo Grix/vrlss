@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>templist = ds_list_create();
 
+showfps = 30;
+
 fog = 1;
 
 scan_list = ds_list_create();
@@ -215,8 +217,8 @@ rdy = 1;
 if (rdy)
     {
     //Check audio sync
-    if (rdy and play and songloaded and (((real(saud_position(audio))/1000*30 - frame) &gt; 5 or (real(saud_position(audio))/1000*30 - frame) &lt; -5))) 
-        frame = floor(real(saud_position(audio))/1000*30);
+    if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 2 or (real(saud_position(audio))/1000*showfps - frame) &lt; -2))) 
+        frame = floor(real(saud_position(audio))/1000*showfps);
     
     //Clamp room size
     if (rheight &lt; 100)
@@ -264,7 +266,7 @@ if (rdy)
             }
         else
             {
-            saud_seek(floor(frame*1000/30),audio);
+            saud_seek(floor(frame*1000/showfps),audio);
             }
         play = !play;
         if (play)
@@ -275,7 +277,6 @@ if (rdy)
     if (keyboard_check_pressed(vk_backspace))
         {
         frame = 0;
-        //read_frame();
         saud_stop(audio);
         play = 0;
         }
@@ -289,9 +290,9 @@ if (rdy)
             saud_stop(audio);
             play = 0;
             frame = seekto;
-            if (room)
-                window_set_fullscreen(1);
             }
+        if (room)
+            window_set_fullscreen(1);
         }
         
     //Toggle fog
@@ -300,39 +301,11 @@ if (rdy)
         fog = !fog;
         }
     
-    //Load flanking ilda
-    /*if (keyboard_check_pressed(ord('N')))
-        {
-        if (ds_list_find_index(scan_list,0) == 1)
-            {
-            saud_stop(audio);
-            play = 0;
-            //new_scanner = instance_create(1600,1250,obj_scanner);
-            //new_scanner.scanner = ds_list_find_index(scan_list,0);
-            if (!read_ilda_init(1))
-                show_message("Error loading ILDA file");
-            else if (room)
-                {
-                instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
-                instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
-                window_set_fullscreen(1);
-                obj_scanner.dirver = 2.1;
-                }
-            }
-        else
-            {
-            ds_list_replace(scan_list,1,0);
-            ds_list_replace(scan_list,2,0);
-            with (obj_flankscanner) instance_destroy();
-            with (obj_flankscanner1) instance_destroy();
-            }
-        }*/
-        
     //Check fps
     if (room)
         {
         
-        if (rdy and play and fps &gt; 73)
+        if (rdy and play and fps &gt; 74)
             {
             fpswarning = 1;
             alarm[0] = 2000;
@@ -379,7 +352,7 @@ if (rdy)
     window_set_cursor(cr_none);
     
     surface_resize(application_surface, 1920, 1080);
-    display_set_gui_maximise();
+    display_set_gui_size(1920, 1080);
 }
 else
 {
@@ -394,7 +367,7 @@ else
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="75">
+    <event eventtype="8" enumb="77">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -411,7 +384,8 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fnt_info);
+            <string>surface_set_target(application_surface);
+draw_set_font(fnt_info);
 if (rdy)
     {
     draw_set_font(fnt_info);
@@ -426,18 +400,18 @@ if (rdy)
          "#Author: "+string(ds_list_find_value(list_id,4))+
          "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
          "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
-         "#Scanner: "+string(ds_list_find_value(list_id,1))+
-         "#ILDA format: "+string(ds_list_find_value(list_id,2))+
+         //"#Scanner: "+string(ds_list_find_value(list_id,1))+
+         //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
          "##FPS: " + string(fps) +
-         "#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
-         "#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
+         //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
+         //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
          "#Interpupillary Distance" + string(GMO_getIPD()));
          if (fpswarning) 
             {
             draw_set_color(c_red);
-            draw_set_font(fnt_parsing);
+            //draw_set_font(fnt_parsing);
             draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
-            draw_set_font(fnt_info);
+            //draw_set_font(fnt_info);
             draw_set_color(c_ltgray);
             }
         }
@@ -449,9 +423,9 @@ if (rdy)
         draw_text_stroke(830,30,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
         "#Author: "+string(ds_list_find_value(list_id,4))+
         "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
-        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
-        "#Scanner: "+string(ds_list_find_value(list_id,1))+
-        "#ILDA format: "+string(ds_list_find_value(list_id,2)));
+        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6));
+        //+"#Scanner: "+string(ds_list_find_value(list_id,1))+
+        //"#ILDA format: "+string(ds_list_find_value(list_id,2)));
         
         if (!global._GMO_DLL_LOADED) 
             {
@@ -479,6 +453,7 @@ else
         draw_text(20,20,"Parsing file: "+string(floor(icp/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(icp/file_size*100))+"%");
         }
     }
+surface_reset_target();
 </string>
           </argument>
         </arguments>
@@ -523,17 +498,25 @@ else
     <event eventtype="9" enumb="27">
       <action>
         <libid>1</libid>
-        <id>332</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_end_game</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//end3D();
+game_end();
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
   </events>
