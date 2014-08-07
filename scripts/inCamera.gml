@@ -1,4 +1,3 @@
-#define inCamera
 camobj = cam_fps
 xx=argument0
 yy=argument1

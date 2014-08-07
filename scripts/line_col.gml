@@ -1,4 +1,3 @@
-#define line_col
 //line_col(list,  x1,y1,z1,  x2,y2,z2)
 
 var x1 = argument1
@@ -33,7 +32,6 @@ return -1;
 
 
 /*
-
 
 
 

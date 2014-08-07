@@ -1,4 +1,3 @@
-#define read_ilda_work
 //works its way through an ilda file, finishes early so that a frame can be drawn
 
 progress = icp;

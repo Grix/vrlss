@@ -1,4 +1,3 @@
-#define parse_palette
 show_message("This ilda format requires a color palette, please load it. (NB: support limited, it's recommended to convert to ilda format 4 or 5 instead)");
 file = file_text_open_read(get_open_filename("*.txt",""));
 noc = file_text_read_real(file);

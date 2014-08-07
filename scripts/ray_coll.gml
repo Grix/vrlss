@@ -1,4 +1,3 @@
-#define ray_coll
 // By: icuurd12b42
 
 // argument0-2: origin point of line

@@ -56,8 +56,10 @@
     <option_android_mobage_sandbox>0</option_android_mobage_sandbox>
     <option_android_mobage_secret></option_android_mobage_secret>
     <option_android_mobage_version></option_android_mobage_version>
-    <option_android_orient_landscape>true</option_android_orient_landscape>
-    <option_android_orient_portrait>true</option_android_orient_portrait>
+    <option_android_orient_landscape>True</option_android_orient_landscape>
+    <option_android_orient_landscape_flipped>True</option_android_orient_landscape_flipped>
+    <option_android_orient_portrait>True</option_android_orient_portrait>
+    <option_android_orient_portrait_flipped>True</option_android_orient_portrait_flipped>
     <option_android_orientation>2</option_android_orientation>
     <option_android_ouya_icon>Configs\Default\android\icons\ouyaIcon.png</option_android_ouya_icon>
     <option_android_package_company>companyname</option_android_package_company>
@@ -116,6 +118,7 @@
     <option_html5_outputdebugtoconsole>False</option_html5_outputdebugtoconsole>
     <option_html5_outputname>index.html</option_html5_outputname>
     <option_html5_scale>-1</option_html5_scale>
+    <option_html5_showcursor>True</option_html5_showcursor>
     <option_html5_splash_png>Configs\Default\html5\splash.png</option_html5_splash_png>
     <option_html5_texture_page>2048</option_html5_texture_page>
     <option_html5_use_test_ads>0</option_html5_use_test_ads>
@@ -214,22 +217,51 @@
     <option_noscreensaver>true</option_noscreensaver>
     <option_ouya_packaging>0</option_ouya_packaging>
     <option_priority>0</option_priority>
+    <option_ps3_build_version>0</option_ps3_build_version>
+    <option_ps3_interpolate>-1</option_ps3_interpolate>
+    <option_ps3_major_version>1</option_ps3_major_version>
+    <option_ps3_minor_version>0</option_ps3_minor_version>
+    <option_ps3_nptitleid></option_ps3_nptitleid>
+    <option_ps3_nptitlepassphrase>Memo1</option_ps3_nptitlepassphrase>
+    <option_ps3_nptitlesecret>Memo1</option_ps3_nptitlesecret>
+    <option_ps3_package_id></option_ps3_package_id>
+    <option_ps3_passcode></option_ps3_passcode>
+    <option_ps3_revision_version>0</option_ps3_revision_version>
+    <option_ps3_scale>0</option_ps3_scale>
+    <option_ps3_texture_page>2048</option_ps3_texture_page>
+    <option_ps4_build_version>0</option_ps4_build_version>
+    <option_ps4_displaycursor>0</option_ps4_displaycursor>
     <option_ps4_interpolate>-1</option_ps4_interpolate>
+    <option_ps4_major_version>1</option_ps4_major_version>
+    <option_ps4_minor_version>0</option_ps4_minor_version>
     <option_ps4_nptitleid></option_ps4_nptitleid>
-    <option_ps4_nptitlesecret>Memo1
-</option_ps4_nptitlesecret>
+    <option_ps4_nptitlesecret>Memo1</option_ps4_nptitlesecret>
     <option_ps4_package_id></option_ps4_package_id>
     <option_ps4_passcode></option_ps4_passcode>
+    <option_ps4_revision_version>0</option_ps4_revision_version>
     <option_ps4_scale>0</option_ps4_scale>
     <option_ps4_texture_page>2048</option_ps4_texture_page>
+    <option_psvita_build_version>0</option_psvita_build_version>
+    <option_psvita_fronttouch>0</option_psvita_fronttouch>
+    <option_psvita_interpolate>-1</option_psvita_interpolate>
     <option_psvita_interpolation>-1</option_psvita_interpolation>
+    <option_psvita_major_version>1</option_psvita_major_version>
+    <option_psvita_minor_version>0</option_psvita_minor_version>
+    <option_psvita_nptitleid></option_psvita_nptitleid>
+    <option_psvita_nptitlepassphrase>Memo1</option_psvita_nptitlepassphrase>
+    <option_psvita_nptitlesecret>Memo1</option_psvita_nptitlesecret>
     <option_psvita_package_id></option_psvita_package_id>
     <option_psvita_passcode></option_psvita_passcode>
+    <option_psvita_reartouch>0</option_psvita_reartouch>
+    <option_psvita_revision_version>0</option_psvita_revision_version>
+    <option_psvita_scale>0</option_psvita_scale>
+    <option_psvita_texture_page>2048</option_psvita_texture_page>
     <option_quitkey>true</option_quitkey>
     <option_resolution>0</option_resolution>
     <option_savekey>true</option_savekey>
     <option_scale>0</option_scale>
     <option_scaleprogress>true</option_scaleprogress>
+    <option_sci_UseSCI>false</option_sci_UseSCI>
     <option_screenkey>True</option_screenkey>
     <option_screenshotkey>true</option_screenshotkey>
     <option_shortcircuit>True</option_shortcircuit>

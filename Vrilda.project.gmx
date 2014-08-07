@@ -3,8 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="91" name="datafiles">
-    <datafiles number="91" name="lib">
+  <datafiles number="94" name="datafiles">
+    <datafiles number="94" name="lib">
+      <datafile>
+        <name>GMOculus.dll</name>
+        <exists>-1</exists>
+        <size>8717312</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>GMOculus.dll</filename>
+      </datafile>
       <datafile>
         <name>RiftSharpDll.dll</name>
         <exists>-1</exists>
@@ -79,21 +96,24 @@
             <script>scripts\GMO_renderCamera.gml</script>
             <script>scripts\GMO_renderRegular.gml</script>
             <script>scripts\GMO_renderOculus.gml</script>
-          </scripts>
-          <scripts name="Getters and Setters">
-            <script>scripts\GMO_getCameraZFar.gml</script>
-            <script>scripts\GMO_getCameraZNear.gml</script>
-            <script>scripts\GMO_setCameraRange.gml</script>
-            <script>scripts\GMO_getCameraAngle.gml</script>
-            <script>scripts\GMO_setCameraAngle.gml</script>
-            <script>scripts\GMO_getCameraMode.gml</script>
-            <script>scripts\GMO_setCameraMode.gml</script>
+            <script>scripts\GMO_renderAnaglyph.gml</script>
           </scripts>
         </scripts>
         <scripts name="Audio">
           <script>scripts\GMO_setUse3DSound.gml</script>
           <script>scripts\GMO_getUse3DSound.gml</script>
           <script>scripts\GMO_updateListener.gml</script>
+        </scripts>
+        <scripts name="Getters and Setters">
+          <script>scripts\GMO_getCameraZFar.gml</script>
+          <script>scripts\GMO_getCameraZNear.gml</script>
+          <script>scripts\GMO_setCameraRange.gml</script>
+          <script>scripts\GMO_getCameraAngle.gml</script>
+          <script>scripts\GMO_setCameraAngle.gml</script>
+          <script>scripts\GMO_getCameraMode.gml</script>
+          <script>scripts\GMO_setCameraMode.gml</script>
+          <script>scripts\GMO_getES.gml</script>
+          <script>scripts\GMO_setES.gml</script>
         </scripts>
       </scripts>
       <scripts name="System">
@@ -135,13 +155,19 @@
           <script>scripts\OVR_Device_getPitch.gml</script>
         </scripts>
       </scripts>
+      <scripts name="GR">
+        <script>scripts\GR_cmToPixel.gml</script>
+        <script>scripts\GR_init.gml</script>
+        <script>scripts\GR_meterToPixel.gml</script>
+        <script>scripts\GC_cmToPixel.gml</script>
+        <script>scripts\GC_meterToPixel.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <shaders name="shaders">
-    <shaders name="GMOculus">
-      <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
-    </shaders>
     <shader type="GLSLES">shaders\lasershader.shader</shader>
+    <shader type="GLSLES">shaders\GMO_hmdwarp_shader.shader</shader>
+    <shader type="GLSLES">shaders\GMO_colorFilter_shader.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_info</font>
@@ -176,11 +202,20 @@
     <room>rooms\rm_2d</room>
     <room>rooms\rm_3d</room>
   </rooms>
-  <constants number="4">
+  <constants number="13">
+    <constant name="CAM_MODE_ANA_R_B">5</constant>
+    <constant name="CAM_MODE_ANA_R_G">4</constant>
+    <constant name="CAM_MODE_ANA_R_C">3</constant>
+    <constant name="CAM_MODE_OCULUS">2</constant>
+    <constant name="CAM_MODE_REGULAR">1</constant>
     <constant name="CAM_FRUSTUM">1</constant>
+    <constant name="SURF_REG_LEFT">5</constant>
+    <constant name="SURF_REG_RIGHT">4</constant>
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
+    <constant name="GM_build_date">41858,5743304398</constant>
+    <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

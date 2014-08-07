@@ -1,4 +1,3 @@
-#define GMO_setCameraRange
 /// Set the zfar and znear for the camera
 // Default 1 - 2048
 // arg0 int   ZNEAR

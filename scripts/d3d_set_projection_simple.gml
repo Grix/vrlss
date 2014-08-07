@@ -1,4 +1,3 @@
-#define d3d_set_projection_simple
 //d3d_set_projection_simple() made by Rafferty97
 //arg0 - x
 //arg1 - y

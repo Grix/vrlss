@@ -1,4 +1,3 @@
-#define GMO_setResolution
 /// Set surface resolution
 // Default 1920x1080
 // arg0 int   width in pixels

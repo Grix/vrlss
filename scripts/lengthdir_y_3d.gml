@@ -1,4 +1,3 @@
-#define lengthdir_y_3d
 //lengthdir_y_3d(dir,zdir,dis);
 //Remember to replace this in this way to get a full working function...
 //argument0=direction

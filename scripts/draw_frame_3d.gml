@@ -1,4 +1,3 @@
-#define draw_frame_3d
 //draws the current frame on the screen
 
 p = 0;

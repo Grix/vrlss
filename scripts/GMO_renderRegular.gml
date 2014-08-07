@@ -1,4 +1,3 @@
-#define GMO_renderRegular
 //Draw all the 3D instances
 surface_set_target(GMO_getSurface(SURF_REGULAR));
     draw_clear_alpha(c_black,0);

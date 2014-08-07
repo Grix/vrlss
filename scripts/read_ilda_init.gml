@@ -1,4 +1,3 @@
-#define read_ilda_init
 
 //initializes parsing of an ilda file, stores each frame in its own ds_list, a catalog of frames is kept in another ds_list
 //arg0 is scanner number

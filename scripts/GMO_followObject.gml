@@ -1,4 +1,3 @@
-#define GMO_followObject
 /**
  * This is a rather special function. 
  * We use this function to "attach" the camera to the body. We have our player object

@@ -1,6 +1,5 @@
-#define frustum_culling_init
 // frustum_culling_init(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, angle, aspect, znear, zfar)
-var d;
+/*var d;
 
 global.frustum_culling_xfrom = argument0;
 global.frustum_culling_yfrom = argument1;

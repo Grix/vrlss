@@ -1,4 +1,3 @@
-#define playerMovement
 // playerMovement(speed, strafe speed, back speed)
 
 var fs = argument0;

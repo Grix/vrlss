@@ -1,5 +1,4 @@
-#define frustum_culling
-var xx, yy, zz;
+/*var xx, yy, zz;
 
 zz = global.frustum_culling_xto*(argument0-global.frustum_culling_xfrom)
     +global.frustum_culling_yto*(argument1-global.frustum_culling_yfrom)

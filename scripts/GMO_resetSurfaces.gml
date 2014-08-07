@@ -1,4 +1,3 @@
-#define GMO_resetSurfaces
 // Reset the surfaces (e.g. after the resolution has changed)
 
 if (surface_exists(global._GMO_SURFACE[SURF_RIGHT])) {

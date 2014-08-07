@@ -282,7 +282,7 @@ if (rdy)
         }
             
     //Jump to frame
-    if (keyboard_check_pressed(ord('M')))
+    if (keyboard_check_pressed(ord('N')))
         {
         seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-6),0);
         if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-6)))
@@ -291,6 +291,15 @@ if (rdy)
             play = 0;
             frame = seekto;
             }
+        if (room)
+            window_set_fullscreen(1);
+        }
+    
+    //screenshot
+    if (keyboard_check_pressed(ord('M')))
+        {
+        ssfilename = get_save_filename_ext("*","*",working_directory,"Save screenshot");
+        screen_save(ssfilename);
         if (room)
             window_set_fullscreen(1);
         }
@@ -305,10 +314,10 @@ if (rdy)
     if (room)
         {
         
-        if (rdy and play and fps &gt; 74)
+        if (rdy and play and fps &gt; 73)
             {
             fpswarning = 1;
-            alarm[0] = 2000;
+            alarm[0] = 500;
             }
         }
         
@@ -406,14 +415,14 @@ if (rdy)
          //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
          //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
          "#Interpupillary Distance" + string(GMO_getIPD()));
-         if (fpswarning) 
+         /*if (fpswarning) 
             {
             draw_set_color(c_red);
             //draw_set_font(fnt_parsing);
             draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
             //draw_set_font(fnt_info);
             draw_set_color(c_ltgray);
-            }
+            }*/
         }
     else
         {
@@ -426,22 +435,33 @@ if (rdy)
         "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6));
         //+"#Scanner: "+string(ds_list_find_value(list_id,1))+
         //"#ILDA format: "+string(ds_list_find_value(list_id,2)));
-        
+             
+        draw_set_font(fnt_parsing);       
         if (!global._GMO_DLL_LOADED) 
             {
             draw_set_color(c_red);
-            draw_set_font(fnt_parsing);
-            draw_text(830,220,"Warning:#Oculus Rift Not Detected");
-            draw_set_font(fnt_info);
-            draw_set_color(c_ltgray);
+            draw_text(830,220,"Warning:#Oculus Rift Not Enabled");
             }
         else
             {
-            draw_set_color(c_green);
-            draw_text(830,220,"Oculus Rift Detected");
-            draw_set_color(c_ltgray);
+            switch (initDevice) 
+                {
+                case 0:
+                    draw_set_color(c_red);
+                    draw_text(830,220,"Warning:#Oculus Rift Not Found");
+                    break;
+                case 1:
+                    draw_set_color(c_green);
+                    draw_text(830,220,"Oculus Rift Working");
+                    break;
+                case 2:
+                    draw_set_color(c_yellow);
+                    draw_text(830,220,"Warning:#Oculus Rift Display Disabled");
+                    break;
+                }
             }
-        
+            draw_set_font(fnt_info);
+            draw_set_color(c_ltgray);
         }
     }
 else

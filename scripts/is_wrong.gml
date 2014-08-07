@@ -1,4 +1,3 @@
-#define is_wrong
 //checks control bytes
 
 if (byte != argument0)
