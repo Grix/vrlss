@@ -68,13 +68,18 @@
     <script>scripts\time.gml</script>
     <script>scripts\end3D.gml</script>
     <script>scripts\init3D.gml</script>
-    <script>scripts\parse_palette.gml</script>
-    <script>scripts\read_ilda_init.gml</script>
-    <script>scripts\read_ilda_work.gml</script>
-    <script>scripts\is_wrong.gml</script>
-    <script>scripts\get_bytes.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
+    <scripts name="ilda_parsing">
+      <script>scripts\read_ilda_init.gml</script>
+      <script>scripts\read_ilda_work.gml</script>
+      <script>scripts\read_ilda_header.gml</script>
+      <script>scripts\read_ilda_frame.gml</script>
+      <script>scripts\get_bytes.gml</script>
+      <script>scripts\get_byte.gml</script>
+      <script>scripts\parse_palette.gml</script>
+      <script>scripts\is_wrong.gml</script>
+    </scripts>
     <scripts name="GMOculus">
       <scripts name="Functions">
         <script>scripts\GMO_init.gml</script>
@@ -214,7 +219,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41858,5743304398</constant>
+    <constant name="GM_build_date">41859.0076412847</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

@@ -1,9 +1,8 @@
 //checks control bytes
 
-if (byte != argument0)
+if (get_byte() != argument0)
     {
-    show_message("Cannot load ILDA file. Unexpected byte: "+string(i+icp)+" = "+string(byte)+". Is this a valid ILDA file?");
-    game_end();
+    show_message("Cannot load ILDA file. Unexpected byte: "+string(i+icp)+" = "+string(get_byte)+". Is this a valid ILDA file?");
     return 0;
     }
 else 
