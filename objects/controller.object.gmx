@@ -357,14 +357,16 @@ if (rdy)
     
     surface_resize(application_surface, 1920, 1080);
     display_set_gui_size(1920, 1080);
+    window_set_fullscreen(1);
 }
 else
 {
     end3D();
     window_set_cursor(cr_default);
     
-    surface_resize(application_surface, 1100, 600);
-    display_set_gui_size(1100, 600);
+    surface_resize(application_surface, 900, 600);
+    display_set_gui_size(900, 600);
+    window_set_fullscreen(0);
 }
 </string>
           </argument>
@@ -400,31 +402,35 @@ if (rdy)
         {
         /// Draw some debugging text
         //draw_set_color(c_gray)
-        draw_text_stroke(10,10,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
-         "#Author: "+string(ds_list_find_value(list_id,4))+
-         "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
-         "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
-         //"#Scanner: "+string(ds_list_find_value(list_id,1))+
-         //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
-         "##FPS: " + string(fps) +
-         //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
-         //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
-         "#Interpupillary Distance" + string(GMO_getIPD()));
-         /*if (fpswarning) 
+        if (GMO_getCameraMode() == 1)
             {
-            draw_set_color(c_red);
-            //draw_set_font(fnt_parsing);
-            draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
-            //draw_set_font(fnt_info);
-            draw_set_color(c_ltgray);
-            }*/
+            draw_text_stroke(10,10,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
+             "#Author: "+string(ds_list_find_value(list_id,4))+
+             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
+             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
+             //"#Scanner: "+string(ds_list_find_value(list_id,1))+
+             //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
+             "##FPS: " + string(fps) +
+             //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
+             //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
+             "#Interpupillary Distance" + string(GMO_getIPD()));
+             
+             /*if (fpswarning) 
+                {
+                draw_set_color(c_red);
+                //draw_set_font(fnt_parsing);
+                draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
+                //draw_set_font(fnt_info);
+                draw_set_color(c_ltgray);
+                }*/
+             }
         }
     else
         {
         draw_set_color(c_dkgray);
-        draw_line(802,15,802,585);
+        draw_line(602,15,602,585);
         draw_set_color(c_ltgray);
-        draw_text_stroke(830,30,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
+        draw_text_stroke(630,30,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
         "#Author: "+string(ds_list_find_value(list_id,4))+
         "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
         "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6));
@@ -435,7 +441,7 @@ if (rdy)
         if (!global._GMO_DLL_LOADED) 
             {
             draw_set_color(c_red);
-            draw_text(830,220,"Warning:#Oculus Rift Not Enabled");
+            draw_text(630,220,"Warning:#Oculus Rift Not Enabled");
             }
         else
             {
@@ -443,15 +449,15 @@ if (rdy)
                 {
                 case 0:
                     draw_set_color(c_red);
-                    draw_text(830,220,"Warning:#Oculus Rift Not Found");
+                    draw_text(630,220,"Warning:#Oculus Rift not found");
                     break;
                 case 1:
                     draw_set_color(c_green);
-                    draw_text(830,220,"Oculus Rift Working");
+                    draw_text(630,220,"Oculus Rift working");
                     break;
                 case 2:
                     draw_set_color(c_yellow);
-                    draw_text(830,220,"Warning:#Oculus Rift Display Disabled");
+                    draw_text(630,220,"Warning:#Oculus Rift found#but display disabled");
                     break;
                 }
             }

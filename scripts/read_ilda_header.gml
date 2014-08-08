@@ -17,7 +17,6 @@ repeat(8) //16
     author+= chr(get_byte());
     i++
     }
-byte = get_byte();
 bytes = get_bytes(); //24
 if (bytes != 0)
     {
@@ -25,10 +24,10 @@ if (bytes != 0)
     ds_list_add(frame_list,bytes);
     }
 i+=2;
-byte = get_byte(); //26
+//26
 frame_number = get_bytes();
 i+=2;
-byte = get_byte(); //28
+//28
 maxframes = get_bytes();
 i+=2; //30
 ds_list_add(frame_list,byte); ds_list_add(frame_list,format); ds_list_add(frame_list,name); ds_list_add(frame_list,author); status = 1; i++; author=""; name="";

@@ -27,31 +27,31 @@ switch (format)
             
             //find next point
             xpn = ds_list_find_value(list_id,5+(p+1)*4)/$ffff*1024;
-            ypn = ds_list_find_value(list_id,5+(p+1)*4+1)/$ffff*768;
+            ypn = ds_list_find_value(list_id,5+(p+1)*4+1)/$ffff*1024;
             if (xpn >= 512)
                 xpn -= 512;
             else
                 xpn += 512;
-            if (ypn >= 384)
-                ypn -= 384;
+            if (ypn >= 512)
+                ypn -= 512;
             else
-                ypn += 384;
-            //ypn = 768-ypn;
+                ypn += 512;
+            ypn = 1024-ypn;
             xpn = 1024-xpn;
             
             //find point
             xp = ds_list_find_value(list_id,5+(p)*4)/$ffff*1024;
-            yp = ds_list_find_value(list_id,5+(p)*4+1)/$ffff*768;
+            yp = ds_list_find_value(list_id,5+(p)*4+1)/$ffff*1024;
         
             if (xp >= 512)
                 xp -= 512;
             else
                 xp += 512;
-            if (yp >= 384)
-                yp -= 384;
+            if (yp >= 512)
+                yp -= 512;
             else
-                yp += 384;
-            //yp = 768-yp;
+                yp += 512;
+            yp = 1024-yp;
             xp = 1024-xp;
                 
             //if blanking bit is 0, draw line between the two points
@@ -62,8 +62,8 @@ switch (format)
                 
                 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
                     d3d_vertex_texture_color(x,y,z,0,0,colormade,usealpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(1024*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(1024*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
                 d3d_primitive_end();
                 }
             
@@ -82,31 +82,31 @@ switch (format)
             
             //find next point
             xpn = ds_list_find_value(list_id,5+(np)*7)/$ffff*1024;
-            ypn = ds_list_find_value(list_id,5+(np)*7+1)/$ffff*768;
+            ypn = ds_list_find_value(list_id,5+(np)*7+1)/$ffff*1024;
             if (xpn >= 512)
                 xpn -= 512;
             else
                 xpn += 512;
-            if (ypn >= 384)
-                ypn -= 384;
+            if (ypn >= 512)
+                ypn -= 512;
             else
-                ypn += 384;
-            //ypn = 768-ypn;
+                ypn += 512;
+            ypn = 1024-ypn;
             xpn = 1024-xpn;
             
             //find point
             xp = ds_list_find_value(list_id,5+(p)*7)/$ffff*1024;
-            yp = ds_list_find_value(list_id,5+(p)*7+1)/$ffff*768;
+            yp = ds_list_find_value(list_id,5+(p)*7+1)/$ffff*1024;
         
             if (xp >= 512)
                 xp -= 512;
             else
                 xp += 512;
-            if (yp >= 384)
-                yp -= 384;
+            if (yp >= 512)
+                yp -= 512;
             else
-                yp += 384;
-            //yp = 768-yp;
+                yp += 512;
+            yp = 1024-yp;
             xp = 1024-xp;
                 
             //if blanking bit is 0, draw line between the two points
@@ -119,8 +119,8 @@ switch (format)
                 
                 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
                     d3d_vertex_texture_color(x,y,z,0,0,colormade,usealpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(1024*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(1024*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
                 d3d_primitive_end();
                 }
             
@@ -139,31 +139,31 @@ switch (format)
             
             //find next point
             xpn = ds_list_find_value(list_id,5+(np)*6)/$ffff*1024;
-            ypn = ds_list_find_value(list_id,5+(np)*6+1)/$ffff*768;
+            ypn = ds_list_find_value(list_id,5+(np)*6+1)/$ffff*1024;
             if (xpn >= 512)
                 xpn -= 512;
             else
                 xpn += 512;
-            if (ypn >= 384)
-                ypn -= 384;
+            if (ypn >= 512)
+                ypn -= 512;
             else
-                ypn += 384;
-            //ypn = 768-ypn;
+                ypn += 512;
+            ypn = 1024-ypn;
             xpn = 1024-xpn;
             
             //find point
             xp = ds_list_find_value(list_id,5+(p)*6)/$ffff*1024;
-            yp = ds_list_find_value(list_id,5+(p)*6+1)/$ffff*768;
+            yp = ds_list_find_value(list_id,5+(p)*6+1)/$ffff*1024;
         
             if (xp >= 512)
                 xp -= 512;
             else
                 xp += 512;
-            if (yp >= 384)
-                yp -= 384;
+            if (yp >= 512)
+                yp -= 512;
             else
-                yp += 384;
-            //yp = 768-yp;
+                yp += 512;
+            yp = 1024-yp;
             xp = 1024-xp;
                 
             //if blanking bit is on, draw line between the two points
@@ -176,8 +176,8 @@ switch (format)
                 
                 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
                     d3d_vertex_texture_color(x,y,z,0,0,colormade,usealpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
-                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(768*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(1024*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,scanflate.y,scanflate.z-(389*scanmulti)+(1024*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
                 d3d_primitive_end();
                 
                 }

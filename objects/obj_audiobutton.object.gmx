@@ -84,6 +84,8 @@ with (controller)
     audio_file = get_open_filename_ext("*","*",working_directory,"Select audio file");
     saud_load(audio_file,audio);
     songloaded = 1;
+    saud_stop(audio);
+    play = 0;
     }
 </string>
           </argument>

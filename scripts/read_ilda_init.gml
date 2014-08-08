@@ -13,6 +13,8 @@ if (filename != "")
     }
 else
     return 0;
+    
+    
 
 rdy = 0;
 frame = 0;
@@ -21,14 +23,8 @@ progress = 0;
 filename = "";
 saud_stop(audio);
 
-    point = 0;
     i = 0;
-    icp = 0;
-    status = 0;
-    fin = 0;
     format = 0;
-    data = 0;
-    needpal = 0;
     name = "";
     author = "";
 

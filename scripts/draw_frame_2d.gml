@@ -14,33 +14,36 @@ switch (format)
             blank = (ds_list_find_value(list_id,5+(p)*4+3) >> 14) & 1
             
             //find next point
-            xpn = ds_list_find_value(list_id,5+(p+1)*4)/$ffff*800;
+            xpn = ds_list_find_value(list_id,5+(p+1)*4)/$ffff*600;
             ypn = ds_list_find_value(list_id,5+(p+1)*4+1)/$ffff*600;
-            if (xpn >= 400)
-                xpn -= 400;
+            //xpn = parse_word(xpn);
+            //ypn = parse_word(ypn);
+            if (xpn >= 300)
+                xpn -= 300;
             else
-                xpn += 400;
+                xpn += 300;
             if (ypn >= 300)
                 ypn -= 300;
             else
                 ypn += 300;
-            //ypn = 600-ypn;
-            xpn = 800-xpn;
+            ypn = 600-ypn;
+            xpn = 600-xpn;
             
             //find point
-            xp = ds_list_find_value(list_id,5+(p)*4)/$ffff*800;
+            xp = ds_list_find_value(list_id,5+(p)*4)/$ffff*600;
             yp = ds_list_find_value(list_id,5+(p)*4+1)/$ffff*600;
-        
-            if (xp >= 400)
-                xp -= 400;
+            //xp = parse_word(xp);
+            //yp = parse_word(yp);
+            if (xp >= 300)
+                xp -= 300;
             else
-                xp += 400;
+                xp += 300;
             if (yp >= 300)
                 yp -= 300;
             else
                 yp += 300;
-            //yp = 600-yp;
-            xp = 800-xp;
+            yp = 600-yp;
+            xp = 600-xp;
                 
             //if blanking bit is 0, draw line between the two points
             if !(blank)
@@ -64,33 +67,37 @@ switch (format)
             blank = (blank >> 6) & 1
             
             //find next point
-            xpn = ds_list_find_value(list_id,5+(np)*7)/$ffff*800;
+            xpn = ds_list_find_value(list_id,5+(np)*7)/$ffff*600;
             ypn = ds_list_find_value(list_id,5+(np)*7+1)/$ffff*600;
-            if (xpn >= 400)
-                xpn -= 400;
+            //xpn = parse_word(xpn);
+            //ypn = parse_word(ypn);
+            if (xpn >= 300)
+                xpn -= 300;
             else
-                xpn += 400;
+                xpn += 300;
             if (ypn >= 300)
                 ypn -= 300;
             else
                 ypn += 300;
-            //ypn = 600-ypn;
-            xpn = 800-xpn;
+            ypn = 600-ypn;
+            //xpn = 600-xpn;
             
             //find point
-            xp = ds_list_find_value(list_id,5+(p)*7)/$ffff*800;
+            xp = ds_list_find_value(list_id,5+(p)*7)/$ffff*600;
             yp = ds_list_find_value(list_id,5+(p)*7+1)/$ffff*600;
+            //xp = parse_word(xp);
+            //yp = parse_word(yp);
         
-            if (xp >= 400)
-                xp -= 400;
+            if (xp >= 300)
+                xp -= 300;
             else
-                xp += 400;
+                xp += 300;
             if (yp >= 300)
                 yp -= 300;
             else
                 yp += 300;
-            //yp = 600-yp;
-            xp = 800-xp;
+            yp = 600-yp;
+            //xp = 600-xp;
                 
             //if blanking bit is 0, draw line between the two points
             if !(blank)
@@ -116,33 +123,36 @@ switch (format)
             blank = (blank >> 6) & 1
             
             //find next point
-            xpn = ds_list_find_value(list_id,5+(np)*6)/$ffff*800;
+            xpn = ds_list_find_value(list_id,5+(np)*6)/$ffff*600;
             ypn = ds_list_find_value(list_id,5+(np)*6+1)/$ffff*600;
-            if (xpn >= 400)
-                xpn -= 400;
+            //xpn = parse_word(xpn);
+            //ypn = parse_word(ypn);
+            if (xpn >= 300)
+                xpn -= 300;
             else
-                xpn += 400;
+                xpn += 300;
             if (ypn >= 300)
                 ypn -= 300;
             else
                 ypn += 300;
-            //ypn = 600-ypn;
-            xpn = 800-xpn;
+            ypn = 600-ypn;
+            xpn = 600-xpn;
             
             //find point
-            xp = ds_list_find_value(list_id,5+(p)*6)/$ffff*800;
+            xp = ds_list_find_value(list_id,5+(p)*6)/$ffff*600;
             yp = ds_list_find_value(list_id,5+(p)*6+1)/$ffff*600;
-        
-            if (xp >= 400)
-                xp -= 400;
+            xp = parse_word(xp);
+            yp = parse_word(yp);
+            if (xp >= 300)
+                xp -= 300;
             else
-                xp += 400;
+                xp += 300;
             if (yp >= 300)
                 yp -= 300;
             else
                 yp += 300;
-            //yp = 600-yp;
-            xp = 800-xp;
+            yp = 600-yp;
+            xp = 600-xp;
                 
             //if blanking bit is on, draw line between the two points
             if !(blank)
