@@ -62,14 +62,15 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\draw_frame_2d.gml</script>
+    <script>scripts\draw_frame_3d.gml</script>
+    <script>scripts\show_export.gml</script>
     <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\playerMovement.gml</script>
     <script>scripts\playerMouselook.gml</script>
     <script>scripts\time.gml</script>
     <script>scripts\end3D.gml</script>
     <script>scripts\init3D.gml</script>
-    <script>scripts\draw_frame_2d.gml</script>
-    <script>scripts\draw_frame_3d.gml</script>
     <scripts name="ilda_parsing">
       <script>scripts\read_ilda_init.gml</script>
       <script>scripts\read_ilda_work.gml</script>
@@ -222,7 +223,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41859,7653396528</constant>
+    <constant name="GM_build_date">41863.9909932176</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

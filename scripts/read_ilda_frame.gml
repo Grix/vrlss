@@ -1,15 +1,13 @@
 repeat(ds_list_find_value(frame_list,0))
     {
-    repeat (2 + (format == 4) )//32
+    repeat (2 + (format == 4) )
         {
         ds_list_add(frame_list,get_bytes_signed()); 
-        //show_message(string(i+icp)+"   "+string(data)+"   "+string(get_bytes()));
         i+=2;
         }
-    repeat (4)//34
+    repeat (4)
         {
         ds_list_add(frame_list,get_byte());
-        //show_message(string(i+icp)+"   "+string(data)+"   "+string(byte));
         i++;
         }
     }

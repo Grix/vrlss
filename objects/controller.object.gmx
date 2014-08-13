@@ -46,6 +46,7 @@ GMO_init();
 
 alarm[1]=2;
 
+ildaloaded = 0;
 frame = 0;
 rdy = 0;
 rwidth = 0;
@@ -161,8 +162,7 @@ if (play)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-rdy = 1;
+            <string>rdy = 1;
 </string>
           </argument>
         </arguments>
@@ -214,19 +214,12 @@ if (rdy)
     //Check audio sync
     if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 3 or (real(saud_position(audio))/1000*showfps - frame) &lt; -3))) 
         frame = floor(real(saud_position(audio))/1000*showfps);
-    
-    //Clamp room size
-    if (rheight &lt; 100)
-        rheight = 100;
-    if (rwidth &lt; 200)
-        rwidth = 200;
-    if (rlength &lt; 200)
-        rlength = 200;
+
     
     //Increase/decrease frame number
     if (keyboard_check(vk_right))
         {
-        if (frame &lt; ds_list_size(ild_list)-6) frame++; //read_frame();
+        if (frame &lt; ds_list_size(ild_list)-0) frame++; //read_frame();
         }
     if (keyboard_check(vk_left))
         {
@@ -238,19 +231,12 @@ if (rdy)
         {
         if (ds_list_find_value(scan_list,0))
             {
-            if (!room) room_goto_next(); 
+            if (room == rm_2d) room_goto_next(); 
             else room_goto_previous();
             }
         else show_message("Please load at least a main ILDA file before entering 3D mode");
         }
         
-    //IPD
-    if (keyboard_check_direct(ord("L"))) {
-        GMO_setIPD(GMO_getIPD()+0.01);
-    }
-    if (keyboard_check_direct(ord("K"))) {
-        GMO_setIPD(GMO_getIPD()-0.01);
-    }
         
     //Play/pause
     if (keyboard_check_pressed(vk_space))
@@ -279,14 +265,14 @@ if (rdy)
     //Jump to frame
     if (keyboard_check_pressed(ord('N')))
         {
-        seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-6),0);
-        if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-6)))
+        seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-0),0);
+        if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-0)))
             {
             saud_stop(audio);
             play = 0;
             frame = seekto;
             }
-        if (room)
+        if (room == rm_3d)
             window_set_fullscreen(1);
         }
     
@@ -295,18 +281,12 @@ if (rdy)
         {
         ssfilename = get_save_filename_ext("*","*",working_directory,"Save screenshot");
         screen_save(ssfilename);
-        if (room)
+        if (room == rm_3d)
             window_set_fullscreen(1);
-        }
-        
-    //Toggle fog
-     if (keyboard_check_pressed(ord('B')) and room and rdy)
-        {
-        fog = !fog;
         }
     
     //Check fps
-    if (room)
+    if (room == rm_3d)
         {
         
         if (rdy and play and fps &gt; 73)
@@ -314,6 +294,40 @@ if (rdy)
             fpswarning = 1;
             alarm[0] = 500;
             }
+            
+        //Toggle fog
+         if (keyboard_check_pressed(ord('B')) and (room == rm_3d) and rdy)
+            {
+            fog = !fog;
+            }
+            
+         //IPD
+        if (keyboard_check_direct(ord("L"))) 
+            {
+            GMO_setIPD(GMO_getIPD()+0.01);
+            }
+        if (keyboard_check_direct(ord("K"))) 
+            {
+            GMO_setIPD(GMO_getIPD()-0.01);
+            }
+            
+        //Clamp room size
+        if (rheight &lt; 100)
+            rheight = 100;
+        if (rwidth &lt; 200)
+            rwidth = 200;
+        if (rlength &lt; 200)
+            rlength = 200;
+            
+        }
+    else
+        {
+        //export show
+        if (keyboard_check_pressed(ord('j')) and rdy)
+            {
+            show_export();
+            }
+        
         }
         
     }
@@ -404,10 +418,11 @@ if (rdy)
         //draw_set_color(c_gray)
         if (GMO_getCameraMode() == 1)
             {
-            draw_text_stroke(10,10,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
-             "#Author: "+string(ds_list_find_value(list_id,4))+
-             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
-             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
+            draw_text_stroke(10,10,"Read the readme for controls and manual!"+
+                //##Name: "+string(ds_list_find_value(list_id,3))+
+             //"#Author: "+string(ds_list_find_value(list_id,4))+
+             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-0)+
+             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-0)+
              //"#Scanner: "+string(ds_list_find_value(list_id,1))+
              //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
              "##FPS: " + string(fps) +
@@ -430,10 +445,11 @@ if (rdy)
         draw_set_color(c_dkgray);
         draw_line(602,15,602,585);
         draw_set_color(c_ltgray);
-        draw_text_stroke(630,30,"Read the readme for controls and manual!##Name: "+string(ds_list_find_value(list_id,3))+
-        "#Author: "+string(ds_list_find_value(list_id,4))+
-        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
-        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6));
+        draw_text_stroke(630,30,"Read the readme for controls and manual!"+
+        //##Name: "+string(ds_list_find_value(list_id,3))+
+        //"#Author: "+string(ds_list_find_value(list_id,4))+
+        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-3)+
+        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-3));
         //+"#Scanner: "+string(ds_list_find_value(list_id,1))+
         //"#ILDA format: "+string(ds_list_find_value(list_id,2)));
              
@@ -497,7 +513,7 @@ surface_reset_target();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!room and rdy)
+            <string>if (!room and rdy and ildaloaded)
     {
     /*i = 0;
     while (i&lt;=ds_list_size(scan_list))

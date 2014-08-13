@@ -84,8 +84,7 @@ with (controller)
 
     if !(read_ilda_init(1))
         {
-        //show_message("Error loading ilda file");
-        //game_end();
+        ///
         } 
     else
         {

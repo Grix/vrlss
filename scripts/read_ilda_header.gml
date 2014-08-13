@@ -1,4 +1,6 @@
-    if !is_wrong($49) return 0;
+show_message(1);
+    
+            if !is_wrong($49) return 0;
 i++;
     if !is_wrong($4C) return 0;
 i += 6; //7
@@ -32,10 +34,10 @@ maxframes = get_bytes();
 i+=2; //30
 ds_list_add(frame_list,byte); ds_list_add(frame_list,format); ds_list_add(frame_list,name); ds_list_add(frame_list,author); status = 1; i++; author=""; name="";
 i++;
-if (frame_number >= maxframes)
+if (frame_number >= (maxframes-1))
     return 1;
 
-if !(frame_number % 50)
+if !(frame_number % 70)
     return 2;
     
 return 0;
