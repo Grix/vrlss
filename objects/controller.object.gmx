@@ -46,7 +46,6 @@ GMO_init();
 
 alarm[1]=2;
 
-ildaloaded = 0;
 frame = 0;
 rdy = 0;
 rwidth = 0;
@@ -162,7 +161,8 @@ if (play)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>rdy = 1;
+            <string>
+rdy = 1;
 </string>
           </argument>
         </arguments>
@@ -219,7 +219,7 @@ if (rdy)
     //Increase/decrease frame number
     if (keyboard_check(vk_right))
         {
-        if (frame &lt; ds_list_size(ild_list)-0) frame++; //read_frame();
+        if (frame &lt; ds_list_size(ild_list)-5) frame++; //read_frame();
         }
     if (keyboard_check(vk_left))
         {
@@ -289,7 +289,7 @@ if (rdy)
     if (room == rm_3d)
         {
         
-        if (rdy and play and fps &gt; 73)
+        if (rdy and play and (fps &lt; 70))
             {
             fpswarning = 1;
             alarm[0] = 500;
@@ -327,14 +327,8 @@ if (rdy)
             {
             show_export();
             }
-        
         }
-        
     }
-    
-    
-    
-
 </string>
           </argument>
         </arguments>
@@ -419,10 +413,10 @@ if (rdy)
         if (GMO_getCameraMode() == 1)
             {
             draw_text_stroke(10,10,"Read the readme for controls and manual!"+
-                //##Name: "+string(ds_list_find_value(list_id,3))+
-             //"#Author: "+string(ds_list_find_value(list_id,4))+
-             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-0)+
-             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-0)+
+             "##Name: "+string(ds_list_find_value(list_id,3))+
+             "#Author: "+string(ds_list_find_value(list_id,4))+
+             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
+             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
              //"#Scanner: "+string(ds_list_find_value(list_id,1))+
              //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
              "##FPS: " + string(fps) +
@@ -446,10 +440,10 @@ if (rdy)
         draw_line(602,15,602,585);
         draw_set_color(c_ltgray);
         draw_text_stroke(630,30,"Read the readme for controls and manual!"+
-        //##Name: "+string(ds_list_find_value(list_id,3))+
-        //"#Author: "+string(ds_list_find_value(list_id,4))+
-        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-3)+
-        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-3));
+        "##Name: "+string(ds_list_find_value(list_id,3))+
+        "#Author: "+string(ds_list_find_value(list_id,4))+
+        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
+        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6));
         //+"#Scanner: "+string(ds_list_find_value(list_id,1))+
         //"#ILDA format: "+string(ds_list_find_value(list_id,2)));
              
@@ -513,7 +507,7 @@ surface_reset_target();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!room and rdy and ildaloaded)
+            <string>if (!room and rdy)
     {
     /*i = 0;
     while (i&lt;=ds_list_size(scan_list))
