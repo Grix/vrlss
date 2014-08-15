@@ -15,9 +15,20 @@ else
     return 0;
     
 i = 0;
-if !is_wrong($49) return 0;
-    
-    
+if !is_wrong($49)
+    return 0;i++;
+if !is_wrong($4C)
+    return 0;i++; 
+if !is_wrong($44) 
+    return 0;i++;
+if !is_wrong($41) 
+    return 0;i++;
+if !is_wrong($0)
+    return 0;i++;
+if !is_wrong($0)
+    return 0;i++;
+if !is_wrong($0)
+    return 0;i=0;
 
 rdy = 0;
 frame = 0;

@@ -10,12 +10,10 @@ while (1)
         buffer_delete(ild_file);
         exit;
         }
-    if (action == 0)
-        {
-        rdy = 1;
-        buffer_delete(ild_file);
-        exit;
-        }
+    //if (action == 0)
+    //    {
+
+    //    }
     read_ilda_frame();
     if (action == 2)
         {

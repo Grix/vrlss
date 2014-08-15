@@ -62,6 +62,7 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\d3d_model_load_ext.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
     <script>scripts\draw_text_stroke.gml</script>
@@ -223,7 +224,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41864.5667327083</constant>
+    <constant name="GM_build_date">41866.8334349421</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

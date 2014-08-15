@@ -1,3 +1,4 @@
+
     if !is_wrong($49) return 0;
 i++;
     if !is_wrong($4C) return 0;
@@ -23,6 +24,9 @@ if (bytes != 0)
     frame_list = ds_list_create();
     ds_list_add(frame_list,bytes);
     }
+else
+    return 1;
+    
 i+=2;
 //26
 frame_number = get_bytes();
@@ -30,10 +34,13 @@ i+=2;
 //28
 maxframes = get_bytes();
 i+=2; //30
+
+//if (frame_number > maxframes)
+//    return 1;
+
 ds_list_add(frame_list,byte); ds_list_add(frame_list,format); ds_list_add(frame_list,name); ds_list_add(frame_list,author); status = 1; i++; author=""; name="";
 i++;
-if (frame_number >= maxframes)
-    return 1;
+
 
 if !(frame_number % 50)
     return 2;

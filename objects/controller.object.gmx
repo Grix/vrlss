@@ -219,7 +219,7 @@ if (rdy)
     //Increase/decrease frame number
     if (keyboard_check(vk_right))
         {
-        if (frame &lt; ds_list_size(ild_list)-5) frame++; //read_frame();
+        if (frame &lt; ds_list_size(ild_list)-1) frame++; //read_frame();
         }
     if (keyboard_check(vk_left))
         {
@@ -265,8 +265,8 @@ if (rdy)
     //Jump to frame
     if (keyboard_check_pressed(ord('N')))
         {
-        seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-0),0);
-        if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-0)))
+        seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-1),0);
+        if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-1)))
             {
             saud_stop(audio);
             play = 0;
@@ -415,8 +415,8 @@ if (rdy)
             draw_text_stroke(10,10,"Read the readme for controls and manual!"+
              "##Name: "+string(ds_list_find_value(list_id,3))+
              "#Author: "+string(ds_list_find_value(list_id,4))+
-             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
-             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6)+
+             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-1)+
+             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-1)+
              //"#Scanner: "+string(ds_list_find_value(list_id,1))+
              //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
              "##FPS: " + string(fps) +
@@ -442,8 +442,8 @@ if (rdy)
         draw_text_stroke(630,30,"Read the readme for controls and manual!"+
         "##Name: "+string(ds_list_find_value(list_id,3))+
         "#Author: "+string(ds_list_find_value(list_id,4))+
-        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-6)+
-        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-6));
+        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-1)+
+        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-1));
         //+"#Scanner: "+string(ds_list_find_value(list_id,1))+
         //"#ILDA format: "+string(ds_list_find_value(list_id,2)));
              

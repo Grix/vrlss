@@ -85,7 +85,8 @@ with (controller)
         {
         //show_message("Error loading ilda file");
         //game_end();
-        }    
+        buffer_delete(ild_file);
+        }
     else
         {
         rdy = 0;
