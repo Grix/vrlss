@@ -35,6 +35,8 @@ frame = 0;
 play = 0;
 progress = 0;
 filename = "";
+errorflag = 0;
+
 saud_stop(audio);
 
     i = 0;
@@ -49,7 +51,7 @@ saud_stop(audio);
     
 alarm[2]=1;
 
-read_ilda_header()
+read_ilda_header_first()
 read_ilda_frame()
 
 return 1;

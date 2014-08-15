@@ -75,6 +75,7 @@
     <scripts name="ilda_parsing">
       <script>scripts\read_ilda_init.gml</script>
       <script>scripts\read_ilda_work.gml</script>
+      <script>scripts\read_ilda_header_first.gml</script>
       <script>scripts\read_ilda_header.gml</script>
       <script>scripts\read_ilda_frame.gml</script>
       <script>scripts\get_bytes.gml</script>
@@ -224,7 +225,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41866.8334349421</constant>
+    <constant name="GM_build_date">41866.8987259954</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

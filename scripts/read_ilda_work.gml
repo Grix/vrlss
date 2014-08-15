@@ -7,6 +7,7 @@ while (1)
     if (action == 1)
         {
         rdy = 1;
+        ildaloaded = 1;
         buffer_delete(ild_file);
         exit;
         }

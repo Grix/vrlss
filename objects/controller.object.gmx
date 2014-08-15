@@ -29,6 +29,8 @@
 
 showfps = 30;
 
+ildaloaded=0;
+
 fog = 1;
 
 scan_list = ds_list_create();
@@ -208,8 +210,7 @@ rdy = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//FPSController_step();
-if (rdy)
+            <string>if (rdy)
     {
     //Check audio sync
     if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 3 or (real(saud_position(audio))/1000*showfps - frame) &lt; -3))) 
@@ -481,7 +482,7 @@ else
         {
         draw_set_color(c_ltgray);
         draw_set_font(fnt_parsing);
-        draw_text(20,20,"Parsing file: "+string(floor(i/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(i/file_size*100))+"%");
+        draw_text(20,20,"Parsing file: "+string(floor(i/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(i/file_size*100))+"% , Frame #"+string(frame_number));
         }
     }
 surface_reset_target();
