@@ -1,4 +1,4 @@
-//draws the current frame on the screen
+//draws the current frame on the screen for dual identical projectors
 
 ild_list = ds_list_find_value(controller.scan_list,scanner);
 list_id = ds_list_find_value(ild_list,10+controller.frame);
@@ -20,8 +20,8 @@ switch (format)
     {
     case 4: //format 4: new 3d
         {
-        list_size = (ds_list_size(list_id)-1);
-        np_pos = 1;
+        list_size = (ds_list_size(list_id)-5);
+        np_pos = 5;
         
         xpn = ds_list_find_value(list_id,np_pos)/$ffff*1024;
         ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*1024;
@@ -38,7 +38,7 @@ switch (format)
         ypn = 1024-ypn;
         //xpn = 1024-xpn;
         
-        np_pos = 8;
+        np_pos = 12;
             
         while (np_pos < list_size)
             {   
@@ -79,6 +79,11 @@ switch (format)
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,1000,scanflate.z-(512*scanmulti)+(1024*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,1000,scanflate.z-(512*scanmulti)+(1024*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
                 d3d_primitive_end();
+                d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                    d3d_vertex_texture_color(-x,y,z,0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(-scanflate.x-(512*scanmulti)+xp*scanmulti,1000,scanflate.z-(512*scanmulti)+(1024*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
+                    d3d_vertex_texture_color(-scanflate.x-(512*scanmulti)+xpn*scanmulti,1000,scanflate.z-(512*scanmulti)+(1024*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
+                d3d_primitive_end();
                 }
             
             np_pos+=7;
@@ -87,9 +92,8 @@ switch (format)
         }
     case 5: //format 5: new 2d
         {
-        
-        list_size = (ds_list_size(list_id)-1);
-        np_pos = 1;
+        list_size = (ds_list_size(list_id)-5);
+        np_pos = 5;
         
         xpn = ds_list_find_value(list_id,np_pos)/$ffff*1024;
         ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*1024;
@@ -103,7 +107,7 @@ switch (format)
             ypn += 512;
         ypn = 1024-ypn;
         
-        np_pos = 7;
+        np_pos = 11;
             
         while (np_pos < list_size)
             {
@@ -141,6 +145,7 @@ switch (format)
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xp*scanmulti,1000,scanflate.z-(512*scanmulti)+(1024*scanmulti)-(yp*scanmulti),0,0,colormade,usealpha);
                     d3d_vertex_texture_color(scanflate.x-(512*scanmulti)+xpn*scanmulti,1000,scanflate.z-(512*scanmulti)+(1024*scanmulti)-(ypn*scanmulti),0,0,colormade,usealpha);
                 d3d_primitive_end();
+                
                 }
             
             np_pos+=6;

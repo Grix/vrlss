@@ -8,7 +8,9 @@ while (1)
         {
         rdy = 1;
         ildaloaded = 1;
+        selected_scanner = ds_list_find_index(scan_list,ild_list);
         buffer_delete(ild_file);
+        instance_activate_all();
         exit;
         }
     //if (action == 0)

@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>y = 0-controller.rlength;
+            <string>y = 1000;
 x = tan(ln(obj_scanner.dirver))*(y+obj_scanner.y);
 z = tan(ln(obj_scanner.dirhor))*(y+obj_scanner.y);
 </string>

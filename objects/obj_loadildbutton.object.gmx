@@ -53,7 +53,7 @@
 else
     image_index = 0;
 
-visible = controller.rdy;
+visible = (controller.rdy &gt; 0);
 
 </string>
           </argument>
@@ -81,7 +81,7 @@ visible = controller.rdy;
 
 with (controller)
     {
-    if !(read_ilda_init(0))
+    if !(read_ilda_init(ds_list_size(scan_list)))
         {
         //show_message("Error loading ilda file");
         //game_end();

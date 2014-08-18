@@ -1,6 +1,10 @@
-
-//initializes parsing of an ilda file, stores each frame in its own ds_list, a catalog of frames is kept in another ds_list
+//initializes parsing of an ilda file
 //arg0 is scanner number
+//return 1 if successful
+
+saud_stop(audio);
+frame = 0;
+play = 0;
 
 filename = get_open_filename_ext("*.ild","*",working_directory,"Select ILDA file")
 if (filename != "")
@@ -31,27 +35,20 @@ if !is_wrong($0)
     return 0;i=0;
 
 rdy = 0;
-frame = 0;
-play = 0;
-progress = 0;
 filename = "";
-errorflag = 0;
-
-saud_stop(audio);
-
-    i = 0;
-    format = 0;
-    name = "";
-    author = "";
 
 
-    ds_list_clear(ds_list_find_value(scan_list,argument0));
-    ild_list = ds_list_create();
-    ds_list_replace(scan_list,argument0,ild_list);
+i = 0;
+format = 0;
+    
+ild_list = ds_list_create();
+ds_list_add(scan_list,ild_list);
+
+instance_deactivate_all(1);
     
 alarm[2]=1;
 
-read_ilda_header_first()
-read_ilda_frame()
+read_ilda_header_first();
+read_ilda_frame();
 
 return 1;

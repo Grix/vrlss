@@ -53,6 +53,7 @@
     <sprite>sprites\spr_flankildbutton</sprite>
     <sprite>sprites\spr_audiobutton</sprite>
     <sprite>sprites\spr_3dbutton</sprite>
+    <sprite>sprites\spr_miniscanner</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_scanner</background>
@@ -62,9 +63,12 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\check_miniscanner_dual.gml</script>
+    <script>scripts\draw_info.gml</script>
     <script>scripts\d3d_model_load_ext.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
+    <script>scripts\draw_frame_3d_dual.gml</script>
     <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\show_export.gml</script>
     <script>scripts\playerMovement.gml</script>
@@ -89,26 +93,15 @@
     <scripts name="GMOculus">
       <scripts name="Functions">
         <script>scripts\GMO_init.gml</script>
-        <scripts name="Interpupillary Distance">
-          <script>scripts\GMO_setIPD.gml</script>
-          <script>scripts\GMO_getIPD.gml</script>
-        </scripts>
-        <scripts name="Resolution">
-          <script>scripts\GMO_setResolution.gml</script>
-          <script>scripts\GMO_getResolutionHeight.gml</script>
-          <script>scripts\GMO_getResolutionWidth.gml</script>
-        </scripts>
         <scripts name="Camera">
           <script>scripts\GMO_initCamera.gml</script>
           <script>scripts\GMO_followObject.gml</script>
           <script>scripts\GMO_getCameraSurface.gml</script>
           <script>scripts\GMO_drawCameraSurface.gml</script>
-          <scripts name="Rendering">
-            <script>scripts\GMO_renderCamera.gml</script>
-            <script>scripts\GMO_renderRegular.gml</script>
-            <script>scripts\GMO_renderOculus.gml</script>
-            <script>scripts\GMO_renderAnaglyph.gml</script>
-          </scripts>
+          <script>scripts\GMO_renderCamera.gml</script>
+          <script>scripts\GMO_renderRegular.gml</script>
+          <script>scripts\GMO_renderOculus.gml</script>
+          <script>scripts\GMO_renderAnaglyph.gml</script>
         </scripts>
         <scripts name="Audio">
           <script>scripts\GMO_setUse3DSound.gml</script>
@@ -125,6 +118,11 @@
           <script>scripts\GMO_setCameraMode.gml</script>
           <script>scripts\GMO_getES.gml</script>
           <script>scripts\GMO_setES.gml</script>
+          <script>scripts\GMO_setResolution.gml</script>
+          <script>scripts\GMO_getResolutionHeight.gml</script>
+          <script>scripts\GMO_getResolutionWidth.gml</script>
+          <script>scripts\GMO_setIPD.gml</script>
+          <script>scripts\GMO_getIPD.gml</script>
         </scripts>
       </scripts>
       <scripts name="System">
@@ -135,18 +133,18 @@
         <script>scripts\GMO_getVersion.gml</script>
         <script>scripts\GMO_getVersionString.gml</script>
         <scripts name="Calculation Functions">
-          <script>scripts\d3d_set_projection_simple.gml</script>
-          <script>scripts\vector_rotate.gml</script>
-          <script>scripts\find_height.gml</script>
-          <script>scripts\mod_to_triList.gml</script>
-          <script>scripts\line_col.gml</script>
-          <script>scripts\ray_coll.gml</script>
           <scripts name="3d lengthdr">
             <script>scripts\lengthdir_x_3d.gml</script>
             <script>scripts\lengthdir_y_3d.gml</script>
             <script>scripts\lengthdir_z_3d.gml</script>
             <script>scripts\lengthdir_all_3d.gml</script>
           </scripts>
+          <script>scripts\d3d_set_projection_simple.gml</script>
+          <script>scripts\vector_rotate.gml</script>
+          <script>scripts\find_height.gml</script>
+          <script>scripts\mod_to_triList.gml</script>
+          <script>scripts\line_col.gml</script>
+          <script>scripts\ray_coll.gml</script>
           <script>scripts\inCamera.gml</script>
           <script>scripts\frustum_culling_init.gml</script>
           <script>scripts\frustum_culling.gml</script>
@@ -167,11 +165,9 @@
         </scripts>
       </scripts>
       <scripts name="GR">
-        <script>scripts\GR_cmToPixel.gml</script>
         <script>scripts\GR_init.gml</script>
+        <script>scripts\GR_cmToPixel.gml</script>
         <script>scripts\GR_meterToPixel.gml</script>
-        <script>scripts\GC_cmToPixel.gml</script>
-        <script>scripts\GC_meterToPixel.gml</script>
       </scripts>
     </scripts>
   </scripts>
@@ -194,6 +190,14 @@
         <object>objects\obj_3d_parent</object>
       </objects>
     </objects>
+    <objects name="buttons">
+      <object>objects\obj_flankildbutton</object>
+      <object>objects\obj_3dbutton</object>
+      <object>objects\obj_audiobutton</object>
+      <object>objects\obj_compbutton</object>
+      <object>objects\obj_dualbutton</object>
+      <object>objects\obj_loadildbutton</object>
+    </objects>
     <object>objects\obj_environment</object>
     <object>objects\obj_player</object>
     <object>objects\obj_camera</object>
@@ -204,10 +208,7 @@
     <object>objects\obj_scanflate</object>
     <object>objects\obj_flankflate</object>
     <object>objects\obj_flankflate1</object>
-    <object>objects\obj_mainildbutton</object>
-    <object>objects\obj_3dbutton</object>
-    <object>objects\obj_audiobutton</object>
-    <object>objects\obj_flankildbutton</object>
+    <object>objects\obj_miniscanner</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>
@@ -225,7 +226,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41866.8987259954</constant>
+    <constant name="GM_build_date">41869.9634219792</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

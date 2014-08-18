@@ -1,16 +1,17 @@
 //draws the current frame on the screen
+if (!ildaloaded)
+    exit;
 
-np=0;p=0;
 ild_list = ds_list_find_value(scan_list,argument0);
-list_id = ds_list_find_value(ild_list,frame);
-format = ds_list_find_value(list_id,2);
+list_id = ds_list_find_value(ild_list,10+frame);
+format = ds_list_find_value(ild_list,9);
 
 switch (format)
     {
     case 4: //format 4: new 3d
         {
-        list_size = (ds_list_size(list_id)-5);
-        np_pos = 5;
+        list_size = (ds_list_size(list_id)-1);
+        np_pos = 1;
         
         xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
         ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
@@ -24,7 +25,7 @@ switch (format)
             ypn += 300;
         ypn = 600-ypn;
         
-        np_pos = 12;
+        np_pos = 8;
             
         while (np_pos < list_size)
             {
@@ -66,8 +67,8 @@ switch (format)
        
     case 5: //format 5: new 2d
         {
-        list_size = (ds_list_size(list_id)-5);
-        np_pos = 5;
+        list_size = (ds_list_size(list_id)-1);
+        np_pos = 1;
         
         xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
         ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
@@ -81,7 +82,7 @@ switch (format)
             ypn += 300;
         ypn = 600-ypn;
         
-        np_pos = 11;
+        np_pos = 7;
             
         while (np_pos < list_size)
             {
@@ -121,9 +122,9 @@ switch (format)
          break;
         }
         
-    case 0: //format 0: old 3d
+    /*case 0: //format 0: old 3d
         {
-        while (p < ds_list_size(list_id)/4-2)
+        while (p < ds_list_size(list_id)/4)
             {
             blank = (ds_list_find_value(list_id,5+(p)*4+3) >> 14) & 1
             
@@ -170,6 +171,6 @@ switch (format)
             p++;
             }
         break;
-        }
+        }*/
         
     }

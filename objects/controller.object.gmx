@@ -26,25 +26,15 @@
           <argument>
             <kind>1</kind>
             <string>templist = ds_list_create();
+scan_list = ds_list_create();
 
 showfps = 30;
-
 ildaloaded=0;
-
 fog = 1;
-
-scan_list = ds_list_create();
-ds_list_add(scan_list,0);
-ds_list_add(scan_list,0);
 
 
 // Initialize GMOculus
 GMO_init(); 
-//RF_init(working_directory+"\lib\ReadFile2.dll");
-
-//FPSController_create();
-// Preload lights
-//initLights();
 
 alarm[1]=2;
 
@@ -60,8 +50,8 @@ fpswarning = 0;
 needpal = 0;
 progress = 0;
 i = 0;
-icp = 0;
 file_size = 0;
+selected_scanner = -1;
 </string>
           </argument>
         </arguments>
@@ -212,70 +202,70 @@ rdy = 1;
             <kind>1</kind>
             <string>if (rdy)
     {
-    //Check audio sync
-    if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 3 or (real(saud_position(audio))/1000*showfps - frame) &lt; -3))) 
-        frame = floor(real(saud_position(audio))/1000*showfps);
-
+    if (rdy == 1)
+        {
+        with (obj_miniscanner) instance_destroy();
+        
+        //Check audio sync
+        if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 3 or (real(saud_position(audio))/1000*showfps - frame) &lt; -3))) 
+            frame = floor(real(saud_position(audio))/1000*showfps);
     
-    //Increase/decrease frame number
-    if (keyboard_check(vk_right))
-        {
-        if (frame &lt; ds_list_size(ild_list)-1) frame++; //read_frame();
-        }
-    if (keyboard_check(vk_left))
-        {
-        if (frame) frame--; //read_frame();
+        //Play/pause
+        if (keyboard_check_pressed(vk_space))
+            {
+            if (saud_is_playing(audio))
+                {
+                saud_stop(audio);
+                }
+            else
+                {
+                saud_seek(floor(frame*1000/showfps),audio);
+                }
+            play = !play;
+            if (play)
+                alarm[3]=1;
+            }
+        
+        //Increase/decrease frame number
+        if (keyboard_check(vk_right))
+            {
+            if (frame &lt; ds_list_size(ild_list)-11) frame++; //read_frame();
+            }
+        if (keyboard_check(vk_left))
+            {
+            if (frame) frame--; //read_frame();
+            }
+            
+        //Stop and reset
+        if (keyboard_check_pressed(vk_backspace))
+            {
+            frame = 0;
+            saud_stop(audio);
+            play = 0;
+            }
+                
+        //Jump to frame
+        if (keyboard_check_pressed(ord('N')))
+            {
+            seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-11),0);
+            if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-11)))
+                {
+                saud_stop(audio);
+                play = 0;
+                frame = seekto;
+                }
+            if (room == rm_3d)
+                window_set_fullscreen(1);
+            }
         }
     
     //Toggle 3D/2D
     if (keyboard_check_pressed(vk_tab))
         {
-        if (ds_list_find_value(scan_list,0))
-            {
-            if (room == rm_2d) room_goto_next(); 
-            else room_goto_previous();
-            }
-        else show_message("Please load at least a main ILDA file before entering 3D mode");
-        }
-        
-        
-    //Play/pause
-    if (keyboard_check_pressed(vk_space))
-        {
-        if (saud_is_playing(audio))
-            {
-            saud_stop(audio);
-            }
-        else
-            {
-            saud_seek(floor(frame*1000/showfps),audio);
-            }
-        play = !play;
-        if (play)
-            alarm[3]=1;
+        if (room == rm_2d) room_goto_next(); 
+        else room_goto_previous();
         }
     
-    //Stop and reset
-    if (keyboard_check_pressed(vk_backspace))
-        {
-        frame = 0;
-        saud_stop(audio);
-        play = 0;
-        }
-            
-    //Jump to frame
-    if (keyboard_check_pressed(ord('N')))
-        {
-        seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-1),0);
-        if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-1)))
-            {
-            saud_stop(audio);
-            play = 0;
-            frame = seekto;
-            }
-        if (room == rm_3d)
-            window_set_fullscreen(1);
-        }
     
     //screenshot
     if (keyboard_check_pressed(ord('M')))
@@ -356,7 +346,7 @@ rdy = 1;
 {
     //Start our 3D engine
     init3D();
-    instance_create(750,room_height/2,obj_scanner);
+    instance_create(100,100,obj_scanner);
     if (ds_list_find_value(scan_list,1))
         {
         instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
@@ -400,91 +390,7 @@ else
           <argument>
             <kind>1</kind>
             <string>surface_set_target(application_surface);
-draw_set_font(fnt_info);
-if (rdy)
-    {
-    draw_set_font(fnt_info);
-    //list_id = frame_list;
-    ild_list = ds_list_find_value(scan_list,0);
-    list_id = ds_list_find_value(ild_list,frame);
-    if (room)
-        {
-        /// Draw some debugging text
-        //draw_set_color(c_gray)
-        if (GMO_getCameraMode() == 1)
-            {
-            draw_text_stroke(10,10,"Read the readme for controls and manual!"+
-             "##Name: "+string(ds_list_find_value(list_id,3))+
-             "#Author: "+string(ds_list_find_value(list_id,4))+
-             "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-1)+
-             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-1)+
-             //"#Scanner: "+string(ds_list_find_value(list_id,1))+
-             //"#ILDA format: "+string(ds_list_find_value(list_id,2))+
-             "##FPS: " + string(fps) +
-             //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
-             //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
-             "#Interpupillary Distance" + string(GMO_getIPD()));
-             
-             /*if (fpswarning) 
-                {
-                draw_set_color(c_red);
-                //draw_set_font(fnt_parsing);
-                draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
-                //draw_set_font(fnt_info);
-                draw_set_color(c_ltgray);
-                }*/
-             }
-        }
-    else
-        {
-        draw_set_color(c_dkgray);
-        draw_line(602,15,602,585);
-        draw_set_color(c_ltgray);
-        draw_text_stroke(630,30,"Read the readme for controls and manual!"+
-        "##Name: "+string(ds_list_find_value(list_id,3))+
-        "#Author: "+string(ds_list_find_value(list_id,4))+
-        "#Number "+string(frame)+"/"+string(ds_list_size(ild_list)-1)+
-        "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-1));
-        //+"#Scanner: "+string(ds_list_find_value(list_id,1))+
-        //"#ILDA format: "+string(ds_list_find_value(list_id,2)));
-             
-        draw_set_font(fnt_parsing);       
-        if (!global._GMO_DLL_LOADED) 
-            {
-            draw_set_color(c_red);
-            draw_text(630,220,"Warning:#Oculus Rift Not Enabled");
-            }
-        else
-            {
-            switch (initDevice) 
-                {
-                case 0:
-                    draw_set_color(c_red);
-                    draw_text(630,220,"Warning:#Oculus Rift not found");
-                    break;
-                case 1:
-                    draw_set_color(c_green);
-                    draw_text(630,220,"Oculus Rift working");
-                    break;
-                case 2:
-                    draw_set_color(c_yellow);
-                    draw_text(630,220,"Warning:#Oculus Rift found#but display disabled");
-                    break;
-                }
-            }
-            draw_set_font(fnt_info);
-            draw_set_color(c_ltgray);
-        }
-    }
-else
-    {
-    if (file_size &gt; 0)
-        {
-        draw_set_color(c_ltgray);
-        draw_set_font(fnt_parsing);
-        draw_text(20,20,"Parsing file: "+string(floor(i/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(i/file_size*100))+"% , Frame #"+string(frame_number));
-        }
-    }
+    draw_info();
 surface_reset_target();
 </string>
           </argument>
@@ -508,19 +414,17 @@ surface_reset_target();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!room and rdy)
+            <string>if (room == rm_2d)
     {
-    /*i = 0;
-    while (i&lt;=ds_list_size(scan_list))
-        {
-        if (ds_list_find_value(scan_list,i))
-            draw_frame_2d(i);
-        i++;
-        }*/
     draw_clear(c_black);
-    draw_frame_2d(0);
-    if (ds_list_find_index(scan_list,0) != 1)
-        draw_frame_2d(1);
+    
+    
+    
+    if (rdy == 1)
+        {
+        for( i=0; i&lt;=(ds_list_size(scan_list)-1); i++)
+            draw_frame_2d(i);
+        }
 }
 </string>
           </argument>
