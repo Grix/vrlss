@@ -191,7 +191,6 @@
       </objects>
     </objects>
     <objects name="buttons">
-      <object>objects\obj_flankildbutton</object>
       <object>objects\obj_3dbutton</object>
       <object>objects\obj_audiobutton</object>
       <object>objects\obj_compbutton</object>
@@ -226,7 +225,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41869.9634219792</constant>
+    <constant name="GM_build_date">41870.9511436458</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

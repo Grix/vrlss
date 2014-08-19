@@ -16,6 +16,5 @@ with (obj_miniscanner)
         slave = instance_create(x,y,obj_miniscanner);
             slave.master = 0;
             slave.scanner = scanner;
-            slave.masterobj = self;
         }
     }

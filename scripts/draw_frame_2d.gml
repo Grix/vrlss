@@ -88,7 +88,7 @@ switch (format)
             {
             
             blank = ds_list_find_value(list_id,np_pos+2);
-            blank = (blank >> 6) & 1
+            blank = (blank >> 6) & 1;
             
             //find point
             xp = xpn;

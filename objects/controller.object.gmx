@@ -3,9 +3,9 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>-1</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_3d_particle</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -41,7 +41,7 @@ alarm[1]=2;
 frame = 0;
 rdy = 0;
 rwidth = 0;
-rheight = 900;
+rheight = 1500;
 rlength = 0;
 play = 0;
 audio = "song";
@@ -52,6 +52,9 @@ progress = 0;
 i = 0;
 file_size = 0;
 selected_scanner = -1;
+xpnrad = 0;
+ypnrad = 0;
+zpnrad = 0;
 </string>
           </argument>
         </arguments>
@@ -346,12 +349,30 @@ rdy = 1;
 {
     //Start our 3D engine
     init3D();
-    instance_create(100,100,obj_scanner);
-    if (ds_list_find_value(scan_list,1))
+    
+    rdy = 1;
+
+    /*for( i=0; i&lt;=(ds_list_size(scan_list)-1); i++)
+    {
+    scanner = instance_create(0,0,obj_scanner);
+        scanner.scanner = i;
+        scanner.master = 1;
+        show_message(i);
+    }
+    
+    with (obj_scanner)
+    {
+    dual = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),0);
+    if (dual == 1)
         {
-        instance_create(obj_scanner.x-300,room_height/2,obj_flankscanner);
-        instance_create(obj_scanner.x+300,room_height/2,obj_flankscanner1);
+        slave = instance_create(x,y,obj_scanner);
+            slave.master = 0;
+            slave.scanner = scanner;
+        show_message(scanner)
         }
+    }*/
+    instance_create(0,0,obj_scanner);
+    
     window_set_cursor(cr_none);
     
     surface_resize(application_surface, 1920, 1080);

@@ -26,14 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=1;
-z = 100; scanmulti=1; rdy = 0; alpha = 0.3;
-obj_scanflate.z = 20+scanmulti*512;
+scanmulti=1;
+rdy = 0;
+alpha = 0.3;
 dirver = 2.1;
 dirhor = 1.2;
-
-scanner = 0;
-scanflate = obj_scanflate;
-instance_create(0,0,scanflate);
+xrad = pi/2;
+yrad = pi/2;
 </string>
           </argument>
         </arguments>
@@ -56,8 +55,25 @@ instance_create(0,0,scanflate);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>rdy = 1;
+            <string>/*if (master == 1)
+    {
+    x = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1)*2;
+    z = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2)*2;
+    }
+else
+    {
+    x = 1200-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1)*2;
+    z = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2)*2;
+    }
+    
 
+/*scanflate = instance_create(0,0,obj_scanflate);
+    scanflate.scanner = scanner;
+    scanflate.z = z;//20+scanmulti*512;
+    scanflate.x = x;//tan(ln(dirver))*(scanflate.y+y);
+    scanflate.y = 2000;//tan(ln(dirhor))*(scanflate.y+y);*/
+    
+rdy = 1;
 </string>
           </argument>
         </arguments>
@@ -80,12 +96,16 @@ instance_create(0,0,scanflate);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (dirhor &gt; 3.5) dirhor = 3.5;
+            <string>if (!rdy)
+exit;
+
+if (dirhor &gt; 3.5) dirhor = 3.5;
 if (dirhor &lt; 0.3) dirhor = 0.3;
 if (dirver &gt; 3.5) dirver = 3.5;
 if (dirver &lt; 0.3) dirver = 0.3;
 if (alpha &gt; 1) alpha = 1;
 if (alpha &lt; 0) alpha = 0;
+
 </string>
           </argument>
         </arguments>
@@ -108,12 +128,10 @@ if (alpha &lt; 0) alpha = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (rdy == 1 and room == rm_3d)
+            <string>if (rdy and room == rm_3d)
     {
     draw_frame_3d();
-    
     }
-    
 </string>
           </argument>
         </arguments>

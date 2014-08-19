@@ -17,7 +17,7 @@ if (rdy)
              "##FPS: " + string(fps) +
              //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
              //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
-             "#Interpupillary Distance" + string(GMO_getIPD()*_GC_Ratio));
+             "#Interpupillary Distance: " + string(GMO_getIPD()*global._GC_Ratio*10));
              
              /*if (fpswarning) 
                 {
@@ -84,6 +84,6 @@ else
         {
         draw_set_color(c_ltgray);
         draw_set_font(fnt_parsing);
-        draw_text(20,20,"Parsing file: "+string(floor(i/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(i/file_size*100))+"% , Frame number "+string(frame_number));
+        draw_text(20,20,"Parsing file: "+string(floor(i/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(i/file_size*100))+"%, frame number "+string(frame_number));
         }
     }

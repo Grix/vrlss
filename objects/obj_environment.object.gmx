@@ -71,12 +71,12 @@ d3d_draw_wall(0-controller.rwidth,0-controller.rlength,0,0-controller.rwidth,roo
 d3d_draw_wall(room_width+controller.rwidth,room_height+controller.rlength,0,room_width+controller.rwidth,0-controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 d3d_draw_wall(room_width+controller.rwidth,room_height+controller.rlength,0,0-controller.rwidth,room_height+controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 
-d3d_draw_block(obj_scanner.x+20,obj_scanner.y,obj_scanner.z-5,obj_scanner.x-20,obj_scanner.y+40,obj_scanner.z+5,background_get_texture(bck_scanner),1,1);
-if (instance_exists(obj_flankscanner))
-    {
-    d3d_draw_block(obj_flankscanner.x+20,obj_flankscanner.y,obj_flankscanner.z-5,obj_flankscanner.x-20,obj_flankscanner.y+40,obj_flankscanner.z+5,background_get_texture(bck_scanner),1,1);
-    d3d_draw_block(obj_flankscanner1.x+20,obj_flankscanner1.y,obj_flankscanner1.z-5,obj_flankscanner1.x-20,obj_flankscanner1.y+40,obj_flankscanner1.z+5,background_get_texture(bck_scanner),1,1);
-    }
+/*if (instance_exists(obj_scanner))
+    for( i=0; i&lt;=(ds_list_size(controller.scan_list)-1); i++)
+        {
+        d3d_draw_block(obj_scanner.x+20,obj_scanner.y,obj_scanner.z-5,obj_scanner.x-20,obj_scanner.y+40,obj_scanner.z+5,background_get_texture(bck_scanner),1,1);
+        }*/
+    
     
 d3d_set_culling(true);
 </string>
