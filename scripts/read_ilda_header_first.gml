@@ -35,16 +35,16 @@ i+=5;
 ilda_scanner = get_byte();
 i++;
 
+ds_list_add(ild_list,0); //dual
+ds_list_add(ild_list,300); //x
+ds_list_add(ild_list,300); //y
+ds_list_add(ild_list,0); //xrad
+ds_list_add(ild_list,0); //yrad
+ds_list_add(ild_list,0.3); //alpha
+ds_list_add(ild_list,pi/4); //angle
 ds_list_add(ild_list,0);
-ds_list_add(ild_list,300);
-ds_list_add(ild_list,300);
-ds_list_add(ild_list,0);
-ds_list_add(ild_list,0);
-ds_list_add(ild_list,0.3);
-ds_list_add(ild_list,0.5);
-ds_list_add(ild_list,0);
-ds_list_add(ild_list,ilda_scanner);
-ds_list_add(ild_list,format);
+ds_list_add(ild_list,ilda_scanner); //ilda scanner
+ds_list_add(ild_list,format); //format
 
 //28
 //maxframes = get_bytes();

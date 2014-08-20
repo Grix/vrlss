@@ -50,18 +50,28 @@ moving = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>rdy = 1;
+            <string>
 dual = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),0);
 if (master == 1)
     {
     x = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1);
     y = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2);
+    xrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+    yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+    alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+    angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
     }
 else
     {
     x = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1);
     y = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2);
+    xrad = -ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+    yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+    alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+    angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
     }
+    
+rdy = 1;
 </string>
           </argument>
         </arguments>
@@ -87,21 +97,50 @@ else
             <string>if (!rdy)
     exit;
 
-if ((moving) and (controller.selected_scanner == scanner))
+if ((moving == 1) and (controller.selected_scanner == scanner))
     {
     x += mouse_x-mouse_xprevious;
     y += mouse_y-mouse_yprevious;
+    if (x &lt; 5) x = 5;
+    if (x &gt; 595) x = 595;
+    if (y &lt; 5) y = 5;
+    if (y &gt; 595) y = 595;
     
     if ((dual == 1) and (master == 1))
         {
         slave.x -= mouse_x-mouse_xprevious;
         slave.y += mouse_y-mouse_yprevious;
+        if (slave.x &lt; 5) slave.x = 5;
+        if (slave.x &gt; 595) slave.x = 595;
+        if (slave.y &lt; 5) slave.y = 5;
+        if (slave.y &gt; 595) slave.y = 595;
         }
     
     mouse_xprevious = mouse_x;
     mouse_yprevious = mouse_y;
     }
+else if ((moving == 2) and (controller.selected_scanner == scanner))
+    {
+    xrad += degtorad(mouse_x-mouse_xprevious);
+    yrad -= degtorad(mouse_y-mouse_yprevious);
+    if (xrad &lt; -pi/4) xrad = -pi/4;
+    if (xrad &gt; pi/4) xrad = pi/4;
+    if (yrad &lt; -pi/4) yrad = -pi/4;
+    if (yrad &gt; pi/4) yrad = pi/4;
     
+    if ((dual == 1) and (master == 1))
+        {
+        slave.xrad -= degtorad(mouse_x-mouse_xprevious);
+        slave.yrad -= degtorad(mouse_y-mouse_yprevious);
+        if (slave.xrad &lt; -pi/4) slave.xrad = -pi/4;
+        if (slave.xrad &gt; pi/4) slave.xrad = pi/4;
+        if (slave.yrad &lt; -pi/4) slave.yrad = -pi/4;
+        if (slave.yrad &gt; pi/4) slave.yrad = pi/4;
+        }
+    
+    mouse_xprevious = mouse_x;
+    mouse_yprevious = mouse_y;
+    }
 </string>
           </argument>
         </arguments>
@@ -130,6 +169,8 @@ if (master == 1)
     {
     ds_list_replace(ds_list_find_value(controller.scan_list,scanner),1,x);
     ds_list_replace(ds_list_find_value(controller.scan_list,scanner),2,600-y);
+    ds_list_replace(ds_list_find_value(controller.scan_list,scanner),3,xrad);
+    ds_list_replace(ds_list_find_value(controller.scan_list,scanner),4,yrad);
     }
 </string>
           </argument>
@@ -157,7 +198,10 @@ if (master == 1)
     exit;
 
 controller.selected_scanner = scanner;
-moving = 1;
+if (mouse_y &gt; (y-18))
+    moving = 1;
+else 
+    moving = 2;
 mouse_xprevious = mouse_x;
 mouse_yprevious = mouse_y;
 </string>
@@ -201,7 +245,44 @@ mouse_yprevious = mouse_y;
         else draw_set_color(c_dkgray);
         }
     draw_circle(x,y,16,1);
+    
+    
+    /*xposbase1 = x+25*(   sin(yrad+pi/2)*cos(-xrad+pi/2));
+    zposbase1 = y-35+25*(cos(yrad+pi/2));
+    
+    
+    
+    xpos1 = xposbase1+10*sin(yrad)+10*cos(xrad);
+    zpos1 = zposbase1+10*cos(yrad)+10*sin(xrad)*cos(yrad);
+    xpos2 = xposbase1-10*sin(yrad)+10*cos(xrad);
+    zpos2 = zposbase1-10*cos(yrad)+10*sin(xrad)*cos(yrad);
+    xpos3 = xposbase1-10*sin(yrad)-10*cos(xrad);
+    zpos3 = zposbase1-10*cos(yrad)-10*sin(xrad)*cos(yrad);
+    xpos4 = xposbase1+10*sin(yrad)-10*cos(xrad);
+    zpos4 = zposbase1+10*cos(yrad)-10*sin(xrad)*cos(yrad);*/
+    draw_set_alpha(alpha+0.3);
+    
+    xpos1 = x+25*(      sin(yrad+pi/2+angle)*cos(-xrad+pi/2+angle))/cos(yrad+angle);
+    zpos1 = y-35+20*(   cos(yrad+pi/2+angle)); 
+    xpos2 = x+25*(      sin(yrad+pi/2-angle)*cos(-xrad+pi/2+angle))/cos(yrad-angle);
+    zpos2 = y-35+20*(   cos(yrad+pi/2-angle)); 
+    xpos3 = x+25*(      sin(yrad+pi/2-angle)*cos(-xrad+pi/2-angle))/cos(yrad-angle);
+    zpos3 = y-35+20*(   cos(yrad+pi/2-angle)); 
+    xpos4 = x+25*(      sin(yrad+pi/2+angle)*cos(-xrad+pi/2-angle))/cos(yrad+angle);
+    zpos4 = y-35+20*(   cos(yrad+pi/2+angle)); 
+    
+    draw_line(xpos2,zpos2,xpos1,zpos1);
+    draw_line(xpos2,zpos2,xpos3,zpos3);
+    draw_line(xpos3,zpos3,xpos4,zpos4);
+    draw_line(xpos4,zpos4,xpos1,zpos1);
+    draw_line(x,y-35,xpos1,zpos1);
+    draw_line(x,y-35,xpos2,zpos2);
+    draw_line(x,y-35,xpos3,zpos3);
+    draw_line(x,y-35,xpos4,zpos4);
+    
+    draw_set_alpha(1);
     }
+    
 </string>
           </argument>
         </arguments>

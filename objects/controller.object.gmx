@@ -157,7 +157,8 @@ if (play)
           <argument>
             <kind>1</kind>
             <string>
-rdy = 1;
+rdy = 2;
+check_miniscanner_dual();
 </string>
           </argument>
         </arguments>
@@ -383,6 +384,9 @@ else
 {
     end3D();
     window_set_cursor(cr_default);
+    
+    rdy = 2;
+    check_miniscanner_dual();
     
     surface_resize(application_surface, 900, 600);
     display_set_gui_size(900, 600);
