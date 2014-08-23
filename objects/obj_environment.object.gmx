@@ -8,6 +8,41 @@
   <parentName>obj_3d_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (controller.skybox == 0)
+    {
+    
+    }
+else if (controller.skybox == 1)
+    {
+    skybox_floor = background_get_texture(bck_sky1_floor);
+    skybox_top = background_get_texture(bck_sky1_top);
+    skybox_right = background_get_texture(bck_sky1_right);
+    skybox_left = background_get_texture(bck_sky1_left);
+    skybox_back = background_get_texture(bck_sky1_back);
+    skybox_front = background_get_texture(bck_sky1_front);
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -29,7 +64,10 @@
 tilesize = 128
 floors=0
 z = 2;
+
+texture_set_repeat(0);
 d3d_set_culling(false);
+
 
 /*//Draw big tiles
 for (yy = -range; yy &lt; range; yy+=tilesize*4) {
@@ -63,13 +101,22 @@ for (yy = -range; yy &lt; range; yy+=tilesize) {
         }
     }
 }*/
-draw_set_color(c_white);
+/*draw_set_color(c_white);
 d3d_draw_floor(0-controller.rwidth,0-controller.rlength,0,room_width+controller.rwidth,room_height+controller.rlength,0,background_get_texture(bck_wall),-1,-1);
 d3d_draw_floor(0-controller.rwidth,0-controller.rlength,controller.rheight,room_width+controller.rwidth,room_height+controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 d3d_draw_wall(0-controller.rwidth,0-controller.rlength,0,room_width+controller.rwidth,0-controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 d3d_draw_wall(0-controller.rwidth,0-controller.rlength,0,0-controller.rwidth,room_height+controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 d3d_draw_wall(room_width+controller.rwidth,room_height+controller.rlength,0,room_width+controller.rwidth,0-controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 d3d_draw_wall(room_width+controller.rwidth,room_height+controller.rlength,0,0-controller.rwidth,room_height+controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
+*/
+//d3d_set_hidden(false);
+d3d_draw_floor(-5001,-5001,5499,5001,5001,5499,skybox_top,1,1);
+d3d_draw_floor(5000,5000,1,-5000,-5000,1,skybox_floor,1,1);
+d3d_draw_wall(5001,-4999,5500,-5001,-4999,-4500,skybox_front,1,1);
+d3d_draw_wall(5000,5000,5500,5000,-5000,-4500,skybox_left,1,1);
+d3d_draw_wall(-5001,4999,5500,5001,4999,-4500,skybox_back,1,1);
+d3d_draw_wall(-5000,-5000,5500,-5000,5000,-4500,skybox_right,1,1);
+//d3d_set_hidden(true);
 
 /*if (instance_exists(obj_scanner))
     for( i=0; i&lt;=(ds_list_size(controller.scan_list)-1); i++)

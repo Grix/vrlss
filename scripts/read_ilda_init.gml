@@ -6,7 +6,7 @@ saud_stop(audio);
 frame = 0;
 play = 0;
 
-filename = get_open_filename_ext("*.ild","*",working_directory,"Select ILDA file")
+filename = get_open_filename_ext("ILDA files|*.ild","","","Select ILDA file")
 if (filename != "")
     {
     ild_file = file_bin_open(filename,0);

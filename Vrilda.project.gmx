@@ -50,16 +50,28 @@
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\blank_spr</sprite>
     <sprite>sprites\spr_mainildbutton</sprite>
-    <sprite>sprites\spr_flankildbutton</sprite>
+    <sprite>sprites\spr_dualbutton</sprite>
+    <sprite>sprites\spr_compbutton</sprite>
+    <sprite>sprites\spr_viewbutton</sprite>
     <sprite>sprites\spr_audiobutton</sprite>
     <sprite>sprites\spr_3dbutton</sprite>
     <sprite>sprites\spr_miniscanner</sprite>
+    <sprite>sprites\spr_audio</sprite>
+    <sprite>sprites\spr_angle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_scanner</background>
     <background>background\bck_wall</background>
     <background>background\bck_floor</background>
     <background>background\bck_smoke</background>
+    <backgrounds name="sky1">
+      <background>background\bck_sky1_floor</background>
+      <background>background\bck_sky1_top</background>
+      <background>background\bck_sky1_right</background>
+      <background>background\bck_sky1_left</background>
+      <background>background\bck_sky1_front</background>
+      <background>background\bck_sky1_back</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -193,6 +205,7 @@
       <object>objects\obj_3dbutton</object>
       <object>objects\obj_audiobutton</object>
       <object>objects\obj_compbutton</object>
+      <object>objects\obj_viewbutton</object>
       <object>objects\obj_dualbutton</object>
       <object>objects\obj_loadildbutton</object>
     </objects>
@@ -201,11 +214,6 @@
     <object>objects\obj_camera</object>
     <object>objects\controller</object>
     <object>objects\obj_scanner</object>
-    <object>objects\obj_flankscanner</object>
-    <object>objects\obj_flankscanner1</object>
-    <object>objects\obj_scanflate</object>
-    <object>objects\obj_flankflate</object>
-    <object>objects\obj_flankflate1</object>
     <object>objects\obj_miniscanner</object>
   </objects>
   <rooms name="rooms">
@@ -224,7 +232,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41871.8207401389</constant>
+    <constant name="GM_build_date">41873.8186066551</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

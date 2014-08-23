@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>-1</persistent>
-  <parentName>obj_3d_particle</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -38,6 +38,7 @@ GMO_init();
 
 alarm[1]=2;
 
+tooltip = "";
 frame = 0;
 rdy = 0;
 rwidth = 0;
@@ -55,6 +56,7 @@ selected_scanner = -1;
 xpnrad = 0;
 ypnrad = 0;
 zpnrad = 0;
+skybox = 1;
 </string>
           </argument>
         </arguments>

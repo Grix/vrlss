@@ -11,7 +11,7 @@ global._GMO_CAMERA_MODE = 1; //1 = Regular 2 = Oculus
 global._GMO_IPD = 2.8;
 global._GMO_CAMERA_ANGLE = 111; // See GMO_setCameraAngle for documentation.
 global._GMO_CAM_ZNEAR = 1;
-global._GMO_CAM_ZFAR = 4096;
+global._GMO_CAM_ZFAR = 4096*3;
 global._GMO_WRES = 1920;
 global._GMO_HRES = 1080;
 global._GMO_DLL_LOADED = false;
