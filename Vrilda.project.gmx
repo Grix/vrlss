@@ -58,6 +58,13 @@
     <sprite>sprites\spr_miniscanner</sprite>
     <sprite>sprites\spr_audio</sprite>
     <sprite>sprites\spr_angle</sprite>
+    <sprite>sprites\spr_sky1_top</sprite>
+    <sprite>sprites\spr_sky1_right</sprite>
+    <sprite>sprites\spr_sky1_left</sprite>
+    <sprite>sprites\spr_sky1_back</sprite>
+    <sprite>sprites\spr_sky1_front</sprite>
+    <sprite>sprites\spr_sky1_floor</sprite>
+    <sprite>sprites\sprite14</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_scanner</background>
@@ -232,7 +239,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41873.8186066551</constant>
+    <constant name="GM_build_date">41875.5529134375</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

@@ -73,7 +73,7 @@ else
         image_index = 2;
     }
 
-visible = (controller.rdy &gt; 0) and controller.ildaloaded;
+visible = ((controller.rdy &gt;= 1) &amp;&amp; (controller.ildaloaded));
 
 </string>
           </argument>

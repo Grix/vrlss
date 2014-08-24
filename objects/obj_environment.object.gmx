@@ -32,11 +32,11 @@
 else if (controller.skybox == 1)
     {
     skybox_floor = background_get_texture(bck_sky1_floor);
-    skybox_top = background_get_texture(bck_sky1_top);
-    skybox_right = background_get_texture(bck_sky1_right);
-    skybox_left = background_get_texture(bck_sky1_left);
-    skybox_back = background_get_texture(bck_sky1_back);
-    skybox_front = background_get_texture(bck_sky1_front);
+    skybox_top = sprite_get_texture(spr_sky1_top,0);
+    skybox_right = sprite_get_texture(spr_sky1_right,0);
+    skybox_left = sprite_get_texture(spr_sky1_left,0);
+    skybox_back = sprite_get_texture(spr_sky1_back,0);
+    skybox_front = sprite_get_texture(spr_sky1_front,0);
     }
 </string>
           </argument>
@@ -63,7 +63,9 @@ else if (controller.skybox == 1)
             <string>range = GMO_getCameraZFar();
 tilesize = 128
 floors=0
-z = 2;
+z = obj_camera.z;
+x = obj_camera.x;
+y = obj_camera.y;
 
 texture_set_repeat(0);
 d3d_set_culling(false);
@@ -109,14 +111,16 @@ d3d_draw_wall(0-controller.rwidth,0-controller.rlength,0,0-controller.rwidth,roo
 d3d_draw_wall(room_width+controller.rwidth,room_height+controller.rlength,0,room_width+controller.rwidth,0-controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 d3d_draw_wall(room_width+controller.rwidth,room_height+controller.rlength,0,0-controller.rwidth,room_height+controller.rlength,controller.rheight,background_get_texture(bck_wall),-1,-1);
 */
-//d3d_set_hidden(false);
-d3d_draw_floor(-5001,-5001,5499,5001,5001,5499,skybox_top,1,1);
-d3d_draw_floor(5000,5000,1,-5000,-5000,1,skybox_floor,1,1);
-d3d_draw_wall(5001,-4999,5500,-5001,-4999,-4500,skybox_front,1,1);
-d3d_draw_wall(5000,5000,5500,5000,-5000,-4500,skybox_left,1,1);
-d3d_draw_wall(-5001,4999,5500,5001,4999,-4500,skybox_back,1,1);
-d3d_draw_wall(-5000,-5000,5500,-5000,5000,-4500,skybox_right,1,1);
-//d3d_set_hidden(true);
+d3d_set_hidden(false);
+d3d_set_lighting(false);
+d3d_draw_floor(x-16.05,y-16.05,z+15.95,x+16.05,y+16.05,z+15.95,skybox_top,1,1);
+d3d_draw_floor(x+16,y+16,z+16,x-16,y-16,z-16,skybox_floor,1,1);
+d3d_draw_wall(x+16,y-16,z+16,x-16,y-16,z-16,skybox_front,1,1);
+d3d_draw_wall(x+16,y+16,z+16,x+16,y-16,z-16,skybox_left,1,1);
+d3d_draw_wall(x-16,y+16,z+16,x+16,y+16,z-16,skybox_back,1,1);
+d3d_draw_wall(x-16,y-16,z+16,x-16,y+16,z-16,skybox_right,1,1);
+d3d_set_lighting(true);
+d3d_set_hidden(true);
 
 /*if (instance_exists(obj_scanner))
     for( i=0; i&lt;=(ds_list_size(controller.scan_list)-1); i++)

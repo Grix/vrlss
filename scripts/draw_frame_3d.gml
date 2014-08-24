@@ -6,9 +6,9 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
     ild_list = ds_list_find_value(controller.scan_list,i);
     list_id = ds_list_find_value(ild_list,10+controller.frame);
     format = ds_list_find_value(ild_list,9);
-    scanner_x = 2*ds_list_find_value(ild_list,1);
+    scanner_x = ds_list_find_value(ild_list,1);
     scanner_y = 0;
-    scanner_z = 2*ds_list_find_value(ild_list,2);;
+    scanner_z = ds_list_find_value(ild_list,2);;
     xrad = ds_list_find_value(ild_list,3);
     yrad = ds_list_find_value(ild_list,4);
     angle = ds_list_find_value(ild_list,6);
@@ -99,17 +99,43 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     red = ds_list_find_value(list_id,np_pos+6);
                     colormade = make_color_rgb(red,green,blue);
                     
-                    d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                        d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
-                        d3d_vertex_texture_color(xppos,yppos,zppos,0,0,colormade,usealpha);
-                        d3d_vertex_texture_color(xpnpos,ypnpos,zpnpos,0,0,colormade,usealpha);
-                    d3d_primitive_end();
+                    if ((xpn == xp) && (ypn == yp))
+                        {
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                            d3d_vertex_texture_color(xppos-2,yppos-2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos+2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                            d3d_vertex_texture_color(xppos+2,yppos-2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos+2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                            d3d_vertex_texture_color(xppos+2,yppos+2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos-2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                            d3d_vertex_texture_color(xppos-2,yppos+2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos-2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        }
+                    else
+                        {
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xppos,yppos,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos,ypnpos,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        }
                     }
                     
                 if (dual)
                     {
-                    xpnposdual = 1200-scanner_x+3000*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
-                    xpposdual = 1200-scanner_x+3000*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
+                    xpnposdual = 600-scanner_x+3000*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
+                    xpposdual = 600-scanner_x+3000*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
                         
                     //if blanking bit is on, draw line between the two points
                     if !(blank)
@@ -119,11 +145,37 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         red = ds_list_find_value(list_id,np_pos+6);
                         colormade = make_color_rgb(red,green,blue);
                         
-                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                            d3d_vertex_texture_color(1200-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
-                            d3d_vertex_texture_color(xpposdual,yppos,zppos,0,0,colormade,usealpha);
-                            d3d_vertex_texture_color(xpnposdual,ypnpos,zpnpos,0,0,colormade,usealpha);
-                        d3d_primitive_end();
+                        if ((xpn == xp) && (ypn == yp))
+                            {
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(xpposdual-2,yppos-2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual+2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(xpposdual+2,yppos-2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual+2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(xpposdual+2,yppos+2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual-2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(xpposdual-2,yppos+2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual-2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            }
+                        else
+                            {
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpposdual,yppos,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual,ypnpos,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            }
                         }
                     }
                     
@@ -201,17 +253,43 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     red = ds_list_find_value(list_id,np_pos+5);
                     colormade = make_color_rgb(red,green,blue);
                     
-                    d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                        d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
-                        d3d_vertex_texture_color(xppos,yppos,zppos,0,0,colormade,usealpha);
-                        d3d_vertex_texture_color(xpnpos,ypnpos,zpnpos,0,0,colormade,usealpha);
-                    d3d_primitive_end();
+                    if ((xpn == xp) && (ypn == yp))
+                        {
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xppos-2,yppos-2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos+2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xppos+2,yppos-2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos+2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xppos+2,yppos+2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos-2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xppos-2,yppos+2,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos-2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        }
+                    else
+                        {
+                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                            d3d_vertex_texture_color(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xppos,yppos,zppos,0,0,colormade,usealpha);
+                            d3d_vertex_texture_color(xpnpos,ypnpos,zpnpos,0,0,colormade,usealpha);
+                        d3d_primitive_end();
+                        }
                     }
                     
                 if (dual)
                     {
-                    xpnposdual = 1200-scanner_x+3000*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
-                    xpposdual = 1200-scanner_x+3000*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
+                    xpnposdual = 600-scanner_x+3000*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
+                    xpposdual = 600-scanner_x+3000*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
                         
                     //if blanking bit is on, draw line between the two points
                     if !(blank)
@@ -221,11 +299,37 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         red = ds_list_find_value(list_id,np_pos+5);
                         colormade = make_color_rgb(red,green,blue);
                         
-                        d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                            d3d_vertex_texture_color(1200-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
-                            d3d_vertex_texture_color(xpposdual,yppos,zppos,0,0,colormade,usealpha);
-                            d3d_vertex_texture_color(xpnposdual,ypnpos,zpnpos,0,0,colormade,usealpha);
-                        d3d_primitive_end();
+                        if ((xpn == xp) && (ypn == yp))
+                            {
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpposdual-2,yppos-2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual+2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpposdual+2,yppos-2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual+2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpposdual+2,yppos+2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual-2,ypnpos+2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpposdual-2,yppos+2,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual-2,ypnpos-2,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            }
+                        else
+                            {
+                            d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
+                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpposdual,yppos,zppos,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(xpnposdual,ypnpos,zpnpos,0,0,colormade,usealpha);
+                            d3d_primitive_end();
+                            }
                         }
                     }
                     
