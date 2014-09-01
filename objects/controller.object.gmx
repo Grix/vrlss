@@ -40,6 +40,7 @@ alarm[1]=2;
 
 tooltip = "";
 frame = 0;
+framefloat = 0;
 rdy = 0;
 rwidth = 0;
 rheight = 1500;
@@ -57,62 +58,6 @@ xpnrad = 0;
 ypnrad = 0;
 zpnrad = 0;
 skybox = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (frame &lt; ds_list_size(ild_list)-6)
-    frame++;
-else
-    play = 0;
-if (play)
-    alarm[3]=2;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (frame &lt; ds_list_size(ild_list)-6)
-    frame++;
-else
-    play = 0;
-if (play)
-    alarm[4]=4;
 </string>
           </argument>
         </arguments>
@@ -214,8 +159,11 @@ check_miniscanner_dual();
         
         //Check audio sync
         if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 3 or (real(saud_position(audio))/1000*showfps - frame) &lt; -3))) 
+            {
             frame = floor(real(saud_position(audio))/1000*showfps);
-    
+            framefloat = frame;
+            }
+            
         //Play/pause
         if (keyboard_check_pressed(vk_space))
             {
@@ -227,19 +175,32 @@ check_miniscanner_dual();
                 {
                 saud_seek(floor(frame*1000/showfps),audio);
                 }
+            framefloat = frame;
             play = !play;
-            if (play)
-                alarm[3]=1;
+            }
+            
+        if (play)
+            {
+            framefloat += showfps/fps;
+            frame = round(framefloat);
+            }
+            
+        if (frame &gt; ds_list_size(ild_list)-11) 
+            {
+            frame = ds_list_size(ild_list)-11;
+            framefloat = frame;
             }
         
         //Increase/decrease frame number
         if (keyboard_check(vk_right))
             {
             if (frame &lt; ds_list_size(ild_list)-11) frame++; //read_frame();
+            framefloat = frame;
             }
         if (keyboard_check(vk_left))
             {
             if (frame) frame--; //read_frame();
+            framefloat = frame;
             }
             
         //Stop and reset
@@ -247,6 +208,7 @@ check_miniscanner_dual();
             {
             frame = 0;
             saud_stop(audio);
+            framefloat = frame;
             play = 0;
             }
                 
@@ -259,6 +221,7 @@ check_miniscanner_dual();
                 saud_stop(audio);
                 play = 0;
                 frame = seekto;
+                framefloat = frame;
                 }
             if (room == rm_3d)
                 window_set_fullscreen(1);
@@ -296,6 +259,16 @@ check_miniscanner_dual();
          if (keyboard_check_pressed(ord('B')) and (room == rm_3d) and rdy)
             {
             fog = !fog;
+            }
+
+         //cycle skybox
+         if (keyboard_check_pressed(ord('R')) and (room == rm_3d) and rdy)
+            {
+            skybox++;
+            if (skybox &gt; 5)
+                skybox = 1;
+                with (obj_environment) instance_destroy();
+            instance_create(0,0,obj_environment);
             }
             
          //IPD
@@ -452,6 +425,10 @@ surface_reset_target();
         for( i=0; i&lt;=(ds_list_size(scan_list)-1); i++)
             draw_frame_2d(i);
         }
+    else if (rdy == 3)
+        draw_sprite(spr_eye,0,300,550);
+    else if (rdy == 4)
+        draw_sprite(spr_eye,1,50,300);
 }
 </string>
           </argument>

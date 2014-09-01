@@ -478,7 +478,6 @@ mouse_yprevious = mouse_y;
         }
     else if (controller.rdy == 3)
         {
-        draw_set_alpha((alpha+0.3)/4);
         if (controller.selected_scanner == scanner)
             {
             if (master)
@@ -491,13 +490,14 @@ mouse_yprevious = mouse_y;
                 draw_set_color(c_ltgray);
             else draw_set_color(c_dkgray);
             }
+        draw_set_alpha_test(0);
+        draw_set_alpha((alpha+0.3)/4);
         draw_triangle(x,y,x+600*cos(pi/2-xrad+angle/2),y+600*sin(pi/2-xrad+angle/2),x+600*cos(pi/2-xrad-angle/2),y+600*sin(pi/2-xrad-angle/2),0); 
         draw_set_color(c_white);
         draw_set_alpha(1);
         }
     else if (controller.rdy == 4)
         {
-        draw_set_alpha((alpha+0.3)/4);
         if (controller.selected_scanner == scanner)
             {
             draw_set_color(c_red);
@@ -507,6 +507,8 @@ mouse_yprevious = mouse_y;
             draw_set_color(c_ltgray);
             }
             
+        draw_set_alpha_test(0);
+        draw_set_alpha((alpha+0.3)/4);    
         draw_triangle(x,y,x+600*cos(pi+yrad+angle/2),y+600*sin(pi+yrad+angle/2),x+600*cos(pi+yrad-angle/2),y+600*sin(pi+yrad-angle/2),0);
         draw_set_color(c_white);
         draw_set_alpha(1);

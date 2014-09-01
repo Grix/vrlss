@@ -53,7 +53,7 @@
 else
     image_index = 0;
 
-visible = (controller.rdy == 2) and controller.ildaloaded;
+visible = ((controller.rdy == 2) or (controller.rdy == 3)) and ds_list_size(controller.scan_list);
 
 </string>
           </argument>

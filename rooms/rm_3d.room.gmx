@@ -51,7 +51,7 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_player" x="336" y="720" name="inst_2D336EA8" locked="0" code="" scaleX="1.73333334922791" scaleY="1.6875" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="320" y="304" name="inst_2D336EA8" locked="0" code="" scaleX="1.73000001907349" scaleY="1.69000005722046" colour="4294967295" rotation="0"/>
     <instance objName="obj_camera" x="176" y="112" name="inst_88AFF402" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_environment" x="176" y="240" name="inst_13988916" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>

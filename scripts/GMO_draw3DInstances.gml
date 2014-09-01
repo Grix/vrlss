@@ -5,6 +5,7 @@
 // 2. For transparant textures (smoke, fire etc.) we must change the order of drawing objects. First everything solid, then, everything transparant.
 //  So - for any effects you're planning to make - make the neccecary changes here.
 
+
 with obj_3d_parent {
     event_perform(ev_draw,0);
 }
@@ -14,4 +15,3 @@ with obj_3d_particle {
     event_perform(ev_draw,0);
 }
 GMO_enableZBuffer();
-

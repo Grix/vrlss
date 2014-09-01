@@ -46,10 +46,12 @@
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprite>sprites\spr_eye</sprite>
     <sprite>sprites\spr_cam</sprite>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\blank_spr</sprite>
     <sprite>sprites\spr_mainildbutton</sprite>
+    <sprite>sprites\spr_delete</sprite>
     <sprite>sprites\spr_dualbutton</sprite>
     <sprite>sprites\spr_compbutton</sprite>
     <sprite>sprites\spr_viewbutton</sprite>
@@ -58,27 +60,50 @@
     <sprite>sprites\spr_miniscanner</sprite>
     <sprite>sprites\spr_audio</sprite>
     <sprite>sprites\spr_angle</sprite>
-    <sprite>sprites\spr_sky1_top</sprite>
-    <sprite>sprites\spr_sky1_right</sprite>
-    <sprite>sprites\spr_sky1_left</sprite>
-    <sprite>sprites\spr_sky1_back</sprite>
-    <sprite>sprites\spr_sky1_front</sprite>
-    <sprite>sprites\spr_sky1_floor</sprite>
-    <sprite>sprites\sprite14</sprite>
+    <sprites name="sky1">
+      <sprite>sprites\spr_sky1_floor</sprite>
+      <sprite>sprites\spr_sky1_left</sprite>
+      <sprite>sprites\spr_sky1_right</sprite>
+      <sprite>sprites\spr_sky1_back</sprite>
+      <sprite>sprites\spr_sky1_front</sprite>
+      <sprite>sprites\spr_sky1_top</sprite>
+    </sprites>
+    <sprites name="sky2">
+      <sprite>sprites\spr_sky2_floor</sprite>
+      <sprite>sprites\spr_sky2_top</sprite>
+      <sprite>sprites\spr_sky2_right</sprite>
+      <sprite>sprites\spr_sky2_left</sprite>
+      <sprite>sprites\spr_sky2_front</sprite>
+      <sprite>sprites\spr_sky2_back</sprite>
+    </sprites>
+    <sprites name="sky3">
+      <sprite>sprites\spr_sky3_top</sprite>
+      <sprite>sprites\spr_sky3_left</sprite>
+      <sprite>sprites\spr_sky3_right</sprite>
+      <sprite>sprites\spr_sky3_front</sprite>
+      <sprite>sprites\spr_sky3_back</sprite>
+    </sprites>
+    <sprites name="sky4">
+      <sprite>sprites\spr_sky4_top</sprite>
+      <sprite>sprites\spr_sky4_front</sprite>
+      <sprite>sprites\spr_sky4_back</sprite>
+      <sprite>sprites\spr_sky4_left</sprite>
+      <sprite>sprites\spr_sky4_right</sprite>
+    </sprites>
+    <sprites name="sky5">
+      <sprite>sprites\spr_sky5_top</sprite>
+      <sprite>sprites\spr_sky5_front</sprite>
+      <sprite>sprites\spr_sky5_left</sprite>
+      <sprite>sprites\spr_sky5_right</sprite>
+      <sprite>sprites\spr_sky5_back</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bck_scanner</background>
     <background>background\bck_wall</background>
     <background>background\bck_floor</background>
     <background>background\bck_smoke</background>
-    <backgrounds name="sky1">
-      <background>background\bck_sky1_floor</background>
-      <background>background\bck_sky1_top</background>
-      <background>background\bck_sky1_right</background>
-      <background>background\bck_sky1_left</background>
-      <background>background\bck_sky1_front</background>
-      <background>background\bck_sky1_back</background>
-    </backgrounds>
+    <background>background\background4</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -190,6 +215,7 @@
     </scripts>
   </scripts>
   <shaders name="shaders">
+    <shader type="GLSLES">shaders\normalshader.shader</shader>
     <shader type="GLSLES">shaders\lasershader.shader</shader>
     <shader type="GLSLES">shaders\GMO_hmdwarp_shader.shader</shader>
     <shader type="GLSLES">shaders\GMO_colorFilter_shader.shader</shader>
@@ -210,6 +236,7 @@
     </objects>
     <objects name="buttons">
       <object>objects\obj_3dbutton</object>
+      <object>objects\obj_deletescanner</object>
       <object>objects\obj_audiobutton</object>
       <object>objects\obj_compbutton</object>
       <object>objects\obj_viewbutton</object>
@@ -239,7 +266,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41875.5529134375</constant>
+    <constant name="GM_build_date">41883.6940639815</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

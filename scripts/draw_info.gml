@@ -55,7 +55,7 @@ if (rdy)
             "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-11)+
             "##FPS: " + string(fps));
             }
-        else if (rdy == 2)
+        else if (rdy > 1)
             {
             draw_text_stroke(630,30,"Read the readme for controls and manual!"+
             "##ILDA scanner number: "+string( ds_list_find_value(ds_list_find_value(scan_list,selected_scanner),8) )+

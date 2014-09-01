@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>z = 0; //The feet
-height = 180/3; //The head height in CM / 3 ( 1z ingame == 3cm IRL)
+            <string>z = 300; //The feet
+height = 0; //The head height in CM / 3 ( 1z ingame == 3cm IRL)
 pitch = 90;
 direction = 160;
 </string>

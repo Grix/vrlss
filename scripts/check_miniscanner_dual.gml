@@ -1,4 +1,5 @@
-with (obj_miniscanner) instance_destroy();
+if (instance_exists(obj_miniscanner))
+    with (obj_miniscanner) instance_destroy();
 
 if (controller.rdy == 2)
     {

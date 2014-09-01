@@ -53,7 +53,7 @@
 else
     image_index = 0;
 
-visible = (controller.rdy and ds_list_find_value(controller.scan_list,0));
+visible = (controller.rdy);
 </string>
           </argument>
         </arguments>
