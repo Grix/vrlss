@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>999</depth>
   <persistent>0</persistent>
   <parentName>obj_3d_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -107,14 +107,14 @@ d3d_set_culling(false);
 
 d3d_set_hidden(false);
 d3d_set_lighting(false);
-d3d_draw_floor(x-16.05,y-16.05,z+15.95,x+16.05,y+16.05,z+15.95,skybox_top,1,1);
-d3d_draw_wall(x+16,y-16,z+16,x-16,y-16,z-16,skybox_front,1,1);
-d3d_draw_wall(x+16,y+16,z+16,x+16,y-16,z-16,skybox_left,1,1);
-d3d_draw_wall(x-16,y+16,z+16,x+16,y+16,z-16,skybox_back,1,1);
-d3d_draw_wall(x-16,y-16,z+16,x-16,y+16,z-16,skybox_right,1,1);
+d3d_draw_floor(x-2048,y-2048,z+2048,x+2048,y+2048,z+2048,skybox_top,1,1);
+d3d_draw_wall(x+2048,y-2048,z+2048,x-2048,y-2048,z-2048,skybox_front,1,1);
+d3d_draw_wall(x+2048,y+2048,z+2048,x+2048,y-2048,z-2048,skybox_left,1,1);
+d3d_draw_wall(x-2048,y+2048,z+2048,x+2048,y+2048,z-2048,skybox_back,1,1);
+d3d_draw_wall(x-2048,y-2048,z+2048,x-2048,y+2048,z-2048,skybox_right,1,1);
 d3d_set_hidden(true);
 d3d_set_lighting(true);
-d3d_draw_floor(x+16,y+16,z-16,x-16,y-16,z-16,skybox_floor,1,1);
+d3d_draw_floor(x+2048,y+2048,z-2048,x-2048,y-2048,z-2048,skybox_floor,1,1);
 
 
 //d3d_draw_floor(0,200,0,600,800,0,background_get_texture(bck_floor),6,6);

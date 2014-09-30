@@ -107,13 +107,14 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\GMO_hudContent.gml</script>
     <script>scripts\check_miniscanner_dual.gml</script>
     <script>scripts\draw_info.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
     <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\d3d_model_load_ext.gml</script>
-    <script>scripts\show_export.gml</script>
+    <script>scripts\export_show.gml</script>
     <script>scripts\playerMovement.gml</script>
     <script>scripts\playerMouselook.gml</script>
     <script>scripts\time.gml</script>
@@ -145,6 +146,7 @@
           <script>scripts\GMO_renderRegular.gml</script>
           <script>scripts\GMO_renderOculus.gml</script>
           <script>scripts\GMO_renderAnaglyph.gml</script>
+          <script>scripts\GMO_drawHud.gml</script>
         </scripts>
         <scripts name="Audio">
           <script>scripts\GMO_setUse3DSound.gml</script>
@@ -166,6 +168,8 @@
           <script>scripts\GMO_getResolutionWidth.gml</script>
           <script>scripts\GMO_setIPD.gml</script>
           <script>scripts\GMO_getIPD.gml</script>
+          <script>scripts\OVR_getHMDName.gml</script>
+          <script>scripts\OVR_getVersion.gml</script>
         </scripts>
       </scripts>
       <scripts name="System">
@@ -205,7 +209,12 @@
           <script>scripts\OVR_Device_getYaw.gml</script>
           <script>scripts\OVR_Device_getRoll.gml</script>
           <script>scripts\OVR_Device_getPitch.gml</script>
+          <script>scripts\OVR_Device_getX.gml</script>
+          <script>scripts\OVR_Device_getZ.gml</script>
+          <script>scripts\OVR_Device_getY.gml</script>
         </scripts>
+        <script>scripts\OVR_moveWindow.gml</script>
+        <script>scripts\OVR_enableTextureFiltering.gml</script>
       </scripts>
       <scripts name="GR">
         <script>scripts\GR_init.gml</script>
@@ -236,6 +245,7 @@
     </objects>
     <objects name="buttons">
       <object>objects\obj_3dbutton</object>
+      <object>objects\obj_export</object>
       <object>objects\obj_deletescanner</object>
       <object>objects\obj_audiobutton</object>
       <object>objects\obj_compbutton</object>
@@ -254,7 +264,8 @@
     <room>rooms\rm_2d</room>
     <room>rooms\rm_3d</room>
   </rooms>
-  <constants number="13">
+  <constants number="14">
+    <constant name="SURF_HUD">6</constant>
     <constant name="CAM_MODE_ANA_R_B">5</constant>
     <constant name="CAM_MODE_ANA_R_G">4</constant>
     <constant name="CAM_MODE_ANA_R_C">3</constant>
@@ -266,7 +277,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41883.6940639815</constant>
+    <constant name="GM_build_date">41912,8747279745</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>

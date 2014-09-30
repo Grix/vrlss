@@ -292,11 +292,6 @@ check_miniscanner_dual();
         }
     else
         {
-        //export show
-        if (keyboard_check_pressed(ord('j')) and rdy)
-            {
-            show_export();
-            }
         }
     }
 </string>
@@ -353,7 +348,7 @@ check_miniscanner_dual();
     
     surface_resize(application_surface, 1920, 1080);
     display_set_gui_size(1920, 1080);
-    window_set_fullscreen(1);
+    //window_set_fullscreen(1);
 }
 else
 {

@@ -27,6 +27,32 @@
             <kind>1</kind>
             <string>GMO_initCamera();
 GMO_setResolution(display_get_width(), display_get_height());
+enablehud = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (keyboard_check(vk_space))
+    enablehud = 1;
+else enablehud = 0;
 </string>
           </argument>
         </arguments>
@@ -56,6 +82,9 @@ GMO_followObject(obj_player);
 aspect = GMO_getResolutionWidth() / GMO_getResolutionHeight();
 znear = GMO_getCameraZNear();
 zfar = GMO_getCameraZFar();
+prex = x
+prey = y
+prez = z
 
 // Check if we're viewing by Oculus. If so, we must change the roll, pitch and yaw.
 
@@ -64,8 +93,17 @@ if (GMO_getCameraMode() == 2) { //2 = oculus, 1 = regular.
     pitch = OVR_Device_getPitch();
     yaw = OVR_Device_getYaw();
     roll = OVR_Device_getRoll();
+    dx = OVR_Device_getY() / 5;
+    dy = OVR_Device_getX() / 5 ;
+    dz = OVR_Device_getZ() / 5;
+    
+    x += dx * cos(degtorad(obj_player.direction)) + dy * sin(degtorad(obj_player.direction))
+    y += dx * -sin(degtorad(obj_player.direction)) + dy * cos(degtorad(obj_player.direction))
+    
     //We want to "add" the head rotation to the body;
     yaw = yaw + obj_player.direction;
+    
+    z += dz;
     
     angle = GMO_getCameraAngle(); // The oculus actually needs a wider angle
     
@@ -81,7 +119,9 @@ if (GMO_getCameraMode() == 2) { //2 = oculus, 1 = regular.
 GMO_renderCamera(x, y, z, yaw, pitch, roll, angle, aspect, znear, zfar); // Renders our image to the surface.
 
 GMO_drawCameraSurface();
-
+x = prex
+y = prey
+z = prez
 
 </string>
           </argument>
@@ -131,8 +171,58 @@ window_set_fullscreen(1);
           <argument>
             <kind>1</kind>
             <string>/// Set camera mode to oculus!
-GMO_setCameraMode(2);
-window_set_fullscreen(1);
+surface_resize(application_surface, display_get_width(), display_get_height());
+OVR_moveWindow(display_get_width()-3, -26); //Move it to the right.
+GMO_setCameraMode(CAM_MODE_OCULUS);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (keyboard_check(vk_control))
+    OVR_moveWindow(window_get_x()+display_get_width(), -26); //Move to next screen to the left
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="37">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (keyboard_check(vk_control))
+    OVR_moveWindow(window_get_x()-display_get_width(), -26); //Move to next screen to the left
 </string>
           </argument>
         </arguments>
