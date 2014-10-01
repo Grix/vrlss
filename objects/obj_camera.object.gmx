@@ -50,7 +50,7 @@ enablehud = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_space))
+            <string>if (keyboard_check(vk_shift))
     enablehud = 1;
 else enablehud = 0;
 </string>

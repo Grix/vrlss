@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>templist = ds_list_create();
+            <string>GR_init();
+
+templist = ds_list_create();
 scan_list = ds_list_create();
 
 showfps = 30;

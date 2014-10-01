@@ -103,7 +103,6 @@
     <background>background\bck_wall</background>
     <background>background\bck_floor</background>
     <background>background\bck_smoke</background>
-    <background>background\background4</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -232,6 +231,7 @@
   <fonts name="fonts">
     <font>fonts\fnt_info</font>
     <font>fonts\fnt_parsing</font>
+    <font>fonts\fnt_hud</font>
   </fonts>
   <objects name="objects">
     <objects name="GMOculus">
@@ -277,7 +277,7 @@
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
-    <constant name="GM_build_date">41912,8747279745</constant>
+    <constant name="GM_build_date">41913,7619744907</constant>
     <constant name="GM_version">'0.3.0.0'</constant>
   </constants>
   <help>
