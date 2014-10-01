@@ -6,9 +6,10 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
     ild_list = ds_list_find_value(controller.scan_list,i);
     list_id = ds_list_find_value(ild_list,10+controller.frame);
     format = ds_list_find_value(ild_list,9);
-    scanner_x = ds_list_find_value(ild_list,1);
-    scanner_y = 0;
-    scanner_z = ds_list_find_value(ild_list,2);;
+    scanner_x = GR_meterToPixel(ds_list_find_value(ild_list,1)/600*5);
+    scanner_y = GR_meterToPixel(ds_list_find_value(ild_list,7)/600*5);
+    scanner_z = GR_meterToPixel(ds_list_find_value(ild_list,2)/600*5);
+    full_length = GR_meterToPixel(5);
     xrad = ds_list_find_value(ild_list,3);
     yrad = ds_list_find_value(ild_list,4);
     angle = ds_list_find_value(ild_list,6);
@@ -54,9 +55,9 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
             xpn -= 2048;
             //xpn = 1024-xpn;
             
-            xpnpos = scanner_x+2000*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-            ypnpos = scanner_y+2000*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-            zpnpos = scanner_z+2000*cos(pihalf-yrad-ypn/anglemult);
+            xpnpos = scanner_x+300*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
+            ypnpos = scanner_y+300*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+            zpnpos = scanner_z+300*cos(pihalf-yrad-ypn/anglemult);
             
             np_pos = 8;
                 
@@ -91,9 +92,9 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                 xpn -= 2048;
                 
                 //xpn = 1024-xpn;
-                xpnpos = scanner_x+2000*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-                ypnpos = scanner_y+2000*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-                zpnpos = scanner_z+2000*cos(pihalf-yrad-ypn/anglemult);
+                xpnpos = scanner_x+300*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
+                ypnpos = scanner_y+300*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+                zpnpos = scanner_z+300*cos(pihalf-yrad-ypn/anglemult);
                     
                 //if blanking bit is on, draw line between the two points
                 if !(blank)
@@ -138,8 +139,8 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     
                 if (dual)
                     {
-                    xpnposdual = 600-scanner_x+2000*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
-                    xpposdual = 600-scanner_x+2000*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
+                    xpnposdual = full_length-scanner_x+300*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
+                    xpposdual = full_length-scanner_x+300*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
                         
                     //if blanking bit is on, draw line between the two points
                     if !(blank)
@@ -152,22 +153,22 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         if ((xpn == xp) && (ypn == yp))
                             {
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual-3,yppos-3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual+3,ypnpos-3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual+3,yppos-3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual+3,ypnpos+3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual+3,yppos+3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual-3,ypnpos+3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual-3,yppos+3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual-3,ypnpos-3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
@@ -175,7 +176,7 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         else
                             {
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
                                 d3d_vertex_texture_color(xpposdual,yppos,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual,ypnpos,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
@@ -208,9 +209,9 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
             xpn -= 2048;
             //xpn = 1024-xpn;
             
-            xpnpos = scanner_x+2000*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-            ypnpos = scanner_y+2000*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-            zpnpos = scanner_z+2000*cos(pihalf-yrad-ypn/anglemult);
+            xpnpos = scanner_x+300*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
+            ypnpos = scanner_y+300*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+            zpnpos = scanner_z+300*cos(pihalf-yrad-ypn/anglemult);
             
             np_pos = 7;
                 
@@ -245,9 +246,9 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                 xpn -= 2048;
                 
                 //xpn = 1024-xpn;
-                xpnpos = scanner_x+2000*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-                ypnpos = scanner_y+2000*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-                zpnpos = scanner_z+2000*cos(pihalf-yrad-ypn/anglemult);
+                xpnpos = scanner_x+300*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
+                ypnpos = scanner_y+300*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+                zpnpos = scanner_z+300*cos(pihalf-yrad-ypn/anglemult);
                     
                 //if blanking bit is on, draw line between the two points
                 if !(blank)
@@ -292,8 +293,8 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     
                 if (dual)
                     {
-                    xpnposdual = 600-scanner_x+2000*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
-                    xpposdual = 600-scanner_x+2000*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
+                    xpnposdual = full_length-scanner_x+300*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
+                    xpposdual = full_length-scanner_x+300*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
                         
                     //if blanking bit is on, draw line between the two points
                     if !(blank)
@@ -306,22 +307,22 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         if ((xpn == xp) && (ypn == yp))
                             {
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual-3,yppos-3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual+3,ypnpos-3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual+3,yppos-3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual+3,ypnpos+3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual+3,yppos+3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual-3,ypnpos+3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*1.5);
                                 d3d_vertex_texture_color(xpposdual-3,yppos+3,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual-3,ypnpos-3,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();
@@ -329,7 +330,7 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         else
                             {
                             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                                d3d_vertex_texture_color(600-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
+                                d3d_vertex_texture_color(full_length-scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
                                 d3d_vertex_texture_color(xpposdual,yppos,zppos,0,0,colormade,usealpha*0.2);
                                 d3d_vertex_texture_color(xpnposdual,ypnpos,zpnpos,0,0,colormade,usealpha*0.2);
                             d3d_primitive_end();

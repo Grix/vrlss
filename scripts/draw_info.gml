@@ -16,7 +16,8 @@ if (rdy)
              "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-11)+
              "##FPS: " + string(fps) +
              //"#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
-             //"#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
+             "#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
+             "#Yaw/pitch" + string(obj_player.direction)+ "/"+string(obj_player.pitch)+
              "#Interpupillary Distance: " + string(GMO_getIPD()*global._GC_Ratio*10)+" mm");
              
              /*if (fpswarning) 
