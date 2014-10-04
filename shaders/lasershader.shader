@@ -42,5 +42,5 @@ for(int i = 0; i < num; i++)
     }
 total /= float(num);
 vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-gl_FragColor = vec4( tex.r,tex.g,tex.b, (0.3+mod(2.1,0.7)) * tex.a );
+gl_FragColor = vec4( tex.r,tex.g,tex.b, (0.3+total*0.7) * tex.a );
 }

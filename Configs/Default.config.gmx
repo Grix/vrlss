@@ -85,6 +85,7 @@
     <option_colordepth>0</option_colordepth>
     <option_display_name>Vrilda</option_display_name>
     <option_displayerrors>True</option_displayerrors>
+    <option_facebook_app_display_name></option_facebook_app_display_name>
     <option_facebook_appid></option_facebook_appid>
     <option_facebook_enable>0</option_facebook_enable>
     <option_freeze>false</option_freeze>
@@ -261,7 +262,7 @@
     <option_savekey>true</option_savekey>
     <option_scale>0</option_scale>
     <option_scaleprogress>true</option_scaleprogress>
-    <option_sci_UseSCI>false</option_sci_UseSCI>
+    <option_sci_UseSCI>0</option_sci_UseSCI>
     <option_screenkey>True</option_screenkey>
     <option_screenshotkey>true</option_screenshotkey>
     <option_shortcircuit>True</option_shortcircuit>

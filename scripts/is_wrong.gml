@@ -7,4 +7,4 @@ if (get_byte() != argument0)
     }
 else 
     return 1;
-   
+

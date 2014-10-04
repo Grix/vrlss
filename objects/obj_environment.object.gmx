@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_light_define_ambient(make_colour_rgb(20,20,30));
+            <string>//d3d_light_define_ambient(make_colour_rgb(20,20,30));
 
 if (controller.skybox == 0)
     {
@@ -112,9 +112,10 @@ d3d_draw_wall(x+4096,y+4096,z+4096,x-4096,y+4096,z-4096,skybox_front,1,1);
 d3d_draw_wall(x-4096,y+4096,z+4096,x-4096,y-4096,z-4096,skybox_left,1,1);
 d3d_draw_wall(x-4096,y-4096,z+4096,x+4096,y-4096,z-4096,skybox_back,1,1);
 d3d_draw_wall(x+4096,y-4096,z+4096,x+4096,y+4096,z-4096,skybox_right,1,1);
+d3d_draw_floor(x+4096,y+4096,z-4096,x-4096,y-4096,z-4096,skybox_floor,1,1);
 d3d_set_hidden(true);
 d3d_set_lighting(true);
-d3d_draw_floor(x+4096,y+4096,z-4096,x-4096,y-4096,z-4096,skybox_floor,1,1);
+
 
 
 //d3d_draw_floor(0,200,0,600,800,0,background_get_texture(bck_floor),6,6);

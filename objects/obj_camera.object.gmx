@@ -172,7 +172,7 @@ window_set_fullscreen(1);
             <kind>1</kind>
             <string>/// Set camera mode to oculus!
 surface_resize(application_surface, display_get_width(), display_get_height());
-OVR_moveWindow(display_get_width()-3, -26); //Move it to the right.
+OVR_moveWindow(display_get_width(), 0); //Move it to the right.
 GMO_setCameraMode(CAM_MODE_OCULUS);
 
 </string>
@@ -198,7 +198,7 @@ GMO_setCameraMode(CAM_MODE_OCULUS);
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check(vk_control))
-    OVR_moveWindow(window_get_x()+display_get_width(), -26); //Move to next screen to the left
+    OVR_moveWindow(window_get_x()+display_get_width(), 0); //Move to next screen to the left
 </string>
           </argument>
         </arguments>
@@ -222,7 +222,7 @@ GMO_setCameraMode(CAM_MODE_OCULUS);
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check(vk_control))
-    OVR_moveWindow(window_get_x()-display_get_width(), -26); //Move to next screen to the left
+    OVR_moveWindow(window_get_x()-display_get_width(), 0); //Move to next screen to the left
 </string>
           </argument>
         </arguments>

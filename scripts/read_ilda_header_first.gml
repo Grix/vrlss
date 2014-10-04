@@ -30,10 +30,13 @@ else
 i+=2;
 //26
 frame_number = get_bytes();
-i+=5;
+i+=2;
+//28
+maxframes = get_bytes();
+i+=2; //30
 
 ilda_scanner = get_byte();
-i++;
+i+=2;
 
 ds_list_add(ild_list,0); //dual
 ds_list_add(ild_list,300); //x
@@ -46,9 +49,6 @@ ds_list_add(ild_list,150); //z
 ds_list_add(ild_list,ilda_scanner); //ilda scanner
 ds_list_add(ild_list,format); //format
 
-//28
-//maxframes = get_bytes();
-//i+=2; //30
 
 
     

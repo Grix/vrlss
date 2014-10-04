@@ -25,10 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>z = 0; //The feet
-height = GR_cmToPixel(180);
+            <string>z = GR_meterToPixel(2.5); //The feet
+height = 0;
 x = GR_meterToPixel(2.5);
-y = GR_meterToPixel(5);
+y = GR_meterToPixel(8);
 pitch = 0;
 direction = 90;
 </string>

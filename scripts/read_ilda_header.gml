@@ -12,14 +12,24 @@ repeat(8) //16
     author+= chr(get_byte());
     i++
     }*/
-bytes = get_bytes(); //24
-if (bytes != 0)
+//24
+if (get_bytes() != 0)
     {
     frame_list = ds_list_create();
-    ds_list_add(frame_list,bytes);
+    ds_list_add(frame_list,get_bytes());
     }
 else
-    return 1;
+    {
+    if (i >= file_size-32)
+        {
+        return 1;
+        }
+    else 
+        {
+        frame_list = ds_list_create();
+        ds_list_add(frame_list,get_bytes());
+        }
+    }
     
 i+=2;//26
 frame_number = get_bytes();
@@ -33,6 +43,7 @@ author="";
 name="";
 i+=2;
 */
+
 if !(frame_number % 128)
     return 2;
     

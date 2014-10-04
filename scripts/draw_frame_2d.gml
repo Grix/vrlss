@@ -4,6 +4,10 @@ if (!ildaloaded)
 
 ild_list = ds_list_find_value(scan_list,argument0);
 list_id = ds_list_find_value(ild_list,10+frame);
+
+if (ds_list_size(list_id) < 2)
+    exit;
+        
 format = ds_list_find_value(ild_list,9);
 
 switch (format)
