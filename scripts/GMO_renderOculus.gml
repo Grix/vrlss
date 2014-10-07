@@ -10,7 +10,7 @@ zadd = r*sin(degtorad(vdir));
 aspect = (GMO_getResolutionWidth()/2) / GMO_getResolutionHeight();
 //Draw all the 3D instances for the left eye
 surface_set_target(GMO_getSurface(SURF_LEFT));
-    draw_clear(c_black);
+    draw_clear(c_white);
     //draw_clear_alpha(c_black,0);
     d3d_set_lighting(false);
     d3d_set_projection_simple(argument0+xadd,argument1+yadd,argument2+zadd,argument3,argument4,argument5, argument6, aspect, argument8, argument9);
@@ -19,7 +19,7 @@ surface_set_target(GMO_getSurface(SURF_LEFT));
 surface_reset_target();
 //Draw all the 3D instances for the right eye
 surface_set_target(GMO_getSurface(SURF_RIGHT));
-    draw_clear(c_black);
+    draw_clear(c_white);
     //draw_clear_alpha(c_black,0);
     d3d_set_lighting(false);
     d3d_set_projection_simple(argument0-xadd,argument1-yadd,argument2-zadd,argument3,argument4,argument5, argument6, aspect, argument8, argument9);

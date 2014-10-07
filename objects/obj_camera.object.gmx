@@ -26,7 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>GMO_initCamera();
+GMO_setCameraMode(1);
 GMO_setResolution(display_get_width(), display_get_height());
+OVR_moveWindow(display_get_width(),0);
 enablehud = 0;
 </string>
           </argument>
@@ -146,8 +148,7 @@ z = prez
           <argument>
             <kind>1</kind>
             <string>/// Set camera mode to regular
-GMO_setCameraMode(1);
-window_set_fullscreen(1);
+GMO_setCameraMode(CAM_MODE_REGULAR);
 </string>
           </argument>
         </arguments>
@@ -175,6 +176,29 @@ surface_resize(application_surface, display_get_width(), display_get_height());
 OVR_moveWindow(display_get_width(), 0); //Move it to the right.
 GMO_setCameraMode(CAM_MODE_OCULUS);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="70">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>OVR_enableTextureFiltering();
 </string>
           </argument>
         </arguments>

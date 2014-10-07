@@ -13,4 +13,3 @@ global._GMO_SURFACE[SURF_REGULAR]=surface_create(GMO_getResolutionWidth(),GMO_ge
 
 //HUD surface
 global._GMO_SURFACE[SURF_HUD]=surface_create(GMO_getResolutionWidth()/2,GMO_getResolutionHeight());
-

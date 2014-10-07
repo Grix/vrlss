@@ -1,6 +1,9 @@
 if (!enablehud) exit;
 
 
+//Draws the HUD contents to the individual eye surfaces
+
+
 d3d_set_hidden(0);
 d3d_set_lighting(0);
 

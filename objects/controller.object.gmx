@@ -325,31 +325,10 @@ check_miniscanner_dual();
     
     rdy = 1;
 
-    /*for( i=0; i&lt;=(ds_list_size(scan_list)-1); i++)
-    {
-    scanner = instance_create(0,0,obj_scanner);
-        scanner.scanner = i;
-        scanner.master = 1;
-        show_message(i);
-    }
-    
-    with (obj_scanner)
-    {
-    dual = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),0);
-    if (dual == 1)
-        {
-        slave = instance_create(x,y,obj_scanner);
-            slave.master = 0;
-            slave.scanner = scanner;
-        show_message(scanner)
-        }
-    }*/
     instance_create(0,0,obj_scanner);
     
     window_set_cursor(cr_none);
-    
-    surface_resize(application_surface, 1920, 1080);
-    display_set_gui_size(1920, 1080);
+
     //window_set_fullscreen(1);
 }
 else
@@ -360,9 +339,7 @@ else
     rdy = 2;
     check_miniscanner_dual();
     
-    surface_resize(application_surface, 900, 600);
-    display_set_gui_size(900, 600);
-    window_set_fullscreen(0);
+    //window_set_fullscreen(0);
 }
 </string>
           </argument>
