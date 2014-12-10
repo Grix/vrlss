@@ -25,10 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>GMO_initCamera();
-GMO_setCameraMode(1);
-GMO_setResolution(display_get_width(), display_get_height());
-OVR_moveWindow(display_get_width(),0);
+            <string>
+GMO_initCamera();
+GMO_setCameraMode(2);
+GMO_setResolution(1920,1080);
+
+/// Set camera mode to oculus!
+surface_resize(application_surface, 1920, 1080);
+window_set_size(1920, 1080);
+OVR_moveWindow(window_get_x()-10, window_get_y()-32); //Move it to the right.
+//GMO_setCameraMode(CAM_MODE_OCULUS);
+
 enablehud = 0;
 </string>
           </argument>
@@ -172,8 +179,9 @@ GMO_setCameraMode(CAM_MODE_REGULAR);
           <argument>
             <kind>1</kind>
             <string>/// Set camera mode to oculus!
-surface_resize(application_surface, display_get_width(), display_get_height());
-OVR_moveWindow(display_get_width(), 0); //Move it to the right.
+//surface_resize(application_surface, 1920, 1080);
+//window_set_size(1920, 1080);
+//OVR_moveWindow(display_get_width()-3, -16); //Move it to the right.
 GMO_setCameraMode(CAM_MODE_OCULUS);
 
 </string>
@@ -222,7 +230,7 @@ GMO_setCameraMode(CAM_MODE_OCULUS);
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check(vk_control))
-    OVR_moveWindow(window_get_x()+display_get_width(), 0); //Move to next screen to the left
+    OVR_moveWindow(window_get_x()+display_get_width(), -16); //Move to next screen to the left
 </string>
           </argument>
         </arguments>
@@ -246,7 +254,7 @@ GMO_setCameraMode(CAM_MODE_OCULUS);
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check(vk_control))
-    OVR_moveWindow(window_get_x()-display_get_width(), 0); //Move to next screen to the left
+    OVR_moveWindow(window_get_x()-display_get_width(), -16); //Move to next screen to the left
 </string>
           </argument>
         </arguments>

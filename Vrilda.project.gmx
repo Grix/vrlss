@@ -72,9 +72,9 @@
       <sprite>sprites\spr_sky2_floor</sprite>
       <sprite>sprites\spr_sky2_top</sprite>
       <sprite>sprites\spr_sky2_right</sprite>
-      <sprite>sprites\spr_sky2_left</sprite>
       <sprite>sprites\spr_sky2_front</sprite>
       <sprite>sprites\spr_sky2_back</sprite>
+      <sprite>sprites\spr_sky2_left</sprite>
     </sprites>
     <sprites name="sky3">
       <sprite>sprites\spr_sky3_top</sprite>
@@ -187,11 +187,9 @@
           </scripts>
           <script>scripts\d3d_set_projection_simple.gml</script>
           <script>scripts\vector_rotate.gml</script>
-          <script>scripts\find_height.gml</script>
           <script>scripts\mod_to_triList.gml</script>
           <script>scripts\line_col.gml</script>
           <script>scripts\ray_coll.gml</script>
-          <script>scripts\inCamera.gml</script>
           <script>scripts\frustum_culling_init.gml</script>
           <script>scripts\frustum_culling.gml</script>
           <script>scripts\updateAudioListener.gml</script>
@@ -237,9 +235,6 @@
   </fonts>
   <objects name="objects">
     <objects name="GMOculus">
-      <objects name="Test objects">
-        <object>objects\obj_player_eyes</object>
-      </objects>
       <objects name="Controllers">
         <object>objects\obj_3d_particle</object>
         <object>objects\obj_3d_parent</object>

@@ -1,6 +1,6 @@
 // Create a surface for the left and right eye, half the width resolution each. Specific for the Oculus
-global._GMO_SURFACE[SURF_RIGHT]=surface_create(GMO_getResolutionWidth()/2,GMO_getResolutionHeight());
-global._GMO_SURFACE[SURF_LEFT]=surface_create(GMO_getResolutionWidth()/2,GMO_getResolutionHeight());
+global._GMO_SURFACE[SURF_RIGHT]=surface_create(1920/2,1080);
+global._GMO_SURFACE[SURF_LEFT]=surface_create(1920/2,1080);
 
 //Regular surfaces.
 global._GMO_SURFACE[SURF_REG_RIGHT]=surface_create(GMO_getResolutionWidth(),GMO_getResolutionHeight());

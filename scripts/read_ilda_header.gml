@@ -1,6 +1,6 @@
 //reads the header of the ilda frame, returns 1 if error
 
-if !is_wrong($49) return 0;
+//if !is_wrong($49) return 0;
 i += 24;
 /*repeat(8) //8
     {
@@ -13,6 +13,8 @@ repeat(8) //16
     i++
     }*/
 //24
+
+if (i >= (file_size-32)) return 1;
 if (get_bytes() != 0)
     {
     frame_list = ds_list_create();

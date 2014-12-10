@@ -28,7 +28,7 @@
             <string>alarm[0]=1;
 scanmulti=1;
 rdy = 0;
-alpha = 0.3;
+alpha = 0.2;
 dirver = 2.1;
 dirhor = 1.2;
 xrad = pi/2;

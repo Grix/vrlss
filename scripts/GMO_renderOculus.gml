@@ -59,4 +59,4 @@ surface_reset_target();
 d3d_transform_set_identity();
 d3d_set_lighting(false);
 draw_set_alpha(1);
-d3d_set_projection_ortho(0,0,window_get_width(),window_get_height(),0);
+d3d_set_projection_ortho(0,0,w,h,0);

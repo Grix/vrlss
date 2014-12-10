@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>-1</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -194,12 +194,12 @@ check_miniscanner_dual();
             }
         
         //Increase/decrease frame number
-        if (keyboard_check(vk_right))
+        if (keyboard_check(vk_right) and !keyboard_check(vk_control))
             {
             if (frame &lt; ds_list_size(ild_list)-11) frame++; //read_frame();
             framefloat = frame;
             }
-        if (keyboard_check(vk_left))
+        if (keyboard_check(vk_left) and !keyboard_check(vk_control))
             {
             if (frame) frame--; //read_frame();
             framefloat = frame;
@@ -267,7 +267,7 @@ check_miniscanner_dual();
          if (keyboard_check_pressed(ord('R')) and (room == rm_3d) and rdy)
             {
             skybox++;
-            if (skybox &gt; 5)
+            if (skybox &gt; 2)
                 skybox = 1;
                 with (obj_environment) instance_destroy();
             instance_create(0,0,obj_environment);
@@ -283,13 +283,13 @@ check_miniscanner_dual();
             GMO_setIPD(GMO_getIPD()-0.01);
             }
             
-        //Clamp room size
+       /* //Clamp room size
         if (rheight &lt; 100)
             rheight = 100;
         if (rwidth &lt; 200)
             rwidth = 200;
         if (rlength &lt; 200)
-            rlength = 200;
+            rlength = 200;*/
             
         }
     else
