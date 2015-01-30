@@ -33,7 +33,7 @@ GMO_setResolution(1920,1080);
 /// Set camera mode to oculus!
 surface_resize(application_surface, 1920, 1080);
 window_set_size(1920, 1080);
-OVR_moveWindow(window_get_x()-10, window_get_y()-32); //Move it to the right.
+OVR_moveWindow(window_get_x(), window_get_y()); //Move it to the right.
 //GMO_setCameraMode(CAM_MODE_OCULUS);
 
 enablehud = 0;

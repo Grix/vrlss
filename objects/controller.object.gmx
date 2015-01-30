@@ -241,8 +241,9 @@ check_miniscanner_dual();
     //screenshot
     if (keyboard_check_pressed(ord('M')))
         {
-        ssfilename = get_save_filename_ext("*","*",working_directory,"Save screenshot");
-        screen_save(ssfilename);
+        ssfilename = get_save_filename_ext("","","","Save screenshot");
+        if (ssfilename != "" or !is_undefined(ssfilename))
+            screen_save(ssfilename);
         if (room == rm_3d)
             window_set_fullscreen(1);
         }
