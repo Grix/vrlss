@@ -33,7 +33,7 @@ scan_list = ds_list_create();
 showfps = 30;
 ildaloaded=0;
 fog = 1;
-
+cango3d = 0;
 
 // Initialize GMOculus
 GMO_init(); 

@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
+visible = 0;
 </string>
           </argument>
         </arguments>
@@ -53,7 +54,7 @@
 else
     image_index = 0;
 
-visible = (controller.rdy);
+    visible = controller.cango3d;
 </string>
           </argument>
         </arguments>
