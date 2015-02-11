@@ -217,7 +217,7 @@ check_miniscanner_dual();
         //Jump to frame
         if (keyboard_check_pressed(ord('N')))
             {
-            seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-11),0);
+            seekto = get_integer("Enter frame number to skip to, 0 to "+string(ds_list_size(ild_list)-11),frame);
             if ((seekto &gt;= 0) and (seekto &lt;= (ds_list_size(ild_list)-11)))
                 {
                 saud_stop(audio);
