@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>GR_init();
+            <string>version = "0.4.2";
+
+GR_init();
 
 templist = ds_list_create();
 scan_list = ds_list_create();

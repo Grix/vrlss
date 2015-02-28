@@ -142,6 +142,9 @@ if (controller.rdy == 2)
             alpha += (mouse_x-mouse_xprevious)/100;
             if (alpha &gt; 0.5) alpha = 0.5;
             if (alpha &lt; 0.05) alpha = 0.05;
+            angle += (mouse_y-mouse_yprevious)/100;
+            if (angle &gt; pi/3.5) angle = pi/3.5;
+            if (angle &lt; 0.05) angle = 0.05;
             }
         else
             {
@@ -170,7 +173,10 @@ if (controller.rdy == 2)
         {
         if (keyboard_check(vk_shift))
             {
-            angle += (mouse_x-mouse_xprevious)/100;
+            alpha += (mouse_x-mouse_xprevious)/100;
+            if (alpha &gt; 0.5) alpha = 0.5;
+            if (alpha &lt; 0.05) alpha = 0.05;
+            angle += (mouse_y-mouse_yprevious)/100;
             if (angle &gt; pi/3.5) angle = pi/3.5;
             if (angle &lt; 0.05) angle = 0.05;
             }
@@ -207,6 +213,9 @@ else if (controller.rdy == 3)
             alpha += (mouse_x-mouse_xprevious)/100;
             if (alpha &gt; 0.5) alpha = 0.5;
             if (alpha &lt; 0.05) alpha = 0.05;
+            angle += (mouse_y-mouse_yprevious)/100;
+            if (angle &gt; pi/3.5) angle = pi/3.5;
+            if (angle &lt; 0.05) angle = 0.05;
             }
         else
             {
@@ -235,7 +244,10 @@ else if (controller.rdy == 3)
         {
         if (keyboard_check(vk_shift))
             {
-            angle += (mouse_x-mouse_xprevious)/100;
+            alpha += (mouse_x-mouse_xprevious)/100;
+            if (alpha &gt; 0.5) alpha = 0.5;
+            if (alpha &lt; 0.05) alpha = 0.05;
+            angle += (mouse_y-mouse_yprevious)/100;
             if (angle &gt; pi/3.5) angle = pi/3.5;
             if (angle &lt; 0.05) angle = 0.05;
             }
@@ -266,6 +278,9 @@ else if (controller.rdy == 4)
             alpha += (mouse_x-mouse_xprevious)/100;
             if (alpha &gt; 0.5) alpha = 0.5;
             if (alpha &lt; 0.05) alpha = 0.05;
+            angle += (mouse_y-mouse_yprevious)/100;
+            if (angle &gt; pi/3.5) angle = pi/3.5;
+            if (angle &lt; 0.05) angle = 0.05;
             }
         else
             {
@@ -284,7 +299,10 @@ else if (controller.rdy == 4)
         {
         if (keyboard_check(vk_shift))
             {
-            angle += (mouse_x-mouse_xprevious)/100;
+            alpha += (mouse_x-mouse_xprevious)/100;
+            if (alpha &gt; 0.5) alpha = 0.5;
+            if (alpha &lt; 0.05) alpha = 0.05;
+            angle += (mouse_y-mouse_yprevious)/100;
             if (angle &gt; pi/3.5) angle = pi/3.5;
             if (angle &lt; 0.05) angle = 0.05;
             }
@@ -302,11 +320,11 @@ else if (controller.rdy == 4)
     
 if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &gt; y-16) and (mouse_y &lt; y+16))
     {
-    controller.tooltip = "Hold mouse button and drag to adjust the position of the scanner.";
+    controller.tooltip = "Hold mouse button and drag to adjust the position of the scanner.#Hold shift to adjust brightness and scanning width.";
     }
-else if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &gt; y-20) and (mouse_y &lt; y-52))
+if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &lt; y-20) and (mouse_y &gt; y-52))
     {
-    controller.tooltip = "Hold mouse button and drag to adjust the scanning direction.";
+    controller.tooltip = "Hold mouse button and drag to adjust the scanning direction.#Hold shift to adjust brightness and scanning width.";
     }
 </string>
           </argument>

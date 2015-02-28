@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="96" name="datafiles">
-    <datafiles number="96" name="lib">
+  <datafiles number="97" name="datafiles">
+    <datafiles number="97" name="lib">
       <datafile>
         <name>GMOculus.dll</name>
         <exists>-1</exists>
@@ -41,9 +41,9 @@
       </datafile>
     </datafiles>
     <datafile>
-      <name>help.rtf</name>
+      <name>help.pdf</name>
       <exists>-1</exists>
-      <size>3270</size>
+      <size>45200</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -55,7 +55,7 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>help.rtf</filename>
+      <filename>help.pdf</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -69,6 +69,7 @@
     <sprite>sprites\blank_spr</sprite>
     <sprite>sprites\spr_mainildbutton</sprite>
     <sprite>sprites\spr_delete</sprite>
+    <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_dualbutton</sprite>
     <sprite>sprites\spr_compbutton</sprite>
     <sprite>sprites\spr_viewbutton</sprite>
@@ -261,6 +262,7 @@
       <object>objects\obj_3dbutton</object>
       <object>objects\obj_export</object>
       <object>objects\obj_deletescanner</object>
+      <object>objects\obj_help</object>
       <object>objects\obj_audiobutton</object>
       <object>objects\obj_compbutton</object>
       <object>objects\obj_viewbutton</object>
