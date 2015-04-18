@@ -9,5 +9,6 @@ draw_set_font(fnt_hud);
 draw_text(960/2-150,1080/2-40,"Pitch: "+string(pitch)+
                     ", Yaw: "+string(yaw)+
                     ", Roll: "+string(roll)+
-                    "#Device: X=" + string(dx) + " Y=" + string(dy) + " Z=" + string(dz) + "#IPD: "+string(GMO_getIPD*global._GC_Ratio/100)+" mm");
+                    "#Device: X=" + string(dx) + " Y=" + string(dy) + " Z=" + string(dz) + "#IPD: "+string(GMO_getIPD*global._GC_Ratio/100)+" mm"
+                    +"#FPS: "+string(fps));
 draw_set_alpha(1);

@@ -79,7 +79,7 @@ else
             <kind>1</kind>
             <string>if (!visible) exit;
 
-url_open(working_directory+"help.pdf");
+url_open("help.pdf");
 </string>
           </argument>
         </arguments>

@@ -10,28 +10,29 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
         continue;
     
     format = ds_list_find_value(ild_list,9);
-    scanner_x = GR_meterToPixel(ds_list_find_value(ild_list,1)/600*5);
-    scanner_y = GR_meterToPixel(ds_list_find_value(ild_list,7)/600*5);
-    scanner_z = GR_meterToPixel(ds_list_find_value(ild_list,2)/600*5);
-    full_length = GR_meterToPixel(5);
+    scanner_x = GR_meterToPixel(ds_list_find_value(ild_list,1)/600*7);
+    scanner_y = GR_meterToPixel(ds_list_find_value(ild_list,7)/600*7);
+    scanner_z = GR_meterToPixel(ds_list_find_value(ild_list,2)/600*7);
+    full_length = GR_meterToPixel(7);
     xrad = ds_list_find_value(ild_list,3);
     yrad = ds_list_find_value(ild_list,4);
     angle = ds_list_find_value(ild_list,6);
-    alpha = ds_list_find_value(ild_list,5);
+    alpha = ds_list_find_value(ild_list,5)*1.5;
     dual = ds_list_find_value(ild_list,0);
     pihalf = pi/2;
     anglemult = 4096*angle;
     
-    
     draw_set_color(c_white);
     draw_set_alpha(1);
-    usealpha = alpha*0.8;
     draw_set_blend_mode_ext(bm_src_alpha,bm_dest_alpha);
     d3d_set_culling(false);
     if (controller.fog) 
         {
         shader_set(lasershader);
-        usealpha /= 0.5;
+        alpha /= 0.5;
+        playerdir_hor = degtorad(point_direction(scanner_x,scanner_y,obj_player.x,obj_player.y));
+        playerdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,obj_player.y,obj_player.z));
+        playerdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,obj_player.y,obj_player.z));
         }
     else
         {
@@ -109,10 +110,19 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     red = ds_list_find_value(list_id,np_pos+6);
                     colormade = make_color_rgb(red,green,blue);
                     
+                    
+                    if (controller.fog)
+                        {
+                        pointdir_hor = degtorad(point_direction(scanner_x,scanner_y,xppos,yppos));
+                        pointdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,yppos,zppos));
+                        pointdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,xppos,zppos));
+                        usealpha = alpha-alpha*0.9*sqrt(sqrt(max(abs(sin(playerdir_hor-pointdir_hor)),abs(sin(playerdir_ver1-pointdir_ver1)),abs(sin(playerdir_ver2-pointdir_ver2)))));
+                        }
+                    
                     if ((xpn == xp) && (ypn == yp))
                         {
                         d3d_primitive_begin_texture(pr_linelist,background_get_texture(bck_smoke));
-                            d3d_vertex_texture_colour(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*0.7);
+                            d3d_vertex_texture_colour(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
                             d3d_vertex_texture_colour(xppos,yppos,zppos,0,0,colormade,0);
                         d3d_primitive_end();
                         }
@@ -138,6 +148,14 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         green = ds_list_find_value(list_id,np_pos+5);
                         red = ds_list_find_value(list_id,np_pos+6);
                         colormade = make_color_rgb(red,green,blue);
+                        
+                        if (controller.fog)
+                            {
+                            pointdir_hor = degtorad(point_direction(scanner_x,scanner_y,xpposdual,yppos));
+                            pointdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,yppos,zppos));
+                            pointdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,xpposdual,zppos));
+                            usealpha = alpha-alpha*0.9*sqrt(sqrt(max(abs(sin(playerdir_hor-pointdir_hor)),abs(sin(playerdir_ver1-pointdir_ver1)),abs(sin(playerdir_ver2-pointdir_ver2)))));
+                            }
                         
                         if ((xpn == xp) && (ypn == yp))
                             {
@@ -230,10 +248,19 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     red = ds_list_find_value(list_id,np_pos+5);
                     colormade = make_color_rgb(red,green,blue);
                     
+                    if (controller.fog)
+                        {
+                        pointdir_hor = degtorad(point_direction(scanner_x,scanner_y,xppos,yppos));
+                        pointdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,yppos,zppos));
+                        pointdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,xppos,zppos));
+                        usealpha = alpha-alpha*0.9*sqrt(sqrt(max(abs(sin(playerdir_hor-pointdir_hor)),abs(sin(playerdir_ver1-pointdir_ver1)),abs(sin(playerdir_ver2-pointdir_ver2)))));
+                        //show_debug_message(usealpha)
+                        }
+                    
                     if ((xpn == xp) && (ypn == yp))
                         {
                         d3d_primitive_begin_texture(pr_linelist,background_get_texture(bck_smoke));
-                            d3d_vertex_texture_colour(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha*0.7);
+                            d3d_vertex_texture_colour(scanner_x,scanner_y,scanner_z,0,0,colormade,usealpha);
                             d3d_vertex_texture_colour(xppos,yppos,zppos,0,0,colormade,0);
                         d3d_primitive_end();
                         }
@@ -259,6 +286,14 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                         green = ds_list_find_value(list_id,np_pos+4);
                         red = ds_list_find_value(list_id,np_pos+5);
                         colormade = make_color_rgb(red,green,blue);
+                        
+                        if (controller.fog)
+                            {
+                            pointdir_hor = degtorad(point_direction(scanner_x,scanner_y,xpposdual,yppos));
+                            pointdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,yppos,zppos));
+                            pointdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,xpposdual,zppos));
+                            usealpha = alpha-alpha*0.9*sqrt(sqrt(max(abs(sin(playerdir_hor-pointdir_hor)),abs(sin(playerdir_ver1-pointdir_ver1)),abs(sin(playerdir_ver2-pointdir_ver2)))));
+                            }
                         
                         if ((xpn == xp) && (ypn == yp))
                             {
