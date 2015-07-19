@@ -48,8 +48,5 @@ ds_list_add(ild_list,pi/4); //angle
 ds_list_add(ild_list,150); //z
 ds_list_add(ild_list,ilda_scanner); //ilda scanner
 ds_list_add(ild_list,format); //format
-
-
-
     
 return 0;

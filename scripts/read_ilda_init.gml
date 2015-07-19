@@ -37,7 +37,6 @@ if !is_wrong($0)
 rdy = 0;
 filename = "";
 
-
 i = 0;
 format = 0;
     

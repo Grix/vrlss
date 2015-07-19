@@ -1,6 +1,7 @@
 draw_set_font(fnt_info);
 if (rdy)
     {
+    draw_set_halign(fa_left);
     draw_set_font(fnt_info);
     //list_id = frame_list;
     ild_list = ds_list_find_value(scan_list,0);
@@ -9,7 +10,7 @@ if (rdy)
         {
         /// Draw some debugging text
         //draw_set_color(c_gray)
-        if (GMO_getCameraMode() == 1)
+        /*if (GMO_getCameraMode() == 1)
             {
             draw_text_stroke(10,10,"Read the readme for controls and manual!"+
              "##Frame number "+string(frame)+"/"+string(ds_list_size(ild_list)-11)+
@@ -27,10 +28,10 @@ if (rdy)
                 draw_text(10,220,"Warning:#FPS has dropped lower than 75,#this can cause playback skipping");
                 //draw_set_font(fnt_info);
                 draw_set_color(c_ltgray);
-                }*/
-             }
+                }
+             }*/
         }
-    else
+    else if (room == rm_2d)
         {
         draw_set_color(c_white);
         draw_sprite(spr_audio,!songloaded,830,477);
@@ -64,7 +65,7 @@ if (rdy)
             "#Number of frames: "+string( ds_list_size(ds_list_find_value(scan_list,selected_scanner))-10 ));
             }         
               
-        draw_set_font(fnt_parsing);       
+        /*draw_set_font(fnt_parsing);       
             if (!global._GMO_DLL_LOADED) 
                 {
                 draw_set_color(c_red);
@@ -87,7 +88,7 @@ if (rdy)
                         draw_text(635,150,"Warning:#Oculus Rift found#but display disabled");
                         break;
                     }
-                }
+                }*/
         draw_set_font(fnt_info);
         draw_set_color(c_ltgray); 
         }

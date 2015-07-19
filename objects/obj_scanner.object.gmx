@@ -2,10 +2,10 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
-  <depth>-1</depth>
+  <visible>-1</visible>
+  <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_3d_particle</parentName>
+  <parentName>oDrawable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -111,7 +111,7 @@ if (alpha &lt; 0) alpha = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="7" enumb="25">
       <action>
         <libid>1</libid>
         <id>603</id>
