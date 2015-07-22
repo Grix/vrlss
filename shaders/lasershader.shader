@@ -27,8 +27,8 @@ float rand(vec2 n)
     }
 void main( void ) 
 {
-float Scale = 0.1;
-float maxscale = 0.3;
+float Scale = 2.0;
+float maxscale = 2.5;
 float Color;
 float Color2;
 float S;

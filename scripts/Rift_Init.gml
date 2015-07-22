@@ -14,11 +14,13 @@ switch( result )
 {
     case 0:
         global.IsRiftInitialized = true;
+        d3d_set_culling(true);
+        d3d_set_hidden(true);
         d3d_set_perspective(false);
-        //my_matrix = matrix_build(0, 0, 0, 90, 0, 0, 1, 1, 1);
-        //matrix_set(matrix_world, my_matrix);
-        init3D();
+        //d3d_set_projection_ext(0,0,0,1,1,1,1,1,1,1,0.5,0,400);
         application_surface_draw_enable(false);
+        global.RightEyeProjectionMatrix = string_split_ext(RiftExt_GetEyeProjectionMatrix(1), " ");
+        global.LeftEyeProjectionMatrix = string_split_ext(RiftExt_GetEyeProjectionMatrix(0), " ");        
         break;
     case 1:
         debugMessage = "Cannot initialize libOVR";

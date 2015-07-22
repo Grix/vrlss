@@ -18,6 +18,8 @@ switch( result )
         d3d_set_hidden(true);
         d3d_set_perspective(false);
         application_surface_draw_enable(false);
+        global.RightEyeProjectionMatrix = string_split_ext(RiftExt_GetEyeProjectionMatrix(1), " ");
+        global.LeftEyeProjectionMatrix = string_split_ext(RiftExt_GetEyeProjectionMatrix(0), " ");        
         break;
     case 1:
         debugMessage = "Cannot initialize libOVR";
@@ -49,4 +51,3 @@ if ( result != 0 && global.IsDebugMode )
 }
 
 return result;
-

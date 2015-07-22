@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>version = "0.5.0";
 
-GR_init();
 Init();
 
 templist = ds_list_create();

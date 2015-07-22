@@ -3,6 +3,8 @@
 /* Prepares the rift for rendering.  After calling this, all subsequent draw calls should be placed between the EyeRender
 functions, until Rift_ShowFrame is called */
 
+
+
 if ( global.IsRiftInitialized )
 {
     var result, size, projView;
@@ -16,10 +18,7 @@ if ( global.IsRiftInitialized )
     RiftExt_StartFrame(); 
 }
 
-
-
-
-
+d3d_start();
 
 
 

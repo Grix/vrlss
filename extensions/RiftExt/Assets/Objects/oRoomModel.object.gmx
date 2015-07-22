@@ -58,7 +58,7 @@
                 d3d_model_vertex_normal_texture_colour(MyModel, i*3, 3, j*3, 0, -1, 0, 0, 0, color, 1.0);
                 d3d_model_vertex_normal_texture_colour(MyModel, i*3+3, 3, j*3+3, 0, -1, 0, 0.5, 0.5, color, 1.0);
                 d3d_model_vertex_normal_texture_colour(MyModel, i*3, 3, j*3+3, 0, -1, 0, 0, 0.5, color, 1.0);
-                
+               
                 if ( tile_layer_find(0, i*32-16, j*32+16) == -1 )
                 {
                     d3d_model_vertex_texture(MyModel, i*3, 0, j*3, 0.5, 0.5);
@@ -132,7 +132,13 @@
             <kind>1</kind>
             <string>/* called by rift game to do the drawing */
 
+//matrix_set(matrix_projection, matrix_get(matrix_projection));
+//matrix_set(matrix_view, matrix_get(matrix_view));
+//matrix_set(matrix_world, matrix_get(matrix_world));
+
 d3d_model_draw(MyModel, 0, 0, 0, sprite_get_texture(sprWallFloor, 0));
+
+
 </string>
           </argument>
         </arguments>

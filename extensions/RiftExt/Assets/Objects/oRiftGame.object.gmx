@@ -33,8 +33,9 @@ if ( instance_number(oRiftGame) &gt; 1 )
 }
 else
 {
+
     Rift_Init();
-    
+  
     Camera = -1;
     RoomModel = instance_create(0, 0, oRoomModel);
     DummySurface = -1;

@@ -1,16 +1,17 @@
 //draws the laser projecton for all the scanners
 draw_set_color(c_white);
 draw_enable_alphablend(1);
-draw_set_blend_mode_ext(bm_src_alpha,bm_dest_alpha);
+draw_set_blend_mode(bm_add);
 d3d_set_culling(0);
-d3d_set_lighting(1);
+d3d_set_lighting(0);
 d3d_set_hidden(0);
-
+/*if (!controller.fog) shader_set(lasershader);
 d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
     d3d_vertex_texture_color(0,0,0,0,0,c_red,1);
     d3d_vertex_texture_color(10,10,10,0,0,c_red,0);
     d3d_vertex_texture_color(10,0,10,0,0,c_red,0);
 d3d_primitive_end();
+if (!controller.fog) shader_reset();*/
 
 for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
     {
@@ -22,8 +23,8 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
     
     format = ds_list_find_value(ild_list,9);
     scanner_x = ds_list_find_value(ild_list,1)/600*7;
-    scanner_y = ds_list_find_value(ild_list,7)/600*7;
-    scanner_z = ds_list_find_value(ild_list,2)/600*7;
+    scanner_z = ds_list_find_value(ild_list,7)/600*7;
+    scanner_y = ds_list_find_value(ild_list,2)/600*7;
     full_length = 7;
     xrad = ds_list_find_value(ild_list,3);
     yrad = ds_list_find_value(ild_list,4);
@@ -37,9 +38,9 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
         {
         shader_set(lasershader);
         alpha /= 0.5;
-        playerdir_hor = degtorad(point_direction(scanner_x,scanner_y,obj_player.X,obj_player.Y+global.RiftEyeHeight));
-        playerdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,obj_player.Y+global.RiftEyeHeight,obj_player.Z));
-        playerdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,obj_player.Y+global.RiftEyeHeight,obj_player.Z));
+        playerdir_hor = degtorad(point_direction(scanner_x,scanner_y,obj_player.X,obj_player.Y));
+        playerdir_ver1 = degtorad(point_direction(scanner_y,scanner_z,obj_player.Y,obj_player.Z));
+        playerdir_ver2 = degtorad(point_direction(scanner_x,scanner_z,obj_player.X,obj_player.Z));
         }
     else
         {
@@ -69,8 +70,8 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
             //xpn = 1024-xpn;
             
             xpnpos = scanner_x+2*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-            ypnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-            zpnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
+            zpnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+            ypnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
             
             np_pos = 8;
                 
@@ -106,8 +107,8 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                 
                 //xpn = 1024-xpn;
                 xpnpos = scanner_x+2*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-                ypnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-                zpnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
+                zpnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+                ypnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
                     
                 //if blanking bit is on, draw line between the two points
                 if !(blank)
@@ -148,7 +149,7 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                     xpnposdual = full_length-scanner_x+2*sin(pihalf-yrad-ypn/anglemult)*cos(-pihalf-xrad-xpn/anglemult);
                     xpposdual = full_length-scanner_x+2*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
                         
-                    //if blanking bit is on, draw line between the two points
+                    //if blanking bit is off, draw line between the two points
                     if !(blank)
                         {
                         blue = ds_list_find_value(list_id,np_pos+4);
@@ -207,8 +208,8 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
             //xpn = 1024-xpn;
             
             xpnpos = scanner_x+2*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-            ypnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-            zpnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
+            zpnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+            ypnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
             
             np_pos = 7;
                 
@@ -244,10 +245,10 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
                 
                 //xpn = 1024-xpn;
                 xpnpos = scanner_x+2*sin(pihalf-yrad-ypn/anglemult)*cos(pihalf-xrad-xpn/anglemult);
-                ypnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
-                zpnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
+                zpnpos = scanner_y+2*sin(pihalf-yrad-ypn/anglemult)*sin(pihalf-xrad-xpn/anglemult);
+                ypnpos = scanner_z+2*cos(pihalf-yrad-ypn/anglemult);
                     
-                //if blanking bit is on, draw line between the two points
+                //if blanking bit is off, draw line between the two points
                 if !(blank)
                     {
                     blue = ds_list_find_value(list_id,np_pos+3);
@@ -327,5 +328,4 @@ for (i = 0;i <= (ds_list_size(controller.scan_list)-1);i++)
         
     shader_reset();  
     }
-
 draw_set_blend_mode(bm_normal);

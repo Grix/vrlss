@@ -1,11 +1,9 @@
 /// Initialize our 3D world.
 //d3d_set_culling(true); 
-d3d_set_lighting(true);//
 //d3d_set_hidden(true);
-d3d_set_shading(true);//
+d3d_set_shading(true);
 
-//enable_zbuffer();
-d3d_set_zwriteenable(true);
+d3d_set_zwriteenable(1);
 draw_set_alpha_test(true);
 draw_enable_alphablend(true);
 

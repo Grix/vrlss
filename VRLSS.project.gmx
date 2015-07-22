@@ -64,27 +64,6 @@
       <sprite>sprites\spr_sky2_back</sprite>
       <sprite>sprites\spr_sky2_left</sprite>
     </sprites>
-    <sprites name="sky3">
-      <sprite>sprites\spr_sky3_top</sprite>
-      <sprite>sprites\spr_sky3_left</sprite>
-      <sprite>sprites\spr_sky3_right</sprite>
-      <sprite>sprites\spr_sky3_front</sprite>
-      <sprite>sprites\spr_sky3_back</sprite>
-    </sprites>
-    <sprites name="sky4">
-      <sprite>sprites\spr_sky4_top</sprite>
-      <sprite>sprites\spr_sky4_front</sprite>
-      <sprite>sprites\spr_sky4_back</sprite>
-      <sprite>sprites\spr_sky4_left</sprite>
-      <sprite>sprites\spr_sky4_right</sprite>
-    </sprites>
-    <sprites name="sky5">
-      <sprite>sprites\spr_sky5_top</sprite>
-      <sprite>sprites\spr_sky5_front</sprite>
-      <sprite>sprites\spr_sky5_left</sprite>
-      <sprite>sprites\spr_sky5_right</sprite>
-      <sprite>sprites\spr_sky5_back</sprite>
-    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTile</background>
@@ -96,40 +75,6 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\Init.gml</script>
-    <scripts name="Math">
-      <script>scripts\YPRToQuat.gml</script>
-    </scripts>
-    <scripts name="Rift">
-      <script>scripts\Rift_EnableDebug.gml</script>
-      <script>scripts\Rift_Center.gml</script>
-      <script>scripts\Rift_EndRenderLeftEye.gml</script>
-      <script>scripts\Rift_EndRenderRightEye.gml</script>
-      <script>scripts\Rift_GetEyeSize.gml</script>
-      <script>scripts\Rift_GetRiftPos.gml</script>
-      <script>scripts\Rift_GetRiftRot.gml</script>
-      <script>scripts\Rift_GetRiftYPR.gml</script>
-      <script>scripts\Rift_InForeground.gml</script>
-      <script>scripts\Rift_Init.gml</script>
-      <script>scripts\Rift_LockCursor.gml</script>
-      <script>scripts\Rift_SetCamera.gml</script>
-      <script>scripts\Rift_ShutdownRift.gml</script>
-      <script>scripts\Rift_ShowFrame.gml</script>
-      <script>scripts\Rift_StartFrame.gml</script>
-      <script>scripts\Rift_StartRenderLeftEye.gml</script>
-      <script>scripts\Rift_StartRenderRightEye.gml</script>
-      <scripts name="GR">
-        <script>scripts\GR_init.gml</script>
-        <script>scripts\GR_cmToPixel.gml</script>
-        <script>scripts\GR_meterToPixel.gml</script>
-      </scripts>
-    </scripts>
-    <scripts name="RiftGame">
-      <script>scripts\RiftGame_SetCamera.gml</script>
-    </scripts>
-    <scripts name="Helpers">
-      <script>scripts\string_split.gml</script>
-      <script>scripts\string_split_ext.gml</script>
-    </scripts>
     <script>scripts\README.gml</script>
     <script>scripts\check_miniscanner_dual.gml</script>
     <script>scripts\draw_info.gml</script>
@@ -157,6 +102,35 @@
       <script>scripts\is_wrong.gml</script>
       <script>scripts\parse_word.gml</script>
     </scripts>
+    <scripts name="Math">
+      <script>scripts\YPRToQuat.gml</script>
+    </scripts>
+    <scripts name="Rift">
+      <script>scripts\Rift_EnableDebug.gml</script>
+      <script>scripts\Rift_Center.gml</script>
+      <script>scripts\Rift_EndRenderLeftEye.gml</script>
+      <script>scripts\Rift_EndRenderRightEye.gml</script>
+      <script>scripts\Rift_GetEyeSize.gml</script>
+      <script>scripts\Rift_GetRiftPos.gml</script>
+      <script>scripts\Rift_GetRiftRot.gml</script>
+      <script>scripts\Rift_GetRiftYPR.gml</script>
+      <script>scripts\Rift_InForeground.gml</script>
+      <script>scripts\Rift_Init.gml</script>
+      <script>scripts\Rift_LockCursor.gml</script>
+      <script>scripts\Rift_SetCamera.gml</script>
+      <script>scripts\Rift_Shutdown.gml</script>
+      <script>scripts\Rift_ShowFrame.gml</script>
+      <script>scripts\Rift_StartFrame.gml</script>
+      <script>scripts\Rift_StartRenderLeftEye.gml</script>
+      <script>scripts\Rift_StartRenderRightEye.gml</script>
+    </scripts>
+    <scripts name="RiftGame">
+      <script>scripts\RiftGame_SetCamera.gml</script>
+    </scripts>
+    <scripts name="Helpers">
+      <script>scripts\string_split.gml</script>
+      <script>scripts\string_split_ext.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\lasershader.shader</shader>
@@ -168,7 +142,6 @@
     <font>fonts\fnt_hud</font>
   </fonts>
   <objects name="objects">
-    <object>objects\oRiftGame</object>
     <object>objects\obj_player</object>
     <objects name="Game Objects">
       <object>objects\oDrawable</object>
@@ -188,6 +161,7 @@
     <object>objects\obj_environment</object>
     <object>objects\controller</object>
     <object>objects\obj_miniscanner</object>
+    <object>objects\oRiftGame</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>

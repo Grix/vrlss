@@ -1,4 +1,4 @@
-///string_split( string, char )
+///string_split_ext( string, char )
 
 var myString, i, output;
 

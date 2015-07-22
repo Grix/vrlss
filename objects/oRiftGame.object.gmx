@@ -25,15 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Singleton
+            <string>
+//Singleton
 if ( instance_number(oRiftGame) &gt; 1 )
 {
     instance_destroy();
 }
 else
 {
+
     Rift_Init();
-    
+  
     Camera = -1;
     RoomModel = instance_create(0, 0, obj_environment);
     DummySurface = -1;
@@ -65,13 +67,14 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if( RiftExt_InForeground() &amp;&amp; window_has_focus() )
+            <string>
+if( RiftExt_InForeground() &amp;&amp; window_has_focus() )
 {
     global.MouseX = window_mouse_get_x() - (view_xport[0] + view_wview[0]/2);
     global.MouseY = window_mouse_get_y()  - (view_yport[0] + view_hview[0]/2);
     window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
 
-    //Rift_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
+    Rift_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
     window_set_cursor(cr_none);
 }
 </string>
@@ -97,17 +100,16 @@ else
           <argument>
             <kind>1</kind>
             <string>Rift_ShowFrame();
-//d3d_light_define_ambient(c_white);
+d3d_light_define_ambient(c_white);
 draw_set_color(c_white);
 draw_set_halign(fa_left);
 draw_text(45, 45, "fps:"+string(fps_real));
 
 draw_set_halign(fa_center);
-draw_text(512, 275, "Press [Tab] to return to setup");
-draw_text(512, 300, "Press [R] to recenter the Rift");
-draw_text(512, 325, "Use [W,A,S,D] to move");
+draw_text(512, 300, "Press 'r' to recenter the Rift");
+draw_text(512, 325, "Use 'w','a','s' and 'd' to move");
 draw_text(512, 350, "Use the mouse to turn");
-draw_text(512, 375, "Press [Esc] to exit");
+draw_text(512, 375, "Press 'esc' to exit");
 
 
 
@@ -134,37 +136,29 @@ draw_text(512, 375, "Press [Esc] to exit");
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>camQuat = YPRToQuat(Camera.Yaw, Camera.Pitch, Camera.Roll);
+            <string>
+
+camQuat = YPRToQuat(Camera.Yaw, Camera.Pitch, Camera.Roll);
 
 Rift_SetCamera(Camera.X, Camera.Y, Camera.Z, camQuat[0], camQuat[1], camQuat[2], camQuat[3]); 
 Rift_StartFrame();
 
-d3d_set_lighting(true);
-d3d_light_define_ambient(c_black);
-//d3d_light_define_point(1, Camera.X, Camera.Y, Camera.Z, 25, c_orange);
-//d3d_light_enable(1,true);
-draw_set_color(c_white);
-
 //Draw left eye
 Rift_StartRenderLeftEye();
-
-    draw_frame_3d();
-    
     with(oDrawable)
         {
         event_user(15);
         }
+    draw_frame_3d();
 Rift_EndRenderLeftEye();
 
 //Right eye
 Rift_StartRenderRightEye();
-
-    draw_frame_3d();
-    
     with(oDrawable)
         {
-       event_user(15);
+        event_user(15);
         }
+    draw_frame_3d();
 Rift_EndRenderRightEye();
 </string>
           </argument>
