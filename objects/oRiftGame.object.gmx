@@ -74,7 +74,7 @@ if( RiftExt_InForeground() &amp;&amp; window_has_focus() )
     global.MouseY = window_mouse_get_y()  - (view_yport[0] + view_hview[0]/2);
     window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
 
-    Rift_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
+    //Rift_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
     window_set_cursor(cr_none);
 }
 </string>

@@ -29,12 +29,8 @@
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sprPlayer</sprite>
-    <sprite>sprites\sprSolid</sprite>
-    <sprite>sprites\sprWallFloor</sprite>
     <sprite>sprites\sprNull</sprite>
     <sprite>sprites\spr_eye</sprite>
-    <sprite>sprites\spr_cam</sprite>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\blank_spr</sprite>
     <sprite>sprites\spr_mainildbutton</sprite>
@@ -74,8 +70,6 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\Init.gml</script>
-    <script>scripts\README.gml</script>
     <script>scripts\check_miniscanner_dual.gml</script>
     <script>scripts\draw_info.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
@@ -106,23 +100,38 @@
       <script>scripts\YPRToQuat.gml</script>
     </scripts>
     <scripts name="Rift">
-      <script>scripts\Rift_EnableDebug.gml</script>
+      <script>scripts\Rift_AddLayer.gml</script>
+      <script>scripts\Rift_BeginEyeRender.gml</script>
+      <script>scripts\Rift_BeginFrame.gml</script>
       <script>scripts\Rift_Center.gml</script>
-      <script>scripts\Rift_EndRenderLeftEye.gml</script>
-      <script>scripts\Rift_EndRenderRightEye.gml</script>
-      <script>scripts\Rift_GetEyeSize.gml</script>
-      <script>scripts\Rift_GetRiftPos.gml</script>
-      <script>scripts\Rift_GetRiftRot.gml</script>
-      <script>scripts\Rift_GetRiftYPR.gml</script>
-      <script>scripts\Rift_InForeground.gml</script>
+      <script>scripts\Rift_FinishEyeRender.gml</script>
+      <script>scripts\Rift_GetTrackingPos.gml</script>
+      <script>scripts\Rift_GetTrackingRot.gml</script>
+      <script>scripts\Rift_GetTrackingYPR.gml</script>
       <script>scripts\Rift_Init.gml</script>
-      <script>scripts\Rift_LockCursor.gml</script>
-      <script>scripts\Rift_SetCamera.gml</script>
+      <script>scripts\Rift_SetPerformanceHUD.gml</script>
       <script>scripts\Rift_Shutdown.gml</script>
-      <script>scripts\Rift_ShowFrame.gml</script>
-      <script>scripts\Rift_StartFrame.gml</script>
-      <script>scripts\Rift_StartRenderLeftEye.gml</script>
-      <script>scripts\Rift_StartRenderRightEye.gml</script>
+      <script>scripts\Rift_SubmitLayers.gml</script>
+      <script>scripts\RiftError_GetLast.gml</script>
+      <script>scripts\RiftError_GetLastString.gml</script>
+      <script>scripts\RiftLayer_GetCurrentViewMatrix.gml</script>
+      <script>scripts\RiftLayer_GetDefaultFOV.gml</script>
+      <script>scripts\RiftLayer_GetDefaultIPD.gml</script>
+      <script>scripts\RiftLayer_GetEyeViewportSize.gml</script>
+      <script>scripts\RiftLayer_GetFOV.gml</script>
+      <script>scripts\RiftLayer_GetIPD.gml</script>
+      <script>scripts\RiftLayer_GetProjectionMatrix.gml</script>
+      <script>scripts\RiftLayer_SetCamera.gml</script>
+      <script>scripts\RiftLayer_SetClippingPlane.gml</script>
+      <script>scripts\RiftLayer_SetFOV.gml</script>
+      <script>scripts\RiftLayer_SetIPD.gml</script>
+      <script>scripts\RiftSystem_Init.gml</script>
+      <script>scripts\RiftSystem_Shutdown.gml</script>
+      <script>scripts\Window_IsInForeground.gml</script>
+      <script>scripts\Window_LockCursor.gml</script>
+      <script>scripts\Window_SetWindow.gml</script>
+      <script>scripts\Shutdown.gml</script>
+      <script>scripts\Init.gml</script>
     </scripts>
     <scripts name="RiftGame">
       <script>scripts\RiftGame_SetCamera.gml</script>
@@ -131,6 +140,8 @@
       <script>scripts\string_split.gml</script>
       <script>scripts\string_split_ext.gml</script>
     </scripts>
+    <script>scripts\CHANGELOG.gml</script>
+    <script>scripts\README.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\lasershader.shader</shader>
@@ -143,10 +154,9 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
-    <objects name="Game Objects">
-      <object>objects\oDrawable</object>
-      <object>objects\oCollideable</object>
-    </objects>
+    <object>objects\obj_environment</object>
+    <object>objects\controller</object>
+    <object>objects\obj_miniscanner</object>
     <objects name="buttons">
       <object>objects\obj_3dbutton</object>
       <object>objects\obj_export</object>
@@ -158,15 +168,17 @@
       <object>objects\obj_dualbutton</object>
       <object>objects\obj_loadildbutton</object>
     </objects>
-    <object>objects\obj_environment</object>
-    <object>objects\controller</object>
-    <object>objects\obj_miniscanner</object>
-    <object>objects\oRiftGame</object>
+    <objects name="Rift">
+      <objects name="parents">
+        <object>objects\obj_drawable</object>
+        <object>objects\obj_collideable</object>
+      </objects>
+      <object>objects\obj_riftgame</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_2d</room>
     <room>rooms\rm_3d</room>
-    <room>rooms\RiftTest</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

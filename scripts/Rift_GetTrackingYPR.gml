@@ -1,13 +1,12 @@
-///Rift_GetRiftRot()
+///Rift_GetRiftYPR()
 
-/* Returns an array that holds a rotation quaternion for the Rift in the order of 
-w, x, y, z */
+/* Returns an array that holds the yaw, pitch and roll of the Rift in that order. */
 
 var resultStr, result;
 
 if ( global.IsRiftInitialized )
 {
-    resultStr = RiftExt_GetRiftRot();
+    resultStr = RiftExt_GetTrackingYPR();
     result = string_split(resultStr);
 }
 else
@@ -15,7 +14,6 @@ else
     result[0] = 0;
     result[1] = 0;
     result[2] = 0;
-    result[3] = 0;
 }
 
 return result;

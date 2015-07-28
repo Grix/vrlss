@@ -33,9 +33,10 @@ if ( instance_number(oRiftGame) &gt; 1 )
 }
 else
 {
-
     Rift_Init();
-  
+    Rift_AddLayer(1.0);
+    RiftLayer_SetFOV(1, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3);
+
     Camera = -1;
     RoomModel = instance_create(0, 0, oRoomModel);
     DummySurface = -1;
@@ -68,13 +69,13 @@ else
           <argument>
             <kind>1</kind>
             <string>
-if( RiftExt_InForeground() &amp;&amp; window_has_focus() )
+if( Window_IsInForeground() &amp;&amp; window_has_focus() )
 {
     global.MouseX = window_mouse_get_x() - (view_xport[0] + view_wview[0]/2);
     global.MouseY = window_mouse_get_y()  - (view_yport[0] + view_hview[0]/2);
     window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
 
-    Rift_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
+    Window_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
     window_set_cursor(cr_none);
 }
 </string>
@@ -99,7 +100,8 @@ if( RiftExt_InForeground() &amp;&amp; window_has_focus() )
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Rift_ShowFrame();
+            <string>Rift_SubmitLayers(2);
+
 d3d_light_define_ambient(c_white);
 draw_set_color(c_white);
 draw_set_halign(fa_left);
@@ -137,33 +139,33 @@ draw_text(512, 375, "Press 'esc' to exit");
           <argument>
             <kind>1</kind>
             <string>
-
-camQuat = YPRToQuat(Camera.Yaw, Camera.Pitch, Camera.Roll);
-
-Rift_SetCamera(Camera.X, Camera.Y, Camera.Z, camQuat[0], camQuat[1], camQuat[2], camQuat[3]); 
-Rift_StartFrame();
-
 d3d_set_lighting(true);
 d3d_light_define_ambient(make_color_rgb(35, 35, 35));
 d3d_light_define_point(1, Camera.X, Camera.Y, Camera.Z, 25, c_orange);
 d3d_light_enable(1,true);
 draw_set_color(c_white);
 
+camQuat = YPRToQuat(Camera.Yaw, Camera.Pitch, Camera.Roll);
+
+RiftLayer_SetCamera(0, Camera.X, Camera.Y, Camera.Z, camQuat[0], camQuat[1], camQuat[2], camQuat[3]); 
+Rift_BeginFrame();
+
 //Draw left eye
-Rift_StartRenderLeftEye();
+Rift_BeginEyeRender(0, tRiftEye.Left, true, 0, 0, 0, 0);
 with(oDrawable)
 {
     event_user(15);
 }
-Rift_EndRenderLeftEye();
+Rift_FinishEyeRender();
 
 //Right eye
-Rift_StartRenderRightEye();
+Rift_BeginEyeRender(0, tRiftEye.Right, true, 0, 0, 0, 1);
 with(oDrawable)
 {
     event_user(15);
 }
-Rift_EndRenderRightEye();
+Rift_FinishEyeRender();
+
 </string>
           </argument>
         </arguments>
@@ -210,8 +212,8 @@ Rift_EndRenderRightEye();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-game_end();
+            <string>Shutdown();
+
 </string>
           </argument>
         </arguments>

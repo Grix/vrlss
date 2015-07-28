@@ -1,37 +1,53 @@
 /*
 
+** Note, there seems to be a bug in the Oculus Runtime SDK such that calling Rift_Shutdown/Rift_Init in quick
+succession may cause issues. 
+
+HOW TO USE THIS EXTENSION
+
 This extension makes GameMaker work with the Rift 6.0.1 beta runtime.  To make use of the extension, do as follows:
 
 1.  Call Init()
 
-2.  Call Rift_Init()
-    Rift init will initialize libOVR, the rift itself, and any necessary surfaces.  
-    This will also disable drawing to the application surface in orderto speed up performance.
+2.  If global.HasRift is true, libOVR has been initialized and the person likely has a rift, so continue forward.
 
-3.  Call Rift_SetCamera
-    This will update the rift DLL with GM's position and orientation settings.  
+3.  Call Rift_Init
+    This will initialize the rift HMD and the directX 11 device 
+    This will also disable drawing to the application surface in order to speed up performance.
 
-3.  Call Rift_StartFrame()
+4.  Call Rift_AddLayer
+    This will add a render layer for the extension.  Render layers are accessed via index, with the
+    first layer created being 0, the second being 1, and so on and so forth.  
+    
+5.  Call Rift_SetCamera
+    This will update a rift layer with Position and Orientation settings, so the extension can
+    calculate the appropriate view matrix
+
+6.  Call Rift_StartFrame()
     This will update Rift tracking information and prepare the render target for rendering.  
     It should be called during Rift's draw event.  After it is called, do not use surface_set_target 
     or surface_reset target.  Also do not perform any further draw calls unless they're between 
     Rift_StartRender/Rift_EndRender calls.
 
-4.  Call Rift_StartRenderLeftEye
-    This prepares the left eye for rendering, including setting up appropriate projection and view matrices.  
-    Draw your world now.
+7.  Call Rift_BeginEyeRender
+    This prepares an eye on a sepcific layer for rendering, including setting up appropriate projection and 
+    view matrices.  Draw your world now.
 
-5.  Call Rift_EndRenderLeftEye
+8.  Call Rift_EndEyeRender
+    This finishes drawing for the current eye and layer.
+    
+9.  Repeat 6 and 7 for all eyes/layers.  Note that it's not completely necessary to re-render every layer.  You
+    could, for example, have a low quality background layer for rendering things on a wearer's periphery.
 
-6.  Repeat 4 and 5 for RightEye
+10. Call Rift_SubmitLayers
+    This finalizes everything and submits the number of layers selected to the rift compositer, which will
+    combine everything and apply distortion
 
-7.  Call Rift_ShowFrame
-    This finalizes everything and updates the Rift's display.
+11. Repeat steps 5 through 10 in your main game loop
 
-8.  Repeat 3 through 7 in your main game loop
+12. When everything is finished, call Rift_Shutdown. This will free up all layers and release the HMD
 
-9.  When everything is finished, call Rift_ShutdownRift
-    This will free up all surfaces, free up the Rift.
+13. Finally, call RiftSystem_Shutdown.  This disables libOVR.
 
 ***NOTES***
 

@@ -132,10 +132,6 @@
             <kind>1</kind>
             <string>/* called by rift game to do the drawing */
 
-//matrix_set(matrix_projection, matrix_get(matrix_projection));
-//matrix_set(matrix_view, matrix_get(matrix_view));
-//matrix_set(matrix_world, matrix_get(matrix_world));
-
 d3d_model_draw(MyModel, 0, 0, 0, sprite_get_texture(sprWallFloor, 0));
 
 

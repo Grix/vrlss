@@ -234,7 +234,7 @@ check_miniscanner_dual();
         {
         if (room == rm_2d) 
             {
-            if (cango3d)
+            //if (cango3d)
                 room_goto_next(); 
             }
         else room_goto_previous();
@@ -322,6 +322,29 @@ else if (room == rm_2d)
     rdy = 2;
     check_miniscanner_dual();
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>RiftSystem_Shutdown();
 </string>
           </argument>
         </arguments>

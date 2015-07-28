@@ -113,7 +113,7 @@ Yaw = degtorad(-direction+2*pi);
           <argument>
             <kind>1</kind>
             <string>
-var temp = Rift_GetRiftYPR();
+var temp = Rift_GetTrackingYPR();
 y += (cos(temp[0]+Yaw)*0.5);
 x += (sin(temp[0]+Yaw)*0.5);
 </string>
@@ -139,7 +139,7 @@ x += (sin(temp[0]+Yaw)*0.5);
           <argument>
             <kind>1</kind>
             <string>
-var temp = Rift_GetRiftYPR();
+var temp = Rift_GetTrackingYPR();
 y -= (cos(temp[0]+Yaw)*0.5);
 x -= (sin(temp[0]+Yaw)*0.5);
 </string>
@@ -165,7 +165,7 @@ x -= (sin(temp[0]+Yaw)*0.5);
           <argument>
             <kind>1</kind>
             <string>
-var temp = Rift_GetRiftYPR();
+var temp = Rift_GetTrackingYPR();
 y += (cos(temp[0]+Yaw+pi/2)*0.5);
 x += (sin(temp[0]+Yaw+pi/2)*0.5);
 
@@ -192,7 +192,7 @@ x += (sin(temp[0]+Yaw+pi/2)*0.5);
           <argument>
             <kind>1</kind>
             <string>
-var temp = Rift_GetRiftYPR();
+var temp = Rift_GetTrackingYPR();
 y += (cos(temp[0]+Yaw-pi/2)*0.5);
 x += (sin(temp[0]+Yaw-pi/2)*0.5);
 

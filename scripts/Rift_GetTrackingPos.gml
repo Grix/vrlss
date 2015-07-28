@@ -6,7 +6,7 @@ var resultStr, result;
 
 if ( global.IsRiftInitialized )
 {
-    resultStr = RiftExt_GetRiftPos();
+    resultStr = RiftExt_GetTrackingPos();
     result = string_split(resultStr);
 }
 else
