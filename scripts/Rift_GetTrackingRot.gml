@@ -3,12 +3,16 @@
 /* Returns an array that holds a rotation quaternion for the Rift in the order of 
 w, x, y, z */
 
-var resultStr, result;
+var result;
 
 if ( global.IsRiftInitialized )
-{
-    resultStr = RiftExt_GetTrackingRot();
-    result = string_split(resultStr);
+{    
+    RiftExt_GetTrackingRot();
+    buffer_seek(global.RiftVec4Buf, buffer_seek_start, 0);
+    result[0] = buffer_read(global.RiftVec4Buf, buffer_f32);
+    result[1] = buffer_read(global.RiftVec4Buf, buffer_f32);
+    result[2] = buffer_read(global.RiftVec4Buf, buffer_f32);
+    result[3] = buffer_read(global.RiftVec4Buf, buffer_f32);
 }
 else
 {

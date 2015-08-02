@@ -8,6 +8,17 @@ An extension for ray casting and 3d physics
 
 LIST OF CHANGES
 
+Version 0.03
+------------------------------------------
+A number of major optimizations for performance
+
+Three new functions:
+    Rift_CreateMirrorSurface
+    Rift_ReleaseMirrorSurface
+    Rift_DrawMirrorSurface
+    
+These can be used to draw the rift in the main gamemaker window.
+    
 Version 0.02
 ------------------------------------------
 This update is a massive overhaul of the extension introducing a number of new functions,

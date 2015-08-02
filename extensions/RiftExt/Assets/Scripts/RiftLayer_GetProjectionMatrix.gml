@@ -5,7 +5,15 @@
 
 if ( global.IsRiftInitialized )
 {
-    return string_split_ext(RiftExtLayer_GetProjectionMatrix(argument0, argument1), " ");
-}
+    RiftExtLayer_GetProjectionMatrix(argument0, argument1);
 
+    var result, i;
+    buffer_seek(global.RiftMatrixBuf, buffer_seek_start, 0);
+    for( i = 0; i < 16; ++i )
+    {
+        result[i] = buffer_read(global.RiftMatrixBuf, buffer_f32);
+    }
+    
+    return result;
+}
 

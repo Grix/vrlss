@@ -2,12 +2,15 @@
 
 /* Returns an array that holds the x, y and z coordinates of the Rift in that order. */
 
-var resultStr, result;
+var result;
 
 if ( global.IsRiftInitialized )
 {
-    resultStr = RiftExt_GetTrackingPos();
-    result = string_split(resultStr);
+    RiftExt_GetTrackingPos();
+    buffer_seek(global.RiftVec3Buf, buffer_seek_start, 0);
+    result[0] = buffer_read(global.RiftVec3Buf, buffer_f32);
+    result[1] = buffer_read(global.RiftVec3Buf, buffer_f32);
+    result[2] = buffer_read(global.RiftVec3Buf, buffer_f32);
 }
 else
 {

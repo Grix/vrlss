@@ -2,12 +2,14 @@
 
 /* Gets the viewport size for each eye and layer. */
 
-var sizeStr, size;
+var size;
 
 if ( global.IsRiftInitialized )
-{
-    sizeStr = RiftExtLayer_GetEyeViewportSize(argument0, argument1);
-    size = string_split(sizeStr);
+{    
+    RiftExtLayer_GetEyeViewportSize(argument0, argument1);
+    buffer_seek(global.RiftVec2Buf, buffer_seek_start, 0);
+    size[0] = buffer_read(global.RiftVec2Buf, buffer_f32);
+    size[1] = buffer_read(global.RiftVec2Buf, buffer_f32);
 }
 else
 {

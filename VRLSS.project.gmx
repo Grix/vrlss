@@ -100,15 +100,20 @@
       <script>scripts\YPRToQuat.gml</script>
     </scripts>
     <scripts name="Rift">
+      <script>scripts\Init.gml</script>
+      <script>scripts\Shutdown.gml</script>
       <script>scripts\Rift_AddLayer.gml</script>
       <script>scripts\Rift_BeginEyeRender.gml</script>
       <script>scripts\Rift_BeginFrame.gml</script>
       <script>scripts\Rift_Center.gml</script>
+      <script>scripts\Rift_CreateMirrorSurface.gml</script>
+      <script>scripts\Rift_DrawMirrorSurface.gml</script>
       <script>scripts\Rift_FinishEyeRender.gml</script>
       <script>scripts\Rift_GetTrackingPos.gml</script>
       <script>scripts\Rift_GetTrackingRot.gml</script>
       <script>scripts\Rift_GetTrackingYPR.gml</script>
       <script>scripts\Rift_Init.gml</script>
+      <script>scripts\Rift_ReleaseMirrorSurface.gml</script>
       <script>scripts\Rift_SetPerformanceHUD.gml</script>
       <script>scripts\Rift_Shutdown.gml</script>
       <script>scripts\Rift_SubmitLayers.gml</script>
@@ -130,8 +135,6 @@
       <script>scripts\Window_IsInForeground.gml</script>
       <script>scripts\Window_LockCursor.gml</script>
       <script>scripts\Window_SetWindow.gml</script>
-      <script>scripts\Shutdown.gml</script>
-      <script>scripts\Init.gml</script>
     </scripts>
     <scripts name="RiftGame">
       <script>scripts\RiftGame_SetCamera.gml</script>

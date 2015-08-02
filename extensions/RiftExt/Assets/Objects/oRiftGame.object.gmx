@@ -35,8 +35,7 @@ else
 {
     Rift_Init();
     Rift_AddLayer(1.0);
-    RiftLayer_SetFOV(1, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3);
-
+    
     Camera = -1;
     RoomModel = instance_create(0, 0, oRoomModel);
     DummySurface = -1;
@@ -45,6 +44,12 @@ else
     global.MouseY = 0;
     
     window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
+    
+    ShowInfo = true;
+    DrawMirror = true;
+    PerfHud = 0;
+    
+    Rift_CreateMirrorSurface(window_get_width(), window_get_height());
 }
 </string>
           </argument>
@@ -77,6 +82,8 @@ if( Window_IsInForeground() &amp;&amp; window_has_focus() )
 
     Window_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
     window_set_cursor(cr_none);
+    
+
 }
 </string>
           </argument>
@@ -100,18 +107,36 @@ if( Window_IsInForeground() &amp;&amp; window_has_focus() )
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Rift_SubmitLayers(2);
+            <string>Rift_SubmitLayers(1);
 
-d3d_light_define_ambient(c_white);
-draw_set_color(c_white);
-draw_set_halign(fa_left);
-draw_text(45, 45, "fps:"+string(fps_real));
+d3d_set_lighting(false);
+d3d_set_hidden(false);
 
-draw_set_halign(fa_center);
-draw_text(512, 300, "Press 'r' to recenter the Rift");
-draw_text(512, 325, "Use 'w','a','s' and 'd' to move");
-draw_text(512, 350, "Use the mouse to turn");
-draw_text(512, 375, "Press 'esc' to exit");
+if ( DrawMirror )
+{
+    draw_set_color(c_white);
+    Rift_DrawMirrorSurface();
+}
+
+if( ShowInfo )
+{
+    draw_set_alpha(0.8);
+    draw_set_color(c_black);
+    draw_rectangle(0, 0, 360, 200, false); 
+    
+    draw_set_alpha(1.0);
+    draw_set_color(c_white);
+    draw_set_halign(fa_left);
+    draw_text(20, 10, "fps:"+string(fps_real));
+    draw_set_halign(fa_left);
+    draw_text(20, 40, "Press 'r' to recenter the Rift");
+    draw_text(20, 60, "Use 'w','a','s' and 'd' to move");
+    draw_text(20, 80, "Use the mouse to turn");
+    draw_text(20, 100, "Press 'esc' to exit");
+    draw_text(20, 120, "Press 'f1' to show/hide this box");
+    draw_text(20, 140, "Press 'f2' to draw mirror screen");
+    draw_text(20, 160, "Press 'f3' for performance HUD");
+}
 
 
 
@@ -145,13 +170,16 @@ d3d_light_define_point(1, Camera.X, Camera.Y, Camera.Z, 25, c_orange);
 d3d_light_enable(1,true);
 draw_set_color(c_white);
 
+
 camQuat = YPRToQuat(Camera.Yaw, Camera.Pitch, Camera.Roll);
+d3d_start();
 
 RiftLayer_SetCamera(0, Camera.X, Camera.Y, Camera.Z, camQuat[0], camQuat[1], camQuat[2], camQuat[3]); 
 Rift_BeginFrame();
 
 //Draw left eye
 Rift_BeginEyeRender(0, tRiftEye.Left, true, 0, 0, 0, 0);
+    
 with(oDrawable)
 {
     event_user(15);
@@ -159,13 +187,85 @@ with(oDrawable)
 Rift_FinishEyeRender();
 
 //Right eye
-Rift_BeginEyeRender(0, tRiftEye.Right, true, 0, 0, 0, 1);
+Rift_BeginEyeRender(0, tRiftEye.Right, true, 0, 0, 0, 0);
 with(oDrawable)
 {
     event_user(15);
 }
 Rift_FinishEyeRender();
 
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="114">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>PerfHud = (PerfHud+1)%3;
+Rift_SetPerformanceHUD(PerfHud);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="113">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>DrawMirror = !DrawMirror;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="112">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ShowInfo = !ShowInfo;
 </string>
           </argument>
         </arguments>
