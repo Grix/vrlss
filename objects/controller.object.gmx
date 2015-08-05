@@ -32,10 +32,15 @@ Init();
 templist = ds_list_create();
 scan_list = ds_list_create();
 
+u_time = shader_get_uniform(lasershader,"time");
+u_scanner_pos = shader_get_uniform(lasershader,"scanner_pos");
+u_player_pos = shader_get_uniform(lasershader,"player_pos");
+
 showfps = 30;
 ildaloaded=0;
 fog = 1;
 cango3d = 0;
+time = 0;
 
 alarm[1]=2;
 
@@ -152,7 +157,9 @@ check_miniscanner_dual();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (rdy)
+            <string>time += delta_time;
+
+if (rdy)
     {
     if (rdy == 1)
         {

@@ -13,5 +13,3 @@ if ( global.IsRiftInitialized )
 {
     RiftExt_AddLayer(argument0);
 }
-
-

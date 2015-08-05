@@ -79,7 +79,7 @@
     <script>scripts\export_show.gml</script>
     <script>scripts\playerMovement.gml</script>
     <script>scripts\playerMouselook.gml</script>
-    <script>scripts\time.gml</script>
+    <script>scripts\ms2time.gml</script>
     <script>scripts\end3D.gml</script>
     <script>scripts\init3D.gml</script>
     <scripts name="ilda_parsing">

@@ -126,7 +126,7 @@ if( ShowInfo )
     draw_set_alpha(1.0);
     draw_set_color(c_white);
     draw_set_halign(fa_left);
-    draw_text(20, 10, "fps:"+string(fps_real));
+    draw_text(400, 10, "FPS: "+string(fps_real));
     draw_set_halign(fa_left);
     draw_text(20, 20, "Press [Space] to go play/pause");
     draw_text(20, 40, "Press [Tab] to go back to menu");
@@ -137,6 +137,12 @@ if( ShowInfo )
     draw_text(20, 140, "Press [F2] to show/hide this box");
     draw_text(20, 160, "Press [F3] to draw mirror screen");
     draw_text(20, 180, "Press [F4] for performance HUD");
+    
+    draw_text(20, 250, "x "+string(obj_player.x));
+    draw_text(20, 270, "y "+string(obj_player.y));
+    draw_text(20, 290, "X "+string(obj_player.X));
+    draw_text(20, 310, "Y "+string(obj_player.Y));
+    draw_text(20, 330, "Z "+string(obj_player.Z));
 }
 
 

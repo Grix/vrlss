@@ -40,12 +40,13 @@
           <argument>
             <kind>1</kind>
             <string>Direction = 0;
+direction = 180;
 Yaw = 0;
-x = 4/(3/32);
-X = x*(3/32)
-Y = global.RiftEyeHeight;
-z = 0;
-Z = 0;
+X = 4;
+x = X/(3/32);
+Y = 4;
+Z = 8;
+y = Z/(3/32);
 RiftGame_SetCamera(obj_riftgame, id);
 
 LastX = x;

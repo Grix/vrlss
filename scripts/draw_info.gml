@@ -54,7 +54,7 @@ if (rdy)
             {
             draw_text_stroke(630,30,"Read the readme for controls and manual!"+
             "##Frame number "+string(frame)+"/"+string(ds_list_size(ild_list)-11)+
-            "#Time: "+time(frame)+" / "+time(ds_list_size(ild_list)-11)+
+            "#Time: "+ms2time(frame)+" / "+ms2time(ds_list_size(ild_list)-11)+
             "##FPS: " + string(fps));
             }
         else if (rdy > 1)
