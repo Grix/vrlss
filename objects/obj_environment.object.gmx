@@ -49,7 +49,7 @@ else if (controller.skybox == 2)
     skybox_back = sprite_get_texture(spr_sky2_back,0);
     skybox_front = sprite_get_texture(spr_sky2_front,0);
     }
-else if (controller.skybox == 3)
+/*else if (controller.skybox == 3)
     {
     skybox_floor = sprite_get_texture(spr_sky1_floor,0);
     skybox_top = sprite_get_texture(spr_sky3_top,0);

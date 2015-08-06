@@ -252,7 +252,7 @@ if (rdy)
     if (keyboard_check_pressed(ord('M')))
         {
         ssfilename = get_save_filename_ext("","","","Save screenshot");
-        if ((ssfilename != "") or !is_undefined(ssfilename))
+        if ((ssfilename != "") and !is_undefined(ssfilename))
             screen_save(ssfilename);
         }
     

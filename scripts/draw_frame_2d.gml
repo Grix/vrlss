@@ -8,123 +8,55 @@ list_id = ds_list_find_value(ild_list,10+frame);
 if (ds_list_size(list_id) < 2)
     exit;
         
-format = ds_list_find_value(ild_list,9);
+list_size = (ds_list_size(list_id)-1);
+np_pos = 1;
 
-switch (format)
+xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
+ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
+if (xpn >= 300)
+    xpn -= 300;
+else
+    xpn += 300;
+if (ypn >= 300)
+    ypn -= 300;
+else
+    ypn += 300;
+ypn = 600-ypn;
+
+np_pos = 5;
+    
+while (np_pos < list_size)
     {
-    case 4: //format 4: new 3d
+    
+    blank = ds_list_find_value(list_id,np_pos+2);
+    blank = (blank >> 6) & 1;
+    
+    //find point
+    xp = xpn;
+    yp = ypn;
+    
+    //find next point
+    xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
+    ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
+    if (xpn >= 300)
+        xpn -= 300;
+    else
+        xpn += 300;
+    if (ypn >= 300)
+        ypn -= 300;
+    else
+        ypn += 300;
+    ypn = 600-ypn;
+        
+    //if blanking bit is 0, draw line between the two points
+    if !(blank)
         {
-        list_size = (ds_list_size(list_id)-1);
-        np_pos = 1;
-        
-        xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
-        ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
-        if (xpn >= 300)
-            xpn -= 300;
-        else
-            xpn += 300;
-        if (ypn >= 300)
-            ypn -= 300;
-        else
-            ypn += 300;
-        ypn = 600-ypn;
-        
-        np_pos = 8;
-            
-        while (np_pos < list_size)
-            {
-            
-            blank = ds_list_find_value(list_id,np_pos+3);
-            blank = (blank >> 6) & 1
-            
-            //find point
-            xp = xpn;
-            yp = ypn;
-            
-            //find next point
-            xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
-            ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
-            if (xpn >= 300)
-                xpn -= 300;
-            else
-                xpn += 300;
-            if (ypn >= 300)
-                ypn -= 300;
-            else
-                ypn += 300;
-            ypn = 600-ypn;
-                
-            //if blanking bit is 0, draw line between the two points
-            if !(blank)
-                {
-                blue = ds_list_find_value(list_id,np_pos+4);
-                green = ds_list_find_value(list_id,np_pos+5);
-                red = ds_list_find_value(list_id,np_pos+6);
-                draw_set_color(make_color_rgb(red,green,blue));
-                draw_line(xp,yp,xpn,ypn);
-                }
-            
-            np_pos+=7;
-            }
-         break;
+        draw_set_color(ds_list_find_value(list_id,np_pos+3));
+        draw_line(xp,yp,xpn,ypn);
         }
-       
-    case 5: //format 5: new 2d
-        {
-        list_size = (ds_list_size(list_id)-1);
-        np_pos = 1;
-        
-        xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
-        ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
-        if (xpn >= 300)
-            xpn -= 300;
-        else
-            xpn += 300;
-        if (ypn >= 300)
-            ypn -= 300;
-        else
-            ypn += 300;
-        ypn = 600-ypn;
-        
-        np_pos = 7;
-            
-        while (np_pos < list_size)
-            {
-            
-            blank = ds_list_find_value(list_id,np_pos+2);
-            blank = (blank >> 6) & 1;
-            
-            //find point
-            xp = xpn;
-            yp = ypn;
-            
-            //find next point
-            xpn = ds_list_find_value(list_id,np_pos)/$ffff*600;
-            ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*600;
-            if (xpn >= 300)
-                xpn -= 300;
-            else
-                xpn += 300;
-            if (ypn >= 300)
-                ypn -= 300;
-            else
-                ypn += 300;
-            ypn = 600-ypn;
-                
-            //if blanking bit is 0, draw line between the two points
-            if !(blank)
-                {
-                blue = ds_list_find_value(list_id,np_pos+3);
-                green = ds_list_find_value(list_id,np_pos+4);
-                red = ds_list_find_value(list_id,np_pos+5);
-                draw_set_color(make_color_rgb(red,green,blue));
-                draw_line(xp,yp,xpn,ypn);
-                }
-            
-            np_pos+=6;
-            }
-         break;
-        }
+    
+    np_pos+=4;
+    }
         
     /*case 0: //format 0: old 3d
         {
@@ -176,5 +108,4 @@ switch (format)
             }
         break;
         }*/
-        
-    }
+    

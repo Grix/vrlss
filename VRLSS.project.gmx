@@ -135,6 +135,8 @@
       <script>scripts\Window_IsInForeground.gml</script>
       <script>scripts\Window_LockCursor.gml</script>
       <script>scripts\Window_SetWindow.gml</script>
+      <script>scripts\CHANGELOG.gml</script>
+      <script>scripts\README.gml</script>
     </scripts>
     <scripts name="RiftGame">
       <script>scripts\RiftGame_SetCamera.gml</script>
@@ -143,8 +145,6 @@
       <script>scripts\string_split.gml</script>
       <script>scripts\string_split_ext.gml</script>
     </scripts>
-    <script>scripts\CHANGELOG.gml</script>
-    <script>scripts\README.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\lasershader.shader</shader>
@@ -160,6 +160,11 @@
     <object>objects\obj_environment</object>
     <object>objects\controller</object>
     <object>objects\obj_miniscanner</object>
+    <object>objects\obj_riftgame</object>
+    <objects name="parents">
+      <object>objects\obj_drawable</object>
+      <object>objects\obj_collideable</object>
+    </objects>
     <objects name="buttons">
       <object>objects\obj_3dbutton</object>
       <object>objects\obj_export</object>
@@ -170,13 +175,6 @@
       <object>objects\obj_viewbutton</object>
       <object>objects\obj_dualbutton</object>
       <object>objects\obj_loadildbutton</object>
-    </objects>
-    <objects name="Rift">
-      <objects name="parents">
-        <object>objects\obj_drawable</object>
-        <object>objects\obj_collideable</object>
-      </objects>
-      <object>objects\obj_riftgame</object>
     </objects>
   </objects>
   <rooms name="rooms">

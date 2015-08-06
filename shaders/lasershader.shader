@@ -14,7 +14,7 @@ void main()
     
     v_vColor = in_Colour;
     v_vTexcoord = in_TextureCoord;
-    pos = vec3(in_Position.x*256.0, in_Position.y*256.0, in_Position.z*256.0);
+    pos = vec3(in_Position.x, in_Position.y, in_Position.z);
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord;
 varying vec3 pos;
@@ -154,20 +154,20 @@ vec4 grad4(float j, vec4 ip)
       
 float anglecheck(void)
     {
-    vec3 toplayer = normalize(vec3(player_pos.x - scanner_pos.x, player_pos.y - scanner_pos.y, player_pos.z - scanner_pos.z));
-    vec3 topoint = normalize(vec3(pos.x - scanner_pos.x, pos.y - scanner_pos.y, pos.z - scanner_pos.z));
-    return abs(dot(toplayer,topoint));
+    vec3 sightline = normalize(vec3(player_pos.x - pos.x, player_pos.y - pos.y, player_pos.z - pos.z));
+    vec3 laserline = normalize(vec3(pos.x - scanner_pos.x, pos.y - scanner_pos.y, pos.z - scanner_pos.z));
+    return 0.3+(0.11/max((1.0-abs(dot(laserline,sightline))+0.015),0.01));
     }
     
 float fade(void)
     {
     vec3 topoint = vec3(pos.x - scanner_pos.x, pos.y - scanner_pos.y, pos.z - scanner_pos.z);
-    return 1.0-log(length(topoint))/3.2;
+    return 0.11/max(length(topoint)/25.0+0.03,0.01);
     }
 
 void main( void ) 
     {
-    float change = time * 0.0000002;
+    float change = time * 0.00000017;
     vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-    gl_FragColor = vec4( tex.r,tex.g,tex.b, (0.1+anglecheck()/**fade()*snoise(vec4(pos.x,pos.y,pos.z,change))*/*0.9)*tex.a );
+    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp((0.1+anglecheck()*fade()*(0.9+0.6*snoise(vec4(pos.x,pos.y,pos.z,change)))*0.9)*tex.a,0.02,0.95) );
     }

@@ -79,6 +79,37 @@ visible = ((controller.rdy &gt; 1) and ds_list_size(controller.scan_list));
             <string>if (!visible) exit;
 
 ds_list_empty(ds_list_find_value(controller.scan_list,controller.selected_scanner));
+ds_list_destroy(ds_list_find_value(controller.scan_list,controller.selected_scanner));
+ds_list_delete(controller.scan_list,controller.selected_scanner);
+check_miniscanner_dual();
+if (ds_list_size(controller.scan_list) == 0)
+    controller.rdy = 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="46">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!visible) exit;
+
+ds_list_empty(ds_list_find_value(controller.scan_list,controller.selected_scanner));
+ds_list_destroy(ds_list_find_value(controller.scan_list,controller.selected_scanner));
 ds_list_delete(controller.scan_list,controller.selected_scanner);
 check_miniscanner_dual();
 if (ds_list_size(controller.scan_list) == 0)

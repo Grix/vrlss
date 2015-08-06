@@ -112,13 +112,13 @@ d3d_set_lighting(false);
 d3d_set_hidden(false);
 
 if ( DrawMirror )
-{
+    {
     draw_set_color(c_white);
     Rift_DrawMirrorSurface();
-}
+    }
 
 if( ShowInfo )
-{
+    {
     draw_set_alpha(0.8);
     draw_set_color(c_black);
     draw_rectangle(0, 0, 360, 200, false); 
@@ -138,12 +138,10 @@ if( ShowInfo )
     draw_text(20, 160, "Press [F3] to draw mirror screen");
     draw_text(20, 180, "Press [F4] for performance HUD");
     
-    draw_text(20, 250, "x "+string(obj_player.x));
-    draw_text(20, 270, "y "+string(obj_player.y));
     draw_text(20, 290, "X "+string(obj_player.X));
     draw_text(20, 310, "Y "+string(obj_player.Y));
     draw_text(20, 330, "Z "+string(obj_player.Z));
-}
+    }
 
 
 </string>

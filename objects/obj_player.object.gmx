@@ -42,9 +42,9 @@
             <string>Direction = 0;
 direction = 180;
 Yaw = 0;
-X = 4;
+X = 5.5;
 x = X/(3/32);
-Y = 4;
+Y = 3.9;
 Z = 8;
 y = Z/(3/32);
 RiftGame_SetCamera(obj_riftgame, id);
@@ -116,8 +116,8 @@ Yaw = degtorad(-direction+2*pi);
           <argument>
             <kind>1</kind>
             <string>var temp = Rift_GetTrackingYPR();
-y += (cos(temp[0]+Yaw)*0.15);
-x += (sin(temp[0]+Yaw)*0.15);
+y += (cos(temp[0]+Yaw)*0.2);
+x += (sin(temp[0]+Yaw)*0.2);
 </string>
           </argument>
         </arguments>
@@ -140,7 +140,7 @@ x += (sin(temp[0]+Yaw)*0.15);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Y-=0.015;
+            <string>Y-=0.02;
 </string>
           </argument>
         </arguments>
@@ -164,8 +164,8 @@ x += (sin(temp[0]+Yaw)*0.15);
           <argument>
             <kind>1</kind>
             <string>var temp = Rift_GetTrackingYPR();
-y -= (cos(temp[0]+Yaw)*0.15);
-x -= (sin(temp[0]+Yaw)*0.15);
+y -= (cos(temp[0]+Yaw)*0.2);
+x -= (sin(temp[0]+Yaw)*0.2);
 </string>
           </argument>
         </arguments>
@@ -189,8 +189,8 @@ x -= (sin(temp[0]+Yaw)*0.15);
           <argument>
             <kind>1</kind>
             <string>var temp = Rift_GetTrackingYPR();
-y += (cos(temp[0]+Yaw+pi/2)*0.15);
-x += (sin(temp[0]+Yaw+pi/2)*0.15);
+y += (cos(temp[0]+Yaw+pi/2)*0.2);
+x += (sin(temp[0]+Yaw+pi/2)*0.2);
 
 </string>
           </argument>
@@ -214,7 +214,7 @@ x += (sin(temp[0]+Yaw+pi/2)*0.15);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Y+=0.015;
+            <string>Y+=0.02;
 </string>
           </argument>
         </arguments>
@@ -238,8 +238,8 @@ x += (sin(temp[0]+Yaw+pi/2)*0.15);
           <argument>
             <kind>1</kind>
             <string>var temp = Rift_GetTrackingYPR();
-y += (cos(temp[0]+Yaw-pi/2)*0.15);
-x += (sin(temp[0]+Yaw-pi/2)*0.15);
+y += (cos(temp[0]+Yaw-pi/2)*0.2);
+x += (sin(temp[0]+Yaw-pi/2)*0.2);
 </string>
           </argument>
         </arguments>
@@ -286,6 +286,44 @@ x += (sin(temp[0]+Yaw-pi/2)*0.15);
           <argument>
             <kind>1</kind>
             <string>direction-=30;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Direction = 0;
+direction = 180;
+Yaw = 0;
+X = 5.5;
+x = X/(3/32);
+Y = 3.9;
+Z = 8;
+y = Z/(3/32);
+
+LastX = x;
+LastY = y;
+
+Yaw = 0;
+Pitch = 0;
+Roll = 0;
+Rift_Center();
 </string>
           </argument>
         </arguments>
