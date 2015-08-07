@@ -269,16 +269,16 @@ if (rdy)
         //Toggle fog
          if (keyboard_check_pressed(ord('F')) and (room == rm_3d) and rdy)
             {
-            fog = !fog;
+            fog++;
+            fog = fog%3;
             }
 
          //cycle skybox
          if (keyboard_check_pressed(ord('B')) and (room == rm_3d) and rdy)
             {
             skybox++;
-            if (skybox &gt; 2)
-                skybox = 1;
-                with (obj_environment) instance_destroy();
+            skybox = skybox%2;
+            with (obj_environment) instance_destroy();
             instance_create(0,0,obj_environment);
             }
             

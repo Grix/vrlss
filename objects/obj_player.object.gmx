@@ -42,10 +42,10 @@
             <string>Direction = 0;
 direction = 180;
 Yaw = 0;
-X = 5.5;
+X = 4;
 x = X/(3/32);
 Y = 3.9;
-Z = 8;
+Z = 12;
 y = Z/(3/32);
 RiftGame_SetCamera(obj_riftgame, id);
 
@@ -311,10 +311,10 @@ x += (sin(temp[0]+Yaw-pi/2)*0.2);
             <string>Direction = 0;
 direction = 180;
 Yaw = 0;
-X = 5.5;
+X = 4;
 x = X/(3/32);
 Y = 3.9;
-Z = 8;
+Z = 12;
 y = Z/(3/32);
 
 LastX = x;

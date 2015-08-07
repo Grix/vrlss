@@ -148,6 +148,7 @@
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\lasershader.shader</shader>
+    <shader type="GLSLES">shaders\lasershader_nonoise.shader</shader>
     <shader type="GLSLES">shaders\normalshader.shader</shader>
   </shaders>
   <fonts name="fonts">

@@ -169,5 +169,5 @@ void main( void )
     {
     float change = time * 0.00000017;
     vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp((0.1+anglecheck()*fade()*(0.9+0.6*snoise(vec4(pos.x,pos.y,pos.z,change)))*0.9)*tex.a,0.02,0.95) );
+    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp((0.1+anglecheck()*fade()*(0.9+0.6*snoise(vec4(pos.x,pos.y,pos.z,change)))*0.9)*tex.a,0.025,0.95) );
     }

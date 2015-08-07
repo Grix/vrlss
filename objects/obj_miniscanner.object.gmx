@@ -320,11 +320,11 @@ else if (controller.rdy == 4)
     
 if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &gt; y-16) and (mouse_y &lt; y+16))
     {
-    controller.tooltip = "Hold mouse button and drag to adjust the position of the scanner.#Hold shift to adjust brightness and scanning width.";
+    controller.tooltip = "Hold mouse button and drag to adjust the position of the scanner.#Hold shift to adjust brightness (mouse vertically) and scanning width (mouse horizontally).";
     }
 if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &lt; y-20) and (mouse_y &gt; y-52))
     {
-    controller.tooltip = "Hold mouse button and drag to adjust the scanning direction.#Hold shift to adjust brightness and scanning width.";
+    controller.tooltip = "Hold mouse button and drag to adjust the scanning direction.#Hold shift to adjust brightness (mouse vertically) and scanning width (mouse horizontally).";
     }
 </string>
           </argument>
