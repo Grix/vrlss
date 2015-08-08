@@ -106,7 +106,9 @@ if( Window_IsInForeground() &amp;&amp; window_has_focus() )
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Rift_SubmitLayers(1);
+            <string>//for (i = 0; i &lt; 100000; i++) {i++;i--;};
+    
+Rift_SubmitLayers(1);
 
 d3d_set_lighting(false);
 d3d_set_hidden(false);
@@ -166,12 +168,7 @@ if( ShowInfo )
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-//d3d_set_lighting(true);
-//d3d_light_define_ambient(make_color_rgb(35, 35, 35));
-//d3d_light_define_point(1, Camera.X, Camera.Y, Camera.Z, 25, c_orange);
-//d3d_light_enable(1,true);
-draw_set_color(c_white);
+            <string>draw_set_color(c_white);
 draw_set_alpha(1);
 
 camQuat = YPRToQuat(Camera.Yaw, Camera.Pitch, Camera.Roll);
@@ -179,6 +176,15 @@ d3d_start();
 
 RiftLayer_SetCamera(0, Camera.X, Camera.Y, Camera.Z, camQuat[0], camQuat[1], camQuat[2], camQuat[3]); 
 Rift_BeginFrame();
+
+//Right eye
+Rift_BeginEyeRender(0, tRiftEye.Right, true, 0, 0, 0, 0);
+    with(obj_drawable)
+        {
+        event_user(15);
+        }
+    draw_frame_3d();
+Rift_FinishEyeRender();
 
 //Draw left eye
 Rift_BeginEyeRender(0, tRiftEye.Left, true, 0, 0, 0, 0);
@@ -189,14 +195,7 @@ Rift_BeginEyeRender(0, tRiftEye.Left, true, 0, 0, 0, 0);
     draw_frame_3d();
 Rift_FinishEyeRender();
 
-//Right eye
-Rift_BeginEyeRender(0, tRiftEye.Right, true, 0, 0, 0, 0);
-    with(obj_drawable)
-        {
-        event_user(15);
-        }
-    draw_frame_3d();
-Rift_FinishEyeRender();
+
 
 </string>
           </argument>

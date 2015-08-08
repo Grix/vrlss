@@ -31,10 +31,15 @@ Init();
 
 templist = ds_list_create();
 scan_list = ds_list_create();
+draw_list = ds_list_create();
 
 u_time = shader_get_uniform(lasershader,"time");
-u_scanner_pos = shader_get_uniform(lasershader,"scanner_pos");
-u_player_pos = shader_get_uniform(lasershader,"player_pos");
+u1_scanner_pos = shader_get_uniform(lasershader,"scanner_pos");
+u1_player_pos = shader_get_uniform(lasershader,"player_pos");
+u2_scanner_pos = shader_get_uniform(lasershader_nonoise,"scanner_pos");
+u2_player_pos = shader_get_uniform(lasershader_nonoise,"player_pos");
+u3_scanner_pos = shader_get_uniform(normalshader,"scanner_pos");
+u3_player_pos = shader_get_uniform(normalshader,"player_pos");
 
 showfps = 30;
 ildaloaded=0;
@@ -47,6 +52,7 @@ alarm[1]=2;
 tooltip = "";
 frame = 0;
 framefloat = 0;
+frameprev = -1;
 rdy = 0;
 rwidth = 0;
 rheight = 1500;
@@ -161,6 +167,7 @@ check_miniscanner_dual();
 
 if (rdy)
     {
+    
     if (rdy == 1)
         {
         with (obj_miniscanner) instance_destroy();
@@ -189,7 +196,7 @@ if (rdy)
             
         if (play)
             {
-            framefloat += showfps/fps;
+            framefloat += delta_time/1000/showfps;
             frame = round(framefloat);
             }
             
@@ -200,12 +207,12 @@ if (rdy)
             }
         
         //Increase/decrease frame number
-        if (keyboard_check(vk_right) and !keyboard_check(vk_control))
+        if (keyboard_check(vk_right))
             {
             if (frame &lt; ds_list_size(ild_list)-11) frame++; //read_frame();
             framefloat = frame;
             }
-        if (keyboard_check(vk_left) and !keyboard_check(vk_control))
+        if (keyboard_check(vk_left))
             {
             if (frame) frame--; //read_frame();
             framefloat = frame;
@@ -231,8 +238,6 @@ if (rdy)
                 frame = seekto;
                 framefloat = frame;
                 }
-            if (room == rm_3d)
-                window_set_fullscreen(1);
             }
         }
     
@@ -259,7 +264,6 @@ if (rdy)
     //Check fps
     if (room == rm_3d)
         {
-        
         if (rdy and play and (fps &lt; 70))
             {
             fpswarning = 1;
@@ -282,17 +286,6 @@ if (rdy)
             instance_create(0,0,obj_environment);
             }
             
-       /* //Clamp room size
-        if (rheight &lt; 100)
-            rheight = 100;
-        if (rwidth &lt; 200)
-            rwidth = 200;
-        if (rlength &lt; 200)
-            rlength = 200;*/
-            
-        }
-    else
-        {
         }
     }
 </string>

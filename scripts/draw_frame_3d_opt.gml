@@ -5,10 +5,10 @@ draw_set_blend_mode(bm_add);
 d3d_set_culling(0);
 d3d_set_lighting(0);
 d3d_set_hidden(0);
-full_length = 8;
 
 if (controller.frameprev != controller.frame)
     {
+    full_length = 8;
     half_length = full_length/2;
     pihalf = pi/2;
     
@@ -108,7 +108,7 @@ if (controller.frameprev != controller.frame)
                 if (controller.fog) and (dual)
                     {
                     scanner_pos[0] = scanner_x;
-                    shader_set_uniform_f_array(controller.u1_scanner_pos,scanner_pos);
+                    shader_set_uniform_f_array(controller.u_scanner_pos,scanner_pos);
                     }
                 colormade = ds_list_find_value(list_id,np_pos+3);
                 
@@ -127,24 +127,22 @@ if (controller.frameprev != controller.frame)
                 ds_list_add(tempframe_list, xpnpos);
                 ds_list_add(tempframe_list, ypnpos);
                 ds_list_add(tempframe_list, zpnpos);
-                ds_list_add(tempframe_list, scanner_x);
                 }
                 
             if (dual)
                 {
-                flminussx = full_length-scanner_x;
                 trigopx -= pi;
                 cosxcalc = cos(trigopx);
-                xpnposdual = flminussx+25*sinycalc*cosxcalc;
-                xpposdual = flminussx+25*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
+                xpnposdual = full_length-scanner_x+25*sinycalc*cosxcalc;
+                xpposdual = full_length-scanner_x+25*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
                 
                 //if blanking bit is on, draw primitive
                 if !(blank)
                     {
                     if (controller.fog) 
                         {
-                        scanner_pos[0] = flminussx;
-                        shader_set_uniform_f_array(controller.u1_scanner_pos,scanner_pos);
+                        scanner_pos[0] = full_length-scanner_x;
+                        shader_set_uniform_f_array(controller.u_scanner_pos,scanner_pos);
                         }
                     colormade = ds_list_find_value(list_id,np_pos+3);
                     
@@ -163,7 +161,6 @@ if (controller.frameprev != controller.frame)
                     ds_list_add(tempframe_list, xpnposdual);
                     ds_list_add(tempframe_list, ypnpos);
                     ds_list_add(tempframe_list, zpnpos);
-                    ds_list_add(tempframe_list, flminussx);
                     }
                 }
             np_pos+=4;
@@ -196,72 +193,71 @@ for (i = 0; i < ds_list_size(controller.draw_list); i++)
         scanner_pos[0] = scanner_x;
         scanner_pos[1] = scanner_y;
         scanner_pos[2] = scanner_z//-half_length/2;
-        shader_set_uniform_f_array(controller.u1_scanner_pos,scanner_pos);
+        shader_set_uniform_f_array(controller.u_scanner_pos,scanner_pos);
         player_pos[0] = obj_player.X;
         player_pos[1] = obj_player.Y;
         player_pos[2] = obj_player.Z;
-        shader_set_uniform_f_array(controller.u1_player_pos,player_pos);
+        shader_set_uniform_f_array(controller.u_player_pos,player_pos);
         }
     else if (controller.fog == 2) 
         {
         shader_set(lasershader_nonoise);
         usealpha = alpha;
+        shader_set_uniform_f(controller.u_time,controller.time);
         scanner_pos[0] = scanner_x;
         scanner_pos[1] = scanner_y;
         scanner_pos[2] = scanner_z//-half_length/2;
-        shader_set_uniform_f_array(controller.u2_scanner_pos,scanner_pos);
+        shader_set_uniform_f_array(controller.u_scanner_pos,scanner_pos);
         player_pos[0] = obj_player.X;
         player_pos[1] = obj_player.Y;
         player_pos[2] = obj_player.Z;
-        shader_set_uniform_f_array(controller.u2_player_pos,player_pos);
+        shader_set_uniform_f_array(controller.u_player_pos,player_pos);
         }
     else
         {
         shader_set(normalshader);
-        usealpha = alpha;
-        scanner_pos[0] = scanner_x;
-        scanner_pos[1] = scanner_y;
-        scanner_pos[2] = scanner_z//-half_length/2;
-        shader_set_uniform_f_array(controller.u3_scanner_pos,scanner_pos);
-        player_pos[0] = obj_player.X;
-        player_pos[1] = obj_player.Y;
-        player_pos[2] = obj_player.Z;
-        shader_set_uniform_f_array(controller.u3_player_pos,player_pos);
+        usealpha = alpha*0.65;
         }
     
     usealpha50p = usealpha*1.5;
     
-    for (u = 10; u < ds_list_size(tempframe_list); u+= 9)
-        {
+    for (u = 10; u < ds_list_size(tempframe_list); u+= 8)
+        {   
+        line = ds_list_find_value(tempframe_list,u);
+        colormade = ds_list_find_value(tempframe_list,u+1);
+        xppos = ds_list_find_value(tempframe_list,u+2);
+        yppos = ds_list_find_value(tempframe_list,u+3);
+        zppos = ds_list_find_value(tempframe_list,u+4);
+            
+        //if blanking bit is off, draw primitive
         if (controller.fog) and (dual)
             {
-            scanner_pos[0] = ds_list_find_value(tempframe_list,u+8);
-            shader_set_uniform_f_array(controller.u1_scanner_pos,scanner_pos);
+            scanner_pos[0] = scanner_x;
+            shader_set_uniform_f_array(controller.u_scanner_pos,scanner_pos);
             }
+        colormade = ds_list_find_value(list_id,np_pos+3);
             
-        if (ds_list_find_value(tempframe_list,u))
+        if (line)
             {
-            draw_set_colour(ds_list_find_value(tempframe_list,u+1));
+            draw_set_colour(colormade);
             draw_set_alpha(usealpha50p);
             d3d_primitive_begin_texture(pr_linelist,background_get_texture(bck_smoke));
-                d3d_vertex_texture( ds_list_find_value(tempframe_list,u+8),scanner_y,scanner_z,0,0);
-                d3d_vertex_texture( ds_list_find_value(tempframe_list,u+2),
-                                    ds_list_find_value(tempframe_list,u+3),
-                                    ds_list_find_value(tempframe_list,u+4),0,0);
+                d3d_vertex_texture(scanner_x,scanner_y,scanner_z,0,0);
+                d3d_vertex_texture(xppos,yppos,zppos,0,0);
+                show_debug_message(string(colormade)+" "+string(scanner_x)+" "+string(scanner_y)+" "+string(scanner_z)+" "+string(xppos)+" "+string(yppos)+" "+string(zppos))
             d3d_primitive_end();
             }
         else
             {
-            draw_set_colour(ds_list_find_value(tempframe_list,u+1));
+            xpnpos = ds_list_find_value(tempframe_list,u+5);
+            zpnpos = ds_list_find_value(tempframe_list,u+6);
+            ypnpos = ds_list_find_value(tempframe_list,u+7);
+            draw_set_colour(colormade);
             draw_set_alpha(usealpha);
             d3d_primitive_begin_texture(pr_trianglelist,background_get_texture(bck_smoke));
-                d3d_vertex_texture( ds_list_find_value(tempframe_list,u+8),scanner_y,scanner_z,0,0);
-                d3d_vertex_texture( ds_list_find_value(tempframe_list,u+2),
-                                    ds_list_find_value(tempframe_list,u+3),
-                                    ds_list_find_value(tempframe_list,u+4),0,0);
-                d3d_vertex_texture( ds_list_find_value(tempframe_list,u+5),
-                                    ds_list_find_value(tempframe_list,u+6),
-                                    ds_list_find_value(tempframe_list,u+7),0,0);
+                d3d_vertex_texture(scanner_x,scanner_y,scanner_z,0,0);
+                d3d_vertex_texture(xppos,yppos,zppos,0,0);
+                d3d_vertex_texture(xpnpos,ypnpos,zpnpos,0,0);
             d3d_primitive_end();
             }
         }

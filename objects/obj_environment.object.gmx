@@ -29,7 +29,12 @@
 
 if (controller.skybox == 0)
     {
-    
+    skybox_floor = sprite_get_texture(spr_sky2_floor,0);
+    skybox_top = sprite_get_texture(spr_sky2_top,0);
+    skybox_right = sprite_get_texture(spr_sky2_right,0);
+    skybox_left = sprite_get_texture(spr_sky2_left,0);
+    skybox_back = sprite_get_texture(spr_sky2_back,0);
+    skybox_front = sprite_get_texture(spr_sky2_front,0);
     }
 else if (controller.skybox == 1)
     {
@@ -39,15 +44,6 @@ else if (controller.skybox == 1)
     skybox_left = sprite_get_texture(spr_sky1_left,0);
     skybox_back = sprite_get_texture(spr_sky1_back,0);
     skybox_front = sprite_get_texture(spr_sky1_front,0);
-    }
-else if (controller.skybox == 2)
-    {
-    skybox_floor = sprite_get_texture(spr_sky2_floor,0);
-    skybox_top = sprite_get_texture(spr_sky2_top,0);
-    skybox_right = sprite_get_texture(spr_sky2_right,0);
-    skybox_left = sprite_get_texture(spr_sky2_left,0);
-    skybox_back = sprite_get_texture(spr_sky2_back,0);
-    skybox_front = sprite_get_texture(spr_sky2_front,0);
     }
 /*else if (controller.skybox == 3)
     {

@@ -19,7 +19,6 @@ void main()
 //######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord;
 varying vec3 pos;
 varying vec4 v_vColor;
-uniform float time;
 uniform vec3 scanner_pos;
 uniform vec3 player_pos;
       
@@ -38,7 +37,6 @@ float fade(void)
 
 void main( void ) 
     {
-    float change = time * 0.00000017;
     vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp(anglecheck()*fade()*0.5*tex.a,0.025,0.95) );
+    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp(anglecheck()*fade()*0.78*tex.a,0.025,0.95) );
     }

@@ -73,6 +73,7 @@
     <script>scripts\check_miniscanner_dual.gml</script>
     <script>scripts\draw_info.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
+    <script>scripts\draw_frame_3d_old.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
     <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\d3d_model_load_ext.gml</script>
@@ -150,6 +151,7 @@
     <shader type="GLSLES">shaders\lasershader.shader</shader>
     <shader type="GLSLES">shaders\lasershader_nonoise.shader</shader>
     <shader type="GLSLES">shaders\normalshader.shader</shader>
+    <shader type="GLSLES">shaders\normalshader_old.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_info</font>
