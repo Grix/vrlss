@@ -23,9 +23,8 @@
     </datafile>
   </datafiles>
   <NewExtensions>
-    <extension index="0">extensions\vrlss_oldproject</extension>
-    <extension index="1">extensions\RiftExt</extension>
-    <extension index="2">extensions\Saudio Plus</extension>
+    <extension index="0">extensions\RiftExt</extension>
+    <extension index="1">extensions\Saudio Plus</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -75,6 +74,7 @@
     <script>scripts\draw_frame_2d.gml</script>
     <script>scripts\draw_frame_3d_old.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
+    <script>scripts\draw_frame_3d_nohmd.gml</script>
     <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\d3d_model_load_ext.gml</script>
     <script>scripts\export_show.gml</script>
@@ -146,6 +146,7 @@
       <script>scripts\string_split.gml</script>
       <script>scripts\string_split_ext.gml</script>
     </scripts>
+    <script>scripts\move_keyboardcontrol.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\lasershader.shader</shader>

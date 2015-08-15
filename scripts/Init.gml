@@ -2,7 +2,7 @@
 RiftSystem_Init();
 
 global.IsRiftInitialized = false;
-global.IsDebugMode = true;
+global.IsDebugMode = false;
 
 enum tRiftEye
 {

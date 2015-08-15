@@ -38,5 +38,5 @@ float fade(void)
 void main( void ) 
     {
     vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp(anglecheck()*fade()*0.78*tex.a,0.025,0.95) );
+    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp(anglecheck()*fade()*0.78*tex.a,0.04,0.95) );
     }

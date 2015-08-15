@@ -15,6 +15,7 @@ void main()
     v_vColor = in_Colour;
     v_vTexcoord = in_TextureCoord;
     pos = vec3(in_Position.x, in_Position.y, in_Position.z);
+    
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord;
 varying vec3 pos;
@@ -169,5 +170,5 @@ void main( void )
     {
     float change = time * 0.00000017;
     vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp((0.1+anglecheck()*fade()*(0.9+0.6*snoise(vec4(pos.x,pos.y,pos.z,change)))*0.9)*tex.a,0.025,0.95) );
+    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp((0.1+anglecheck()*fade()*(0.9+0.6*snoise(vec4(pos.x*0.7,pos.y*0.7,pos.z*0.7,change)))*0.9)*tex.a,0.04,0.95) );
     }

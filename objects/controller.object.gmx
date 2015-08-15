@@ -173,8 +173,9 @@ if (rdy)
         with (obj_miniscanner) instance_destroy();
         
         //Check audio sync
-        if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - frame) &gt; 3 or (real(saud_position(audio))/1000*showfps - frame) &lt; -3))) 
+        if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - framefloat) &gt; 3 or (real(saud_position(audio))/1000*showfps - framefloat) &lt; -3))) 
             {
+            show_debug_message(string(framefloat) +"  "+string(frame) + "   " + string(real(saud_position(audio))/1000*showfps))
             frame = floor(real(saud_position(audio))/1000*showfps);
             framefloat = frame;
             }
@@ -196,7 +197,7 @@ if (rdy)
             
         if (play)
             {
-            framefloat += delta_time/1000/showfps;
+            framefloat += delta_time/1000000*showfps;
             frame = round(framefloat);
             }
             
@@ -313,6 +314,7 @@ if (rdy)
             <string>if (room == rm_3d)
     {
     rdy = 1;
+    init3D();
     }
 else if (room == rm_2d)
     {
@@ -382,7 +384,7 @@ else if (room == rm_2d)
         draw_sprite(spr_eye,1,50,300);
         
     draw_info();
-}
+    }
 </string>
           </argument>
         </arguments>

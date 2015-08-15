@@ -55,3 +55,6 @@ else
         draw_text(20,20,"Parsing file: "+string(floor(i/1028))+"/"+string(floor(file_size/1028))+" kB, "+string(floor(i/file_size*100))+"%, frame number "+string(frame_number));
         }
     }
+
+draw_set_halign(fa_left);
+draw_set_font(fnt_info);

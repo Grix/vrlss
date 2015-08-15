@@ -38,7 +38,7 @@ else
     RiftLayer_SetClippingPlane(0,0.01,600);
 
     Camera = -1;
-    RoomModel = instance_create(0, 0, obj_environment);
+    //RoomModel = instance_create(0, 0, obj_environment);
     DummySurface = -1;
     
     global.MouseX = 0;
@@ -74,17 +74,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if( Window_IsInForeground() &amp;&amp; window_has_focus() )
-{
-    global.MouseX = window_mouse_get_x() - (view_xport[0] + view_wview[0]/2);
-    global.MouseY = window_mouse_get_y()  - (view_yport[0] + view_hview[0]/2);
-    window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
-
-    //Window_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
-    window_set_cursor(cr_none);
-}
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -107,7 +97,7 @@ if( Window_IsInForeground() &amp;&amp; window_has_focus() )
           <argument>
             <kind>1</kind>
             <string>//for (i = 0; i &lt; 100000; i++) {i++;i--;};
-    
+
 Rift_SubmitLayers(1);
 
 d3d_set_lighting(false);
@@ -127,9 +117,7 @@ if( ShowInfo )
     
     draw_set_alpha(1.0);
     draw_set_color(c_white);
-    draw_set_halign(fa_left);
     draw_text(400, 10, "FPS: "+string(fps_real));
-    draw_set_halign(fa_left);
     draw_text(20, 20, "Press [Space] to go play/pause");
     draw_text(20, 40, "Press [Tab] to go back to menu");
     draw_text(20, 60, "Press [R] to recenter the Rift");
@@ -186,6 +174,8 @@ Rift_BeginEyeRender(0, tRiftEye.Right, true, 0, 0, 0, 0);
     draw_frame_3d();
 Rift_FinishEyeRender();
 
+surface_getpixel(global.DummySurface, 0, 0);
+
 //Draw left eye
 Rift_BeginEyeRender(0, tRiftEye.Left, true, 0, 0, 0, 0);
     with(obj_drawable)
@@ -195,6 +185,7 @@ Rift_BeginEyeRender(0, tRiftEye.Left, true, 0, 0, 0, 0);
     draw_frame_3d();
 Rift_FinishEyeRender();
 
+surface_getpixel(global.DummySurface, 0, 0);
 
 
 </string>
@@ -291,29 +282,6 @@ Rift_SetPerformanceHUD(PerfHud);
             <kind>1</kind>
             <string>Rift_Center();
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>game_end();
 </string>
           </argument>
         </arguments>

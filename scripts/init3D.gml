@@ -1,7 +1,8 @@
 /// Initialize our 3D world.
+d3d_start();
 //d3d_set_culling(true); 
 //d3d_set_hidden(true);
-d3d_set_shading(true);
+/*d3d_set_shading(true);
 
 d3d_set_zwriteenable(1);
 draw_set_alpha_test(true);
@@ -11,7 +12,7 @@ draw_enable_alphablend(true);
 d3d_light_define_ambient(c_black);
 texture_set_interpolation(true);
 texture_set_blending(true);
-texture_set_repeat(true);
+texture_set_repeat(true);*/
 
 //display_reset(8,0); //8x AA + VSYNC 
 //OVR_enableTextureFiltering();

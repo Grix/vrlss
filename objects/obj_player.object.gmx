@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>-1</solid>
   <visible>-1</visible>
-  <depth>-15</depth>
+  <depth>15</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -39,14 +39,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Direction = 0;
+            <string>
+Direction = 0;
 direction = 180;
-Yaw = 0;
+pitch = 0;
 X = 4;
 x = X/(3/32);
-Y = 3.9;
+Y = 4.2;
 Z = 12;
 y = Z/(3/32);
+z = Z;
 RiftGame_SetCamera(obj_riftgame, id);
 
 LastX = x;
@@ -56,6 +58,16 @@ Yaw = 0;
 Pitch = 0;
 Roll = 0;
 
+if (!global.IsRiftInitialized)
+    {
+    x = 4;
+    X = 4;
+    y = 12;
+    Y = 12;
+    z = 4.2;
+    Z = 4.2;
+    direction = 90;
+    }
 </string>
           </argument>
         </arguments>
@@ -78,27 +90,50 @@ Roll = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ( place_meeting(x, y, obj_collideable) )
-{
-    x = LastX;
-    y = LastY;
-}
+            <string>if (global.IsRiftInitialized)
+    {
+    if( Window_IsInForeground() &amp;&amp; window_has_focus() )
+        {
+        global.MouseX = window_mouse_get_x() - (view_xport[0] + view_wview[0]/2);
+        global.MouseY = window_mouse_get_y()  - (view_yport[0] + view_hview[0]/2);
+        window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
+    
+        //Window_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
+        window_set_cursor(cr_none);
+        }
+    
+    X = x*(3/32);
+    Z = y*(3/32);
+    pitch += (global.MouseY/15);
+    direction -= (global.MouseX/15);
+    Yaw = degtorad(-direction+2*pi);
+    Pitch = degtorad(-pitch);
+    }
 else
-{
-    LastX = x;
-    LastY = y;
-}
+    {
+    X = x;
+    Y = y;
+    
+    global.MouseX = window_mouse_get_x() - (view_xport[0] + view_wview[0]/2);
+    global.MouseY = window_mouse_get_y()  - (view_yport[0] + view_hview[0]/2);
+    window_mouse_set(view_xport[0] + view_wview[0]/2, view_yport[0] + view_hview[0]/2);
 
-X = x*(3/32);
-Z = y*(3/32);
-direction -= (global.MouseX/15);
-Yaw = degtorad(-direction+2*pi);
+    //Window_LockCursor( window_get_x(), window_get_y(), window_get_width(), window_get_height() );
+    window_set_cursor(cr_none);
+    
+    direction -= global.MouseX/15;
+    pitch += global.MouseY/15;
+    Yaw = degtorad(-direction+2*pi);
+    Pitch = degtorad(-pitch);
+    }
+    
+move_keyboardcontrol();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="5" enumb="87">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -115,131 +150,13 @@ Yaw = degtorad(-direction+2*pi);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var temp = Rift_GetTrackingYPR();
-y += (cos(temp[0]+Yaw)*0.2);
-x += (sin(temp[0]+Yaw)*0.2);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="86">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>Y-=0.02;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="83">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var temp = Rift_GetTrackingYPR();
-y -= (cos(temp[0]+Yaw)*0.2);
-x -= (sin(temp[0]+Yaw)*0.2);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var temp = Rift_GetTrackingYPR();
-y += (cos(temp[0]+Yaw+pi/2)*0.2);
-x += (sin(temp[0]+Yaw+pi/2)*0.2);
+            <string>if (!global.IsRiftInitialized) 
+    {
+    //my_matrix = matrix_build(0, 0, 0, 90, 0, 0, 1, 1, 1);
+    //matrix_set(matrix_world, my_matrix);
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="67">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>Y+=0.02;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var temp = Rift_GetTrackingYPR();
-y += (cos(temp[0]+Yaw-pi/2)*0.2);
-x += (sin(temp[0]+Yaw-pi/2)*0.2);
+    d3d_set_projection_ext(X, Y, Z, X + cos(Yaw), Y + sin(Yaw), Z + sin(Pitch), 0, 0, 1, 80, view_wview[0] / view_hview[0], 0.01, 600);
+    }
 </string>
           </argument>
         </arguments>

@@ -25,11 +25,11 @@ uniform vec3 player_pos;
 float fade(void)
     {
     vec3 topoint = vec3(pos.x - scanner_pos.x, pos.y - scanner_pos.y, pos.z - scanner_pos.z);
-    return 0.2/max(length(topoint)/25.0+0.03,0.01);
+    return 0.15/max(length(topoint)/25.0+0.025,0.01);
     }
 
 void main( void ) 
     {
     vec4 tex = texture2D(gm_BaseTexture,v_vTexcoord) * v_vColor;
-    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp(fade()*tex.a,0.025,0.95) );
+    gl_FragColor = vec4( tex.r,tex.g,tex.b, clamp(fade()*tex.a,0.03,0.95) );
     }

@@ -36,7 +36,7 @@ if ( global.HasRift )
         if ( global.IsDebugMode )
             { show_message(RiftExtError_GetLast()); }
         
-        game_end();
+        instance_destroy();
     }
     
     return result;
