@@ -116,7 +116,7 @@ skybox = 1;
           <argument>
             <kind>1</kind>
             <string>
-rdy = 2;
+rdy = 1;
 check_miniscanner_dual();
 </string>
           </argument>
@@ -373,16 +373,29 @@ else if (room == rm_2d)
     {
     draw_clear(c_black);
     
-    if (rdy == 1)
+    if (rdy)
         {
+        draw_set_colour(c_white);
+        draw_line(0,300,600,300);
+        draw_line(300,0,300,600);
+        draw_set_font(fnt_info);
+        draw_text(10,10,"Show preview");
+        draw_text(310,10,"Scanner arrangement: Seen from front");
+        draw_text(10,310,"Scanner arrangement: Seen from top");
+        draw_text(310,310,"Scanner arrangement: Seen from side");
+        
+        //topleft
         for( i=0; i&lt;=(ds_list_size(scan_list)-1); i++)
             draw_frame_2d(i);
-        }
-    else if (rdy == 3)
-        draw_sprite(spr_eye,0,300,550);
-    else if (rdy == 4)
-        draw_sprite(spr_eye,1,50,300);
+            
+        //topright
+            
+        //bottomleft
+        draw_sprite(spr_eye,0,150,560);
         
+        //bottomright
+        draw_sprite(spr_eye,1,340,450);
+        }
     draw_info();
     }
 </string>
