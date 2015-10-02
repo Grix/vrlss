@@ -167,34 +167,31 @@ check_miniscanner_dual();
 
 if (rdy)
     {
-    
-    if (rdy == 1)
+    //Check audio sync
+    if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - framefloat) &gt; 3 or (real(saud_position(audio))/1000*showfps - framefloat) &lt; -3))) 
         {
-        with (obj_miniscanner) instance_destroy();
+        show_debug_message(string(framefloat) +"  "+string(frame) + "   " + string(real(saud_position(audio))/1000*showfps))
+        frame = floor(real(saud_position(audio))/1000*showfps);
+        framefloat = frame;
+        }
         
-        //Check audio sync
-        if (rdy and play and songloaded and (((real(saud_position(audio))/1000*showfps - framefloat) &gt; 3 or (real(saud_position(audio))/1000*showfps - framefloat) &lt; -3))) 
+    //Play/pause
+    if (keyboard_check_pressed(vk_space))
+        {
+        if (saud_is_playing(audio))
             {
-            show_debug_message(string(framefloat) +"  "+string(frame) + "   " + string(real(saud_position(audio))/1000*showfps))
-            frame = floor(real(saud_position(audio))/1000*showfps);
-            framefloat = frame;
+            saud_stop(audio);
             }
-            
-        //Play/pause
-        if (keyboard_check_pressed(vk_space))
+        else
             {
-            if (saud_is_playing(audio))
-                {
-                saud_stop(audio);
-                }
-            else
-                {
-                saud_seek(floor(frame*1000/showfps),audio);
-                }
-            framefloat = frame;
-            play = !play;
+            saud_seek(floor(frame*1000/showfps),audio);
             }
-            
+        framefloat = frame;
+        play = !play;
+        }
+        
+    if (ildaloaded)
+        {
         if (play)
             {
             framefloat += delta_time/1000000*showfps;
@@ -206,6 +203,7 @@ if (rdy)
             frame = ds_list_size(ild_list)-11;
             framefloat = frame;
             }
+        
         
         //Increase/decrease frame number
         if (keyboard_check(vk_right))
@@ -240,26 +238,27 @@ if (rdy)
                 framefloat = frame;
                 }
             }
-        }
-    
-    //Toggle 3D/2D
-    if (keyboard_check_pressed(vk_tab))
-        {
-        if (room == rm_2d) 
+        
+        
+        //Toggle 3D/2D
+        if (keyboard_check_pressed(vk_tab))
             {
-            //if (cango3d)
-                room_goto_next(); 
+            if (room == rm_2d) 
+                {
+                //if (cango3d)
+                    room_goto_next(); 
+                }
+            else room_goto_previous();
             }
-        else room_goto_previous();
-        }
-    
-    
-    //screenshot
-    if (keyboard_check_pressed(ord('M')))
-        {
-        ssfilename = get_save_filename_ext("","","","Save screenshot");
-        if ((ssfilename != "") and !is_undefined(ssfilename))
-            screen_save(ssfilename);
+        
+        
+        //screenshot
+        if (keyboard_check_pressed(ord('M')))
+            {
+            ssfilename = get_save_filename_ext("","","","Save screenshot");
+            if ((ssfilename != "") and !is_undefined(ssfilename))
+                screen_save(ssfilename);
+            }
         }
     
     //Check fps
@@ -379,8 +378,8 @@ else if (room == rm_2d)
         draw_line(0,300,600,300);
         draw_line(300,0,300,600);
         draw_set_font(fnt_info);
-        draw_text(10,10,"Show preview");
-        draw_text(310,10,"Scanner arrangement: Seen from front");
+        draw_text(10,275,"Show preview");
+        draw_text(310,275,"Scanner arrangement: Seen from front");
         draw_text(10,310,"Scanner arrangement: Seen from top");
         draw_text(310,310,"Scanner arrangement: Seen from side");
         

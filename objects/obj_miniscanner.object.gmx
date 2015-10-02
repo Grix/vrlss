@@ -53,7 +53,7 @@ mode = 0;
             <kind>1</kind>
             <string>
 dual = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),0);
-if (mode == 2)
+/*if (mode == 2)
     {
     if (master == 1)
         {
@@ -106,7 +106,7 @@ else if (mode == 4)
         alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
         angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
         }
-    }
+    }*/
     
 rdy = 1;
 </string>
@@ -319,11 +319,37 @@ else if (mode == 4)
         }
     }
     
-/*if (moving)
+if (moving)
     {
-    with (controller)
-        check_miniscanner_dual();
-    }*/
+    if (master == 1)
+        {
+        if (mode == 2)
+            {
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),1,(x-300)*2);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),2,(300-y)*2);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),3,xrad);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),4,yrad);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),6,angle);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),5,alpha);
+            }
+        else if (mode == 3)
+            {
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),1,x*2);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),7,(y-300)*2);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),3,xrad);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),6,angle);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),5,alpha);
+            }
+        else if (mode == 4)
+            {
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),7,(600-x)*2);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),2,(600-y)*2);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),4,yrad);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),6,angle);
+            ds_list_replace(ds_list_find_value(controller.scan_list,scanner),5,alpha);
+            }
+        }
+    }
     
 if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &gt; y-16) and (mouse_y &lt; y+16))
     {
@@ -356,35 +382,6 @@ if ((mouse_x &gt; x-16) and (mouse_x &lt; x+16) and (mouse_y &lt; y-20) and (mou
           <argument>
             <kind>1</kind>
             <string>moving = 0;
-
-if (master == 1)
-    {
-    if (mode == 2)
-        {
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),1,(x-300)*2);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),2,(300-y)*2);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),3,xrad);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),4,yrad);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),6,angle);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),5,alpha);
-        }
-    else if (mode == 3)
-        {
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),1,x*2);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),7,(y-300)*2);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),3,xrad);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),6,angle);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),5,alpha);
-        }
-    else if (mode == 4)
-        {
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),7,(600-x)*2);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),2,(600-y)*2);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),4,yrad);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),6,angle);
-        ds_list_replace(ds_list_find_value(controller.scan_list,scanner),5,alpha);
-        }
-    }
 </string>
           </argument>
         </arguments>
@@ -462,9 +459,69 @@ mouse_yprevious = mouse_y;
     if (master)
         {
         draw_circle(x,y-35,15,1);
-        draw_sprite(spr_angle,controller.rdy-2,x,y-35);
+        draw_sprite(spr_angle,mode-2,x,y-35);
         }
     
+    if (master == 1)
+        {
+        if (mode == 2)
+            {
+            x = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1)/2+300;
+            y = 300-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2)/2;
+            xrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+            yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+            angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
+            alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+            }
+        else if (mode == 3)
+            {
+            x = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1)/2;
+            y = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),7)/2+300;
+            xrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+            yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+            angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
+            alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+            }
+        else if (mode == 4)
+            {
+            x = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),7)/2;
+            y = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2)/2;
+            xrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+            yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+            angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
+            alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+            }
+        }
+    else
+        {
+        if (mode == 2)
+            {
+            x = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1)/2;
+            y = 300-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2)/2;
+            xrad = -ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+            yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+            angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
+            alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+            }
+        else if (mode == 3)
+            {
+            x = 300-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),1)/2;
+            y = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),7)/2+300;
+            xrad = -ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+            yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+            angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
+            alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+            }
+        else if (mode == 4)
+            {
+            x = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),7)/2;
+            y = 600-ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),2)/2;
+            xrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),3);
+            yrad = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),4);
+            angle = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),6);
+            alpha = ds_list_find_value(ds_list_find_value(controller.scan_list,scanner),5);
+            }
+        }
     
     if (mode == 2)
         {    
@@ -479,8 +536,7 @@ mouse_yprevious = mouse_y;
         divcm = cos(yrad-angle/2);
         if (divcm == 0)
             divcm = 0.000001;
-        
-    
+            
         xpos1 = x+25*(      sin(yrad+pi/2+angle/2)*cos(-xrad+pi/2+angle/2))/divcp;
         zpos1 = y+35+20*(   cos(yrad+pi/2+angle/2)); 
         xpos2 = x+25*(      sin(yrad+pi/2-angle/2)*cos(-xrad+pi/2+angle/2))/divcm;

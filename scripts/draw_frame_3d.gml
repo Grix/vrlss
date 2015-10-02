@@ -197,9 +197,10 @@ for (i = 0; i < ds_list_size(controller.draw_list); i++)
         scanner_pos[1] = scanner_y;
         scanner_pos[2] = scanner_z//-half_length/2;
         shader_set_uniform_f_array(controller.u1_scanner_pos,scanner_pos);
-        player_pos[0] = obj_player.X;
-        player_pos[1] = obj_player.Y;
-        player_pos[2] = obj_player.Z;
+        global.rift_pos = Rift_GetTrackingPos();
+        player_pos[0] = obj_player.X//+global.rift_pos[0];
+        player_pos[1] = obj_player.Y//+global.rift_pos[1];
+        player_pos[2] = obj_player.Z//+global.rift_pos[2];
         shader_set_uniform_f_array(controller.u1_player_pos,player_pos);
         }
     else if (controller.fog == 2) 
@@ -210,9 +211,10 @@ for (i = 0; i < ds_list_size(controller.draw_list); i++)
         scanner_pos[1] = scanner_y;
         scanner_pos[2] = scanner_z//-half_length/2;
         shader_set_uniform_f_array(controller.u2_scanner_pos,scanner_pos);
-        player_pos[0] = obj_player.X;
-        player_pos[1] = obj_player.Y;
-        player_pos[2] = obj_player.Z;
+        global.rift_pos = Rift_GetTrackingPos();
+        player_pos[0] = obj_player.X//+global.rift_pos[0];
+        player_pos[1] = obj_player.Y//+global.rift_pos[1];
+        player_pos[2] = obj_player.Z//+global.rift_pos[2];
         shader_set_uniform_f_array(controller.u2_player_pos,player_pos);
         }
     else
@@ -223,9 +225,10 @@ for (i = 0; i < ds_list_size(controller.draw_list); i++)
         scanner_pos[1] = scanner_y;
         scanner_pos[2] = scanner_z//-half_length/2;
         shader_set_uniform_f_array(controller.u3_scanner_pos,scanner_pos);
-        player_pos[0] = obj_player.X;
-        player_pos[1] = obj_player.Y;
-        player_pos[2] = obj_player.Z;
+        global.rift_pos = Rift_GetTrackingPos();
+        player_pos[0] = obj_player.X//+global.rift_pos[0];
+        player_pos[1] = obj_player.Y//+global.rift_pos[1];
+        player_pos[2] = obj_player.Z//+global.rift_pos[2];
         shader_set_uniform_f_array(controller.u3_player_pos,player_pos);
         }
     

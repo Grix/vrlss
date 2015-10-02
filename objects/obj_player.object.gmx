@@ -104,7 +104,7 @@ if (!global.IsRiftInitialized)
     
     X = x*(3/32);
     Z = y*(3/32);
-    pitch += (global.MouseY/15);
+    //pitch += (global.MouseY/15);
     direction -= (global.MouseX/15);
     Yaw = degtorad(-direction+2*pi);
     Pitch = degtorad(-pitch);
@@ -122,7 +122,7 @@ else
     window_set_cursor(cr_none);
     
     direction -= global.MouseX/15;
-    pitch += global.MouseY/15;
+    //pitch += global.MouseY/15;
     Yaw = degtorad(-direction+2*pi);
     Pitch = degtorad(-pitch);
     }

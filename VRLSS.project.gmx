@@ -36,8 +36,6 @@
     <sprite>sprites\spr_delete</sprite>
     <sprite>sprites\spr_help</sprite>
     <sprite>sprites\spr_dualbutton</sprite>
-    <sprite>sprites\spr_compbutton</sprite>
-    <sprite>sprites\spr_viewbutton</sprite>
     <sprite>sprites\spr_audiobutton</sprite>
     <sprite>sprites\spr_3dbutton</sprite>
     <sprite>sprites\spr_miniscanner</sprite>
@@ -75,7 +73,6 @@
     <script>scripts\draw_frame_3d_old.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
     <script>scripts\draw_frame_3d_nohmd.gml</script>
-    <script>scripts\draw_text_stroke.gml</script>
     <script>scripts\d3d_model_load_ext.gml</script>
     <script>scripts\export_show.gml</script>
     <script>scripts\playerMovement.gml</script>
@@ -175,8 +172,6 @@
       <object>objects\obj_deletescanner</object>
       <object>objects\obj_help</object>
       <object>objects\obj_audiobutton</object>
-      <object>objects\obj_compbutton</object>
-      <object>objects\obj_viewbutton</object>
       <object>objects\obj_dualbutton</object>
       <object>objects\obj_loadildbutton</object>
     </objects>

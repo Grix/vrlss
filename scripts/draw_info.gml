@@ -22,25 +22,17 @@ if (rdy)
         
         tooltip = "";
         
+        draw_text(630,30,"Press 'Help' for controls and manual!"+
+                                "##Frame number "+string(frame)+"/"+string(ds_list_size(ild_list)-11)+
+                                "#Time: "+ms2time(frame)+" / "+ms2time(ds_list_size(ild_list)-11)+
+                                "##FPS: " + string(fps));
         if (!ildaloaded)
-            {
-            draw_text_stroke(630,30,"Read the readme for controls and manual!"+
-            "##No ilda file loaded");
-            }
-        else if (rdy == 1)
-            {
-            draw_text_stroke(630,30,"Read the readme for controls and manual!"+
-            "##Frame number "+string(frame)+"/"+string(ds_list_size(ild_list)-11)+
-            "#Time: "+ms2time(frame)+" / "+ms2time(ds_list_size(ild_list)-11)+
-            "##FPS: " + string(fps));
-            }
-        else if (rdy > 1)
-            {
-            draw_text_stroke(630,30,"Read the readme for controls and manual!"+
-            "##ILDA scanner number: "+string( ds_list_find_value(ds_list_find_value(scan_list,selected_scanner),8) )+
-            "#ILDA format: "+string( ds_list_find_value(ds_list_find_value(scan_list,selected_scanner),9) )+
-            "#Number of frames: "+string( ds_list_size(ds_list_find_value(scan_list,selected_scanner))-10 ));
-            }         
+            draw_text(630,150,"No ilda file loaded");
+        else
+            draw_text(630,150,"ILDA scanner number: "+string( ds_list_find_value(ds_list_find_value(scan_list,selected_scanner),8) )+
+                                    "#ILDA format: "+string( ds_list_find_value(ds_list_find_value(scan_list,selected_scanner),9) )+
+                                    "#Number of frames: "+string( ds_list_size(ds_list_find_value(scan_list,selected_scanner))-10 ));
+               
               
         draw_set_font(fnt_info);
         draw_set_color(c_ltgray); 
