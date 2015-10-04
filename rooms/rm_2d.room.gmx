@@ -2,9 +2,9 @@
 <room>
   <caption></caption>
   <width>900</width>
-  <height>600</height>
-  <vsnap>32</vsnap>
-  <hsnap>32</hsnap>
+  <height>512</height>
+  <vsnap>16</vsnap>
+  <hsnap>4</hsnap>
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
@@ -52,12 +52,12 @@
   </views>
   <instances>
     <instance objName="controller" x="128" y="96" name="inst_1D3B950D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_3dbutton" x="614" y="536" name="inst_F1752DE7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_loadildbutton" x="608" y="448" name="inst_55995C4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_audiobutton" x="608" y="480" name="inst_D0614B7D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dualbutton" x="608" y="352" name="inst_887154E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_deletescanner" x="608" y="384" name="inst_DAF01F3D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_help" x="608" y="288" name="inst_0C2A9275" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_3dbutton" x="612" y="464" name="inst_F1752DE7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_loadildbutton" x="608" y="384" name="inst_55995C4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_audiobutton" x="608" y="416" name="inst_D0614B7D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dualbutton" x="608" y="304" name="inst_887154E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_deletescanner" x="608" y="336" name="inst_DAF01F3D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_help" x="608" y="256" name="inst_0C2A9275" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -33,6 +33,12 @@ templist = ds_list_create();
 scan_list = ds_list_create();
 draw_list = ds_list_create();
 
+setup_surf1 = surface_create(512,512);
+setup_surf2 = surface_create(512,512);
+setup_surf3 = surface_create(512,512);
+setup_surf4 = surface_create(512,512);
+//surface_create(1024,1024);
+
 u_time = shader_get_uniform(lasershader,"time");
 u1_scanner_pos = shader_get_uniform(lasershader,"scanner_pos");
 u1_player_pos = shader_get_uniform(lasershader,"player_pos");
@@ -46,6 +52,7 @@ ildaloaded=0;
 fog = 1;
 cango3d = 0;
 time = 0;
+refresh_setup_surf = 1;
 
 alarm[1]=2;
 
@@ -374,14 +381,16 @@ else if (room == rm_2d)
     
     if (rdy)
         {
+        draw_setup();
+        
         draw_set_colour(c_white);
-        draw_line(0,300,600,300);
-        draw_line(300,0,300,600);
+        draw_line(0,256,512,256);
+        draw_line(256,0,256,512);
         draw_set_font(fnt_info);
-        draw_text(10,275,"Show preview");
-        draw_text(310,275,"Scanner arrangement: Seen from front");
-        draw_text(10,310,"Scanner arrangement: Seen from top");
-        draw_text(310,310,"Scanner arrangement: Seen from side");
+        draw_text(10,230,"Show preview");
+        draw_text(266,230,"Scanner arrangement: Seen from front");
+        draw_text(10,266,"Scanner arrangement: Seen from top");
+        draw_text(266,266,"Scanner arrangement: Seen from side");
         
         //topleft
         for( i=0; i&lt;=(ds_list_size(scan_list)-1); i++)
@@ -390,10 +399,10 @@ else if (room == rm_2d)
         //topright
             
         //bottomleft
-        draw_sprite(spr_eye,0,150,560);
+        draw_sprite(spr_eye,0,124,470);
         
         //bottomright
-        draw_sprite(spr_eye,1,340,450);
+        draw_sprite(spr_eye,1,286,388);
         }
     draw_info();
     }

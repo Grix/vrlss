@@ -11,10 +11,10 @@ if (rdy)
     else if (room == rm_2d)
         {
         draw_set_color(c_white);
-        draw_sprite(spr_audio,!songloaded,830,477);
+        draw_sprite(spr_audio,!songloaded,830,obj_audiobutton.y);
         
         draw_set_color(c_dkgray);
-        draw_line(602,15,602,585);
+        draw_line(513,10,513,502);
         
         draw_set_color(c_aqua);
         draw_text(5,5,tooltip);

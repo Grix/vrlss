@@ -48,3 +48,5 @@ for( i=0; i<=(ds_list_size(controller.scan_list)-1); i++)
     scanner.master = 1;
     scanner.mode = 4;
     }
+    
+controller.refresh_setup_surf = 1;

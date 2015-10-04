@@ -11,17 +11,17 @@ if (ds_list_size(list_id) < 2)
 list_size = (ds_list_size(list_id)-1);
 np_pos = 1;
 
-xpn = ds_list_find_value(list_id,np_pos)/$ffff*300;
-ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*300;
-if (xpn >= 150)
-    xpn -= 150;
+xpn = ds_list_find_value(list_id,np_pos)/$ffff*256;
+ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*256;
+if (xpn >= 128)
+    xpn -= 128;
 else
-    xpn += 150;
-if (ypn >= 150)
-    ypn -= 150;
+    xpn += 128;
+if (ypn >= 128)
+    ypn -= 128;
 else
-    ypn += 150;
-ypn = 300-ypn;
+    ypn += 128;
+ypn = 256-ypn;
 
 np_pos = 5;
     
@@ -36,17 +36,17 @@ while (np_pos < list_size)
     yp = ypn;
     
     //find next point
-    xpn = ds_list_find_value(list_id,np_pos)/$ffff*300;
-    ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*300;
-    if (xpn >= 150)
-        xpn -= 150;
+    xpn = ds_list_find_value(list_id,np_pos)/$ffff*256;
+    ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*256;
+    if (xpn >= 128)
+        xpn -= 128;
     else
-        xpn += 150;
-    if (ypn >= 150)
-        ypn -= 150;
+        xpn += 128;
+    if (ypn >= 128)
+        ypn -= 128;
     else
-        ypn += 150;
-    ypn = 300-ypn;
+        ypn += 128;
+    ypn = 256-ypn;
         
     //if blanking bit is 0, draw line between the two points
     if !(blank)
