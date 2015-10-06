@@ -74,6 +74,7 @@ refresh_setup_surf = 1;
 
 alarm[1]=2;
 
+update_verbose = 0;
 dialog_open = 0;
 tooltip = "";
 frame = 0;
@@ -98,6 +99,30 @@ zpnrad = 0;
 skybox = 1;
 
 update_check();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///game end
+game_end();
 </string>
           </argument>
         </arguments>
@@ -356,6 +381,18 @@ if (new_id == getint)
             updateget = http_get("https://raw.githubusercontent.com/Grix/vrlss/master/version.txt");
             }
         }  
+ if ds_map_find_value(async_load, "status")
+        {
+        switch (dialog)
+            {
+            case "updatefound":
+                {
+                file = http_get_file("https://github.com/Grix/vrlss/raw/master/VRLSS-"+versionnew+"-Installer.exe","temp/update.exe");
+                show_message_async("Download started, installation will start shortly..");
+                break;
+                }  
+            }
+        }
     }
 </string>
           </argument>

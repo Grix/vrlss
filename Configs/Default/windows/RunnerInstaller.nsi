@@ -27,11 +27,11 @@
 !endif
 
 !ifndef COPYRIGHT_TXT
-!define COPYRIGHT_TXT     "(c)Copyright 2013"
+!define COPYRIGHT_TXT     "(c)Copyright 2015"
 !endif
 
 !ifndef FILE_DESC
-!define FILE_DESC         "Created with GameMaker:Studio"
+!define FILE_DESC         "Virtual Reality Laser Show Simulator"
 !endif
 
 !ifndef LICENSE_NAME
@@ -75,7 +75,7 @@ BrandingText "${APP_NAME}"
 OutFile "${INSTALLER_FILENAME}"
 
 ; The default installation directory
-InstallDir "$PROFILE\${APP_NAME}"
+InstallDir "$PROGRAMFILES\${APP_NAME}"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
