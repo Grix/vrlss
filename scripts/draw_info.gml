@@ -16,6 +16,10 @@ if (rdy)
         draw_set_color(c_dkgray);
         draw_line(513,10,513,502);
         
+        draw_set_alpha(0.3);
+        draw_set_colour(c_black);
+        draw_rectangle(0,string_width(tooltip)+10,0,string_height(tooltip)+10,0);
+        draw_set_alpha(1);
         draw_set_color(c_aqua);
         draw_text(5,5,tooltip);
         draw_set_color(c_ltgray);

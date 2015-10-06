@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="2" name="datafiles">
     <datafile>
       <name>help.pdf</name>
       <exists>-1</exists>
@@ -21,10 +21,28 @@
       </ConfigOptions>
       <filename>help.pdf</filename>
     </datafile>
+    <datafile>
+      <name>msvcr120.dll</name>
+      <exists>-1</exists>
+      <size>970912</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>msvcr120.dll</filename>
+    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\RiftExt</extension>
     <extension index="1">extensions\Saudio Plus</extension>
+    <extension index="2">extensions\GMopen</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -71,7 +89,6 @@
     <script>scripts\draw_setup.gml</script>
     <script>scripts\draw_info.gml</script>
     <script>scripts\draw_frame_2d.gml</script>
-    <script>scripts\draw_frame_3d_old.gml</script>
     <script>scripts\draw_frame_3d.gml</script>
     <script>scripts\draw_frame_3d_nohmd.gml</script>
     <script>scripts\d3d_model_load_ext.gml</script>
@@ -145,6 +162,8 @@
       <script>scripts\string_split.gml</script>
       <script>scripts\string_split_ext.gml</script>
     </scripts>
+    <script>scripts\dialog_yesno.gml</script>
+    <script>scripts\update_check.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\lasershader.shader</shader>

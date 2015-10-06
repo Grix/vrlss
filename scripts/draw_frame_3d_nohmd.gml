@@ -28,9 +28,9 @@ if (controller.frameprev != controller.frame)
             continue;
             
         format = ds_list_find_value(ild_list,9);
-        scanner_x = ds_list_find_value(ild_list,1)/600*full_length;
-        scanner_z = ds_list_find_value(ild_list,7)/600*full_length+half_length/2;
-        scanner_y = ds_list_find_value(ild_list,2)/600*full_length;
+        scanner_x = ds_list_find_value(ild_list,1)/512*full_length;
+        scanner_z = ds_list_find_value(ild_list,7)/512*full_length+half_length/2;
+        scanner_y = ds_list_find_value(ild_list,2)/512*full_length;
         xrad = ds_list_find_value(ild_list,3);
         yrad = ds_list_find_value(ild_list,4);
         angle = ds_list_find_value(ild_list,6);
@@ -51,20 +51,18 @@ if (controller.frameprev != controller.frame)
         ds_list_add(tempframe_list,0);
         ds_list_add(tempframe_list,format);
         
-        anglemult = 10*angle;
-        
         list_size = (ds_list_size(list_id)-1);
         np_pos = 1;
         
-        xpn = ds_list_find_value(list_id,np_pos)/$ffff*full_length;
-        ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*full_length;
-        if (xpn >= half_length)
-            xpn -= full_length;
-        if (ypn >= half_length)
-            ypn -= full_length;
+        xpn = ds_list_find_value(list_id,np_pos)/$ffff;
+        ypn = ds_list_find_value(list_id,np_pos+1)/$ffff;
+        if (xpn >= 0.5)
+            xpn -= 1;
+        if (ypn >= 0.5)
+            ypn -= 1;
         
-        trigopy = pihalf-yrad-ypn/anglemult;
-        trigopx = pihalf-xrad-xpn/anglemult;
+        trigopy = pihalf-yrad-ypn*angle;
+        trigopx = pihalf-xrad-xpn*angle;
         sinycalc = sin(trigopy);
         cosxcalc = cos(trigopx);
         xpnpos = scanner_x+25*sinycalc*cosxcalc;
@@ -87,15 +85,15 @@ if (controller.frameprev != controller.frame)
             yp = ypn;
             
             //find next point
-            xpn = ds_list_find_value(list_id,np_pos)/$ffff*full_length;
-            ypn = ds_list_find_value(list_id,np_pos+1)/$ffff*full_length;
-            if (xpn >= half_length)
-                xpn -= full_length;
-            if (ypn >= half_length)
-                ypn -= full_length;
+            xpn = ds_list_find_value(list_id,np_pos)/$ffff;
+            ypn = ds_list_find_value(list_id,np_pos+1)/$ffff;
+            if (xpn >= 0.5)
+                xpn -= 1;
+            if (ypn >= 0.5)
+                ypn -= 1;
             
-            trigopy = pihalf-yrad-ypn/anglemult;
-            trigopx = pihalf-xrad-xpn/anglemult;
+            trigopy = pihalf-yrad-ypn*angle;
+            trigopx = pihalf-xrad-xpn*angle;
             sinycalc = sin(trigopy);
             cosxcalc = cos(trigopx);
             xpnpos = scanner_x+25*sinycalc*cosxcalc;
@@ -136,7 +134,7 @@ if (controller.frameprev != controller.frame)
                 trigopx -= pi;
                 cosxcalc = cos(trigopx);
                 xpnposdual = flminussx+25*sinycalc*cosxcalc;
-                xpposdual = flminussx+25*sin(pihalf-yrad-yp/anglemult)*cos(-pihalf-xrad-xp/anglemult);
+                xpposdual = flminussx+25*sin(pihalf-yrad-yp*angle)*cos(-pihalf-xrad-xp*angle);
                 
                 //if blanking bit is on, draw primitive
                 if !(blank)

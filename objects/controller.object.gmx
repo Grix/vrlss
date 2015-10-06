@@ -25,9 +25,27 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>version = "0.5.0";
+            <string>version = "0.6.0";
+version_date = "2015-10-06";
 
 Init();
+
+//setup file handling system
+FStemp = game_save_id+"temp\";
+if (directory_exists("temp"))
+    {
+    while (1)
+        {
+        file = file_find_first("temp\*", 0);
+        show_debug_message(file)
+        if (file == "") or is_undefined(file) or !is_string(file)
+            break;
+        if (!file_delete("temp\"+file))
+            break;
+        }
+    }
+else
+    directory_create("temp");
 
 templist = ds_list_create();
 scan_list = ds_list_create();
@@ -56,6 +74,7 @@ refresh_setup_surf = 1;
 
 alarm[1]=2;
 
+dialog_open = 0;
 tooltip = "";
 frame = 0;
 framefloat = 0;
@@ -77,6 +96,8 @@ xpnrad = 0;
 ypnrad = 0;
 zpnrad = 0;
 skybox = 1;
+
+update_check();
 </string>
           </argument>
         </arguments>
@@ -300,6 +321,109 @@ if (rdy)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="63">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>dialog_open = 0;
+
+//Get integer
+var new_id = ds_map_find_value(async_load, "id");
+if (new_id == getint)
+    {
+    if (dialog == "update")
+        {
+        updatecheckenabled = ds_map_find_value(async_load, "status");
+        ini_filename = "settings.ini";
+        ini_open(ini_filename);
+        ini_write_real("main","updatecheck",updatecheckenabled);
+        ini_close();
+        if (updatecheckenabled)
+            {
+            updateget = http_get("https://raw.githubusercontent.com/Grix/vrlss/master/version.txt");
+            }
+        }  
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if ds_map_find_value(async_load, "id") == updateget
+    {
+    if ds_map_find_value(async_load, "status") == 0
+       {
+       versionnew = ds_map_find_value(async_load, "result");
+       show_debug_message("Checking version");
+       if (versionnew != version)
+            {
+            dialog_yesno("updatefound","New version available: "+versionnew+"##Would you like to download and install the update?");
+            }
+       else if (update_verbose == 1)
+            {
+            show_message_async("Current version is up to date.");
+            }
+       }
+    }
+else if ds_map_find_value(async_load, "id") == file
+    {
+     if ds_map_find_value(async_load, "status") == 0
+        {
+        if (file_exists("temp/update.exe"))
+            {
+            if (alarm[4] == -1)
+                {
+                show_message_async("Launching installer");
+                open_in_explorer(FStemp+"update.exe")
+                alarm[4] = 60;
+                }
+            }
+        else 
+            {
+            if (updatereceived == 0)
+                {
+                show_message_async("Failed to automatically download update. Opening download website..");
+                open_in_explorer("https://github.com/Grix/vrlss/releases");
+                updatereceived = 1;
+                }
+            }
+         }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>
@@ -324,6 +448,7 @@ if (rdy)
     }
 else if (room == rm_2d)
     {
+    refreshframe = 1;
     end3D();
     window_set_cursor(cr_default);
     
