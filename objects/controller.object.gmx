@@ -572,6 +572,32 @@ else if (room == rm_2d)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>dir = point_direction(x,y,mouse_x,mouse_y);
+var x1, y1;
+x1 = lengthdir_x(100,dir); 
+y1 = lengthdir_y(100,dir); 
+draw_set_color(c_red);
+draw_line(x,y,lengthdir_x(100,point_direction(x,y,mouse_x,mouse_y)),lengthdir_y(100,point_direction(x,y,mouse_x,mouse_y)));
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="9" enumb="27">
       <action>
